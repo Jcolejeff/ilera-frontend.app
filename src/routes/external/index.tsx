@@ -10,10 +10,11 @@ import PrivacyPolicy from 'pages/external/privacy-policy';
 import SingleBlogExternal from 'pages/inner-pages/single-blog-external';
 import SingleBtsExternal from 'pages/inner-pages/single-bts-external';
 import { routeTypes, routesInterface } from 'types';
+import Login from 'pages/onboarding/Login';
 
 const externalRoute: routeTypes = [
   {
-    element: <MyAssistants />,
+    element: <Login />,
     path: '',
     plan: 'starter',
   },

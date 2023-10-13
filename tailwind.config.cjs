@@ -45,7 +45,7 @@ module.exports = {
         white: '#ffffff',
         primary: {
           light: 'rgba(102, 108, 255, 0.12)',
-          1: '#0F172A',
+          1: '#7EB024',
           2: '#F8FAFC',
           3: '#6062E8',
           4: '#5456CC',

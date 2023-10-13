@@ -17,13 +17,13 @@ function App() {
           <div
             className={`flex ${t.type === 'error' ? `items-center` : `items-start`} ${
               t.visible ? `visible` : `hidden`
-            } p-4 bg-white shadow-md dark:bg-grey-4 dark:shadow-none rounded-[4px] gap-4 min-w-[14rem] max-w-[22rem]`}
+            } dark:bg-grey-4 min-w-[14rem] max-w-[22rem] gap-4 rounded-[4px] bg-white p-4 shadow-md dark:shadow-none`}
             style={{
               animation: t.visible ? 'custom-enter 1s ease' : 'custom-exit 1s ease',
             }}
           >
             <p
-              className={`text-[14px] leading-normal text-black-3 dark:text-white ${
+              className={`text-black-3 text-[14px] leading-normal dark:text-white ${
                 t.type === 'error' ? `inline` : ``
               }`}
             >
@@ -42,9 +42,9 @@ function App() {
           </Route>
         ))}
         {externalRoute?.map((i, idx) => (
-          <Route key={`${idx}${i?.path}`} element={<ExternalLayout />}>
-            <Route path={`/${i.path}`} element={i.element} />
-          </Route>
+          <Route path={`/${i.path}`} element={i.element} />
+          // <Route key={`${idx}${i?.path}`} element={<ExternalLayout />}>
+          // </Route>
         ))}
         {innerInternalRoutes?.map((i, idx) => (
           <Route key={`${idx}${i?.path}`} element={<AppLayout />}>

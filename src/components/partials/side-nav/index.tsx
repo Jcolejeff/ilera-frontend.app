@@ -235,36 +235,36 @@ const SideNav = () => {
 
   return (
     <div
-      className={`sticky top-0 bottom-0 ${
+      className={`sticky bottom-0 top-0 ${
         navOpen ? ` w-[260px]` : `w-[86px]`
-      } h-full shadow-3 py-[1.65rem] flex flex-col relative transition-[width] duration-300 ease-in-out`}
+      } relative flex h-full flex-col py-[1.65rem] shadow-3 transition-[width] duration-300 ease-in-out`}
     >
       <button
         onClick={() => setNavOpen((prev) => !prev)}
-        className='absolute -right-[11px] top-[2rem] h-[22px] w-[22px] rounded-[30px] bg-primary-1 ring-[7px] ring-primary-15 z-10'
+        className='absolute -right-[11px] top-[2rem] z-10 h-[22px] w-[22px] rounded-[30px] bg-primary-1 ring-[7px] ring-primary-15'
       />
       <div className='pb-[2.5rem]'>
         <div
-          onClick={() => navigate(`/`)}
-          className='flex items-center gap-[0.625rem] px-[1.66rem] cursor-pointer'
+          onClick={() => navigate(`/app/dashboard`)}
+          className='flex cursor-pointer items-center gap-[0.625rem] px-[1.66rem]'
         >
           <div className='flex items-center'>
             <Icon name='nfmLogo' svgProp={{ width: 34.75, height: 34.75 }} />
           </div>
           <h4
-            className={`font-[700] md:font-[700] text-[16px] md:text-[19px] leading-[20px] md:leading-[24px] tracking-[0.15px] text-primary-8 ${
+            className={`text-[16px] font-[700] leading-[20px] tracking-[0.15px] text-primary-1  md:text-[19px] md:font-[700] md:leading-[24px] ${
               navOpen ? `opacity-100` : `scale-0 opacity-0`
             }  duration-300`}
           >
-            App Assistant
+            Ilera
           </h4>
         </div>
       </div>
-      <div className='flex flex-col gap-[1.125rem] flex-grow overflow-y-auto overflow-x-hidden no-scrollbar'>
+      <div className='no-scrollbar flex flex-grow flex-col gap-[1.125rem] overflow-y-auto overflow-x-hidden'>
         <div className='px-4 '>
           <div
             onClick={() => navigate(`/app/${CONSTANTS.ROUTES.dashboard}`)}
-            className={`flex gap-[0.625rem] items-center px-4 py-[0.625rem] hover:bg-primary-light 
+            className={`flex items-center gap-[0.625rem] px-4 py-[0.625rem] hover:bg-primary-light 
             ${
               isAllowed(`student`) ? `text-secondary-9` : `text-secondary-13`
             } hover:text-primary-1 ${
@@ -272,7 +272,7 @@ const SideNav = () => {
                 ? `!bg-primary-light !text-primary-1`
                 : ``
             }
-            cursor-pointer rounded-[6px] transition duration-300 group`}
+            group cursor-pointer rounded-[6px] transition duration-300`}
           >
             <div className='flex items-center'>
               {!isAllowed(`student`) ? (
@@ -294,7 +294,7 @@ const SideNav = () => {
               )}
             </div>
             <h6
-              className={`font-[400] text-[16px] leading-[24px] tracking-[0.15px] 
+              className={`text-[16px] font-[400] leading-[24px] tracking-[0.15px] 
           ${navOpen ? `opacity-100` : `scale-0 opacity-0`}
           duration-300`}
             >
@@ -303,29 +303,29 @@ const SideNav = () => {
           </div>
         </div>
         <div
-          className={`flex relative ${
+          className={`relative flex ${
             navOpen ? `opacity-100` : `opacity-0`
           } transition-opacity duration-300`}
         >
-          <div className='absolute left-0 w-4 border border-action-disabledBg top-1/3' />
-          <div className='px-8 text-textColor-disabled font-[400] text-[12px] leading-[14px] tracking-[0.4px]'>
+          <div className='absolute left-0 top-1/3 w-4 border border-action-disabledBg' />
+          <div className='px-8 text-[12px] font-[400] leading-[14px] tracking-[0.4px] text-textColor-disabled'>
             {`Discussions`?.toUpperCase()}
           </div>
         </div>
-        <div className='flex flex-col mb-[1.125rem]'>
+        <div className='mb-[1.125rem] flex flex-col'>
           {sideNavLinks['discussions']?.map((i, idx) => (
             <div className='px-4' key={idx}>
               <div
                 onClick={() => navigate(`/app/${i?.link}`)}
-                className={`flex gap-[0.625rem] items-center px-4 py-[0.625rem] hover:bg-primary-light cursor-pointer rounded-[6px]
+                className={`flex cursor-pointer items-center gap-[0.625rem] rounded-[6px] px-4 py-[0.625rem] hover:bg-primary-light
                 ${isAllowed(i?.plan) ? `text-secondary-9` : `text-secondary-13`} 
                 ${
                   location?.pathname === `/app/${i?.link}`
                     ? `!bg-primary-light !text-primary-1`
                     : ``
                 }
-                hover:text-primary-1
-                transition duration-300 group`}
+                group
+                transition duration-300 hover:text-primary-1`}
               >
                 <div className='flex items-center'>
                   {!isAllowed(i?.plan) ? (
@@ -341,7 +341,7 @@ const SideNav = () => {
                   )}
                 </div>
                 <h6
-                  className={`font-[400] text-[16px] leading-[24px] tracking-[0.15px]  whitespace-nowrap
+                  className={`whitespace-nowrap text-[16px] font-[400] leading-[24px]  tracking-[0.15px]
               ${navOpen ? `opacity-100` : `scale-0 opacity-0`}
               duration-300`}
                 >
@@ -352,29 +352,29 @@ const SideNav = () => {
           ))}
         </div>
         <div
-          className={`flex relative ${
+          className={`relative flex ${
             navOpen ? `opacity-100` : `opacity-0`
           } transition-opacity duration-300`}
         >
-          <div className='absolute left-0 w-4 border border-action-disabledBg top-1/3' />
-          <div className='px-8 text-textColor-disabled font-[400] text-[12px] leading-[14px] tracking-[0.4px]'>
+          <div className='absolute left-0 top-1/3 w-4 border border-action-disabledBg' />
+          <div className='px-8 text-[12px] font-[400] leading-[14px] tracking-[0.4px] text-textColor-disabled'>
             {`FEATURES`?.toUpperCase()}
           </div>
         </div>
-        <div className='flex flex-col  mb-[1.125rem]'>
+        <div className='mb-[1.125rem] flex  flex-col'>
           {sideNavLinks['features']?.map((i, idx) => (
             <div className='px-4' key={idx}>
               <div
                 onClick={() => navigate(`/app/${i?.link}`)}
-                className={`flex gap-[0.625rem] items-center px-4 py-[0.625rem] hover:bg-primary-light cursor-pointer rounded-[6px]
+                className={`flex cursor-pointer items-center gap-[0.625rem] rounded-[6px] px-4 py-[0.625rem] hover:bg-primary-light
                 ${isAllowed(i?.plan) ? `text-secondary-9` : `text-secondary-13`} 
                 ${
                   location?.pathname === `/app/${i?.link}`
                     ? `!bg-primary-light !text-primary-1`
                     : ``
                 }
-                hover:text-primary-1
-                transition duration-300 group`}
+                group
+                transition duration-300 hover:text-primary-1`}
               >
                 <div className='flex items-center'>
                   {!isAllowed(i?.plan) ? (
@@ -390,7 +390,7 @@ const SideNav = () => {
                   )}
                 </div>
                 <h6
-                  className={`font-[400] text-[16px] leading-[24px] tracking-[0.15px]   whitespace-nowrap
+                  className={`whitespace-nowrap text-[16px] font-[400] leading-[24px]   tracking-[0.15px]
               ${navOpen ? `opacity-100` : `scale-0 opacity-0`}
               duration-300`}
                 >
@@ -401,29 +401,29 @@ const SideNav = () => {
           ))}
         </div>
         <div
-          className={`flex relative ${
+          className={`relative flex ${
             navOpen ? `opacity-100` : `opacity-0`
           } transition-opacity duration-300`}
         >
-          <div className='absolute left-0 w-4 border border-action-disabledBg top-1/3' />
-          <div className='px-8 text-textColor-disabled font-[400] text-[12px] leading-[14px] tracking-[0.4px]'>
+          <div className='absolute left-0 top-1/3 w-4 border border-action-disabledBg' />
+          <div className='px-8 text-[12px] font-[400] leading-[14px] tracking-[0.4px] text-textColor-disabled'>
             {`trainings`?.toUpperCase()}
           </div>
         </div>
-        <div className='flex flex-col  mb-[1.125rem]'>
+        <div className='mb-[1.125rem] flex  flex-col'>
           {sideNavLinks['trainings']?.map((i, idx) => (
             <div className='px-4' key={idx}>
               <div
                 onClick={() => navigate(`/app/${i?.link}`)}
-                className={`flex gap-[0.625rem] items-center px-4 py-[0.625rem] hover:bg-primary-light cursor-pointer rounded-[6px] transition
+                className={`flex cursor-pointer items-center gap-[0.625rem] rounded-[6px] px-4 py-[0.625rem] transition hover:bg-primary-light
                 ${isAllowed(i?.plan) ? `text-secondary-9` : `text-secondary-13`} 
                 ${
                   location?.pathname === `/app/${i?.link}`
                     ? `!bg-primary-light !text-primary-1`
                     : ``
                 }
-                hover:text-primary-1
-                duration-300 group`}
+                group
+                duration-300 hover:text-primary-1`}
               >
                 <div className='flex items-center'>
                   {' '}
@@ -440,7 +440,7 @@ const SideNav = () => {
                   )}
                 </div>
                 <h6
-                  className={`font-[400] text-[16px] leading-[24px] tracking-[0.15px]  whitespace-nowrap
+                  className={`whitespace-nowrap text-[16px] font-[400] leading-[24px]  tracking-[0.15px]
               ${navOpen ? `opacity-100` : `scale-0 opacity-0`}
               duration-300`}
                 >
@@ -451,26 +451,26 @@ const SideNav = () => {
           ))}
         </div>
         <div
-          className={`flex relative ${
+          className={`relative flex ${
             navOpen ? `opacity-100` : `opacity-0`
           } transition-opacity duration-300`}
         >
-          <div className='absolute left-0 w-4 border border-action-disabledBg top-1/3' />
-          <div className='px-8 text-textColor-disabled font-[400] text-[12px] leading-[14px] tracking-[0.4px]'>
+          <div className='absolute left-0 top-1/3 w-4 border border-action-disabledBg' />
+          <div className='px-8 text-[12px] font-[400] leading-[14px] tracking-[0.4px] text-textColor-disabled'>
             {`SUBSCRIPTION`?.toUpperCase()}
           </div>
         </div>
         <div className='w-full px-4 '>
           <div
-            className={`w-full h-[60px] px-3  text-white bg-primary-1 rounded-[8px] transition duration-300 group cursor-pointer`}
+            className={`group h-[60px] w-full  cursor-pointer rounded-[8px] bg-primary-1 px-3 text-white transition duration-300`}
           >
             <ManageSubscriptions
               triggerClassName='w-full h-full'
               trigger={
-                <div className='flex w-full h-full items-center gap-[0.8rem]'>
+                <div className='flex h-full w-full items-center gap-[0.8rem]'>
                   <div className='flex items-center'>{planTokens[currentUserPlan]?.icon}</div>
                   <h6
-                    className={`font-[600] text-[16px] leading-[24px] tracking-[0.15px] whitespace-nowrap ${
+                    className={`whitespace-nowrap text-[16px] font-[600] leading-[24px] tracking-[0.15px] ${
                       navOpen ? `opacity-100` : `scale-0 opacity-0`
                     } duration-300`}
                   >
