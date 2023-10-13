@@ -1,0 +1,36 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+dist/
+prod-build/
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+yarn.lock
+.env
+# package-lock.json
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.vscode
+.idea
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.production
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+src/partials/Layout/Layout-local.jsx
+src/partials/Layout/Layout-staging.jsx
+src/lib/API-local.js
+src/lib/API-staging.js

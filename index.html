@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Mukta:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;0,9..40,1000;1,9..40,100;1,9..40,200;1,9..40,300;1,9..40,500;1,9..40,700;1,9..40,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Mukta:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ilera</title>
+  </head>
+  <body class="h-[100vh] w-screen overflow-hidden font-manrope">
+    <div id="root" class="relative h-full w-full overflow-x-hidden scroll-smooth"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      (function () {
+        const el = document.getElementById('intro');
+        el.style.minHeight = window.innerHeight + 'px';
+      })();
+      // Calculate 1vh value in pixels
+      // based on window inner height
+      var vh = window.innerHeight * 0.01;
+
+      // Set the CSS variable to the root element
+      // Which is equal to 1vh
+      document.documentElement.style.setProperty('--vh', vh + 'px');
+    </script>
+  </body>
+</html>
