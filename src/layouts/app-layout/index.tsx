@@ -7,14 +7,14 @@ const AppLayout = () => {
   const outlet = useOutlet();
 
   return (
-    <div className='flex w-full h-full '>
-      <aside className='hidden h-full w-max md:flex z-[1] overflow-visible'>
+    <div className='flex h-full w-full '>
+      <aside className='z-[1] hidden h-full w-max overflow-visible md:flex'>
         <SideNav />
       </aside>
-      <main className='flex flex-col flex-grow bg-primary-15'>
+      <main className='flex flex-grow flex-col bg-white'>
         <ScrollToTop />
         <AppNav />
-        <section className='relative max-w-[70.75rem] mx-auto w-full h-full overflow-auto no-scrollbar'>
+        <section className='no-scrollbar relative mx-auto h-full w-full max-w-[70.75rem] overflow-auto'>
           <ScrollToTop />
           {outlet}
         </section>

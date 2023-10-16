@@ -109,16 +109,17 @@ import { ReactComponent as Italic } from 'assets/svg/textArea/italic.svg';
 import { ReactComponent as Underline } from 'assets/svg/textArea/underline.svg';
 import { ReactComponent as AlignLeft } from 'assets/svg/textArea/alignLeft.svg';
 import { ReactComponent as AlignCenter } from 'assets/svg/textArea/alignCenter.svg';
-import { ReactComponent as OrderedList} from 'assets/svg/textArea/orderedList.svg';
-import { ReactComponent as Paragraph} from 'assets/svg/textArea/paragraphMore.svg';
-import { ReactComponent as InsertLink} from 'assets/svg/textArea/insertLink.svg';
-import { ReactComponent as SmileIcon} from 'assets/svg/textArea/smile.svg';
-import { ReactComponent as UndoIcon} from 'assets/svg/textArea/undo.svg';
-import { ReactComponent as RedoIcon} from 'assets/svg/textArea/redo.svg';
-import { ReactComponent as Tag} from 'assets/svg/tag.svg';
-import { ReactComponent as AwardStarIcon} from 'assets/svg/awardStarIcon.svg';
-import { ReactComponent as UserCheck} from 'assets/svg/userCheck.svg';
-
+import { ReactComponent as OrderedList } from 'assets/svg/textArea/orderedList.svg';
+import { ReactComponent as Paragraph } from 'assets/svg/textArea/paragraphMore.svg';
+import { ReactComponent as InsertLink } from 'assets/svg/textArea/insertLink.svg';
+import { ReactComponent as SmileIcon } from 'assets/svg/textArea/smile.svg';
+import { ReactComponent as UndoIcon } from 'assets/svg/textArea/undo.svg';
+import { ReactComponent as RedoIcon } from 'assets/svg/textArea/redo.svg';
+import { ReactComponent as Tag } from 'assets/svg/tag.svg';
+import { ReactComponent as AwardStarIcon } from 'assets/svg/awardStarIcon.svg';
+import { ReactComponent as UserCheck } from 'assets/svg/userCheck.svg';
+import { ReactComponent as Setting } from 'assets/svg/setting.svg';
+import { ReactComponent as Menu } from 'assets/svg/menu.svg';
 
 export type iconTypes =
   | 'filmReel'
@@ -241,7 +242,9 @@ export type iconTypes =
   | 'tag'
   | 'awardStarIcon'
   | 'locationIconBlack'
-  | 'userCheck';
+  | 'userCheck'
+  | 'setting'
+  | 'menu';
 
 interface IconInterface {
   name: iconTypes;
@@ -358,18 +361,20 @@ const Icon = ({ name, svgProp }: IconInterface) => {
     italic: <Italic {...svgProp} />,
     underline: <Underline {...svgProp} />,
     alignCenter: <AlignCenter {...svgProp} />,
-    alignLeft: <AlignLeft {...svgProp}/>,
-    orderedList: <OrderedList {...svgProp}/>,
-    paragraph: <Paragraph  {...svgProp}/>,
-    insertLink: <InsertLink  {...svgProp}/>,
-    smileIcon: <SmileIcon {...svgProp}/>,
-    undoIcon: <UndoIcon  {...svgProp}/>,
-    redoIcon: <RedoIcon  {...svgProp}/>,
-    chervonDown: <ChervonDown {...svgProp}/>,
-    tag: <Tag {...svgProp}/>,
-    awardStarIcon: <AwardStarIcon {...svgProp}/>,
+    alignLeft: <AlignLeft {...svgProp} />,
+    orderedList: <OrderedList {...svgProp} />,
+    paragraph: <Paragraph {...svgProp} />,
+    insertLink: <InsertLink {...svgProp} />,
+    smileIcon: <SmileIcon {...svgProp} />,
+    undoIcon: <UndoIcon {...svgProp} />,
+    redoIcon: <RedoIcon {...svgProp} />,
+    chervonDown: <ChervonDown {...svgProp} />,
+    tag: <Tag {...svgProp} />,
+    awardStarIcon: <AwardStarIcon {...svgProp} />,
     locationIconBlack: <LocationIconBlack {...svgProp} />,
     userCheck: <UserCheck {...svgProp} />,
+    setting: <Setting {...svgProp} />,
+    menu: <Menu {...svgProp} />,
   };
 
   return icons[name];

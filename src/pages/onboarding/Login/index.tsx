@@ -116,7 +116,6 @@ const Login = () => {
              items-center gap-2'
             onClick={() => navigate(`/`)}
           >
-            <Icon name='nfmLogo' svgProp={{ width: 30, height: 40 }} />{' '}
             <h4 className='whitespace-nowrap text-[17px] font-[700]  leading-[24px] tracking-[0.15px] text-primary-1 md:text-[19px]'>
               Ilera
             </h4>

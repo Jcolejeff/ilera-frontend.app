@@ -1,11 +1,5 @@
-
-
 const Notification = () => {
-    return (
-        <div>
-            Notification
-        </div>
-    )
-}
+  return <div>company services</div>;
+};
 
-export default Notification
+export default Notification;

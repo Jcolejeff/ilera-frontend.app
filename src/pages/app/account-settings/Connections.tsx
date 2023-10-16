@@ -1,11 +1,5 @@
-
-
 const Connections = () => {
-    return (
-        <div>
-            Connections
-        </div>
-    )
-}
+  return <div>insurance list</div>;
+};
 
-export default Connections
+export default Connections;

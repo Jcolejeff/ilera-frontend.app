@@ -1,11 +1,5 @@
-
-
 const Security = () => {
-    return (
-        <div>
-            Security
-        </div>
-    )
-}
+  return <div>role settings</div>;
+};
 
-export default Security
+export default Security;

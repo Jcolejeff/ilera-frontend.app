@@ -236,7 +236,7 @@ const SideNav = () => {
   return (
     <div
       className={`sticky bottom-0 top-0 ${
-        navOpen ? ` w-[260px]` : `w-[86px]`
+        navOpen ? ` w-[260px]` : `w-[100px]`
       } relative flex h-full flex-col py-[1.65rem] shadow-3 transition-[width] duration-300 ease-in-out`}
     >
       <button
@@ -245,31 +245,29 @@ const SideNav = () => {
       />
       <div className='pb-[2.5rem]'>
         <div
-          onClick={() => navigate(`/app/dashboard`)}
-          className='flex cursor-pointer items-center gap-[0.625rem] px-[1.66rem]'
+          // onClick={() => navigate(`/app/dashboard`)}
+          className='flex cursor-pointer items-center gap-[0.625rem] px-[1rem]'
         >
-          <div className='flex items-center'>
-            <Icon name='nfmLogo' svgProp={{ width: 34.75, height: 34.75 }} />
-          </div>
+          <div className='flex items-center'></div>
           <h4
             className={`text-[16px] font-[700] leading-[20px] tracking-[0.15px] text-primary-1  md:text-[19px] md:font-[700] md:leading-[24px] ${
-              navOpen ? `opacity-100` : `scale-0 opacity-0`
+              navOpen ? `opacity-100` : `sc opacity-100`
             }  duration-300`}
           >
-            Ilera
+            ilera
           </h4>
         </div>
       </div>
       <div className='no-scrollbar flex flex-grow flex-col gap-[1.125rem] overflow-y-auto overflow-x-hidden'>
         <div className='px-4 '>
           <div
-            onClick={() => navigate(`/app/${CONSTANTS.ROUTES.dashboard}`)}
+            onClick={() => navigate(`/app/${CONSTANTS.ROUTES.settings}`)}
             className={`flex items-center gap-[0.625rem] px-4 py-[0.625rem] hover:bg-primary-light 
             ${
               isAllowed(`student`) ? `text-secondary-9` : `text-secondary-13`
             } hover:text-primary-1 ${
-              location?.pathname === `/app/${CONSTANTS.ROUTES.dashboard}`
-                ? `!bg-primary-light !text-primary-1`
+              location?.pathname === `/app/${CONSTANTS.ROUTES.settings}`
+                ? `!text-primary-1 shadow-md`
                 : ``
             }
             group cursor-pointer rounded-[6px] transition duration-300`}
@@ -285,7 +283,7 @@ const SideNav = () => {
                 />
               ) : (
                 <Icon
-                  name='dashboardIcon'
+                  name='settingIcon'
                   svgProp={{
                     width: 22.75,
                     height: 22.75,
@@ -294,15 +292,15 @@ const SideNav = () => {
               )}
             </div>
             <h6
-              className={`text-[16px] font-[400] leading-[24px] tracking-[0.15px] 
+              className={`text-[14px] font-[400] leading-[24px] tracking-[0.15px] 
           ${navOpen ? `opacity-100` : `scale-0 opacity-0`}
           duration-300`}
             >
-              Dashboard
+              Settings
             </h6>
           </div>
         </div>
-        <div
+        {/* <div
           className={`relative flex ${
             navOpen ? `opacity-100` : `opacity-0`
           } transition-opacity duration-300`}
@@ -311,8 +309,8 @@ const SideNav = () => {
           <div className='px-8 text-[12px] font-[400] leading-[14px] tracking-[0.4px] text-textColor-disabled'>
             {`Discussions`?.toUpperCase()}
           </div>
-        </div>
-        <div className='mb-[1.125rem] flex flex-col'>
+        </div> */}
+        {/* <div className='mb-[1.125rem] flex flex-col'>
           {sideNavLinks['discussions']?.map((i, idx) => (
             <div className='px-4' key={idx}>
               <div
@@ -480,7 +478,7 @@ const SideNav = () => {
               }
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

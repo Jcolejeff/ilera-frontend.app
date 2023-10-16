@@ -47,7 +47,7 @@ const AppNav = () => {
     const chatCount = 2;
     return {
       Chat: chatCount ? (
-        <div className='bg-danger-1 w-[20px] h-[20px] grid place-items-center rounded-[64px] text-[12px] leading-[20px] tracking-[0.14px] text-white'>
+        <div className='grid h-[20px] w-[20px] place-items-center rounded-[64px] bg-danger-1 text-[12px] leading-[20px] tracking-[0.14px] text-white'>
           {chatCount}
         </div>
       ) : (
@@ -59,35 +59,32 @@ const AppNav = () => {
   return (
     <>
       <nav
-        className={` containter w-full  sticky right-0 left-0  md:pt-[0.75rem] md:px-container-base h-max md:h-[4rem] transition-all duration-300 ease-in-out border-b border-b-extraColor-borderBottom-3 md:border-0`}
+        className={` containter sticky left-0  right-0 z-40 h-max  w-full border-b border-b-extraColor-borderBottom-3 transition-all duration-300 ease-in-out md:h-[4rem] md:border-0 md:px-container-base md:pt-[0.75rem]`}
       >
-        <div className='w-full  h-full hidden md:flex justify-between  py-[0.75rem] md:px-container-base shadow-4 rounded-[8px] bg-white'>
-          <div className='flex items-center flex-grow'>
-            <Icon name='searchIcon' svgProp={{ className: 'text-primary-9' }} />
-            <input
-              className='flex-grow mx-2 form-input border-0 focus:!ring-0 placeholder:text-textColor-disabled'
-              placeholder='Search (Ctrl+/)'
-            />
-          </div>
+        <div className='hidden   h-full w-full justify-end  rounded-[8px]   bg-white py-[2rem] shadow-4 md:flex md:px-container-base'>
           <div className='flex items-center gap-[1.125rem]'>
-            <Icon name='notificationIcon' />
+            <div className='flex flex-grow items-center rounded-lg border px-6 '>
+              <input
+                className='form-input mx-2 flex-grow border-0  placeholder:text-sm placeholder:font-bold placeholder:text-textColor-disabled focus:!ring-0'
+                placeholder='Search Patients'
+              />
+              <Icon name='searchIcon' svgProp={{ className: 'text-primary-9' }} />
+            </div>
 
             <DropdownMenu>
               <DropdownMenuTrigger
-                className={`${
-                  loggedIn ? `` : `hidden`
-                } focus:ring-0 active:ring-0 focus-within:ring-0 focus-within:outline-0`}
+                className={`focus-within:outline-0 focus-within:ring-0 focus:ring-0 active:ring-0`}
               >
                 <Icon name='demoDp' />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className='bg-white shadow-5  mr-[1.5rem] w-[14.375rem]'>
-                <DropdownMenuLabel className='flex gap-[0.625rem] items-center !py-[0.875rem] !px-[1.25rem]'>
+              <DropdownMenuContent className='mr-[1.5rem] w-[14.375rem]  bg-white shadow-5'>
+                <DropdownMenuLabel className='flex items-center gap-[0.625rem] !px-[1.25rem] !py-[0.875rem]'>
                   <Icon name='demoDp' />
                   <div className='flex flex-col text-[14px] tracking-[0.15px]'>
-                    <h6 className='text-textColor-primary font-[600] font-inter'>
+                    <h6 className='font-inter font-[600] text-textColor-primary'>
                       {authDetails?.data?.first_name} {authDetails?.data?.last_name}
                     </h6>
-                    <span className='text-textColor-disabled font-[400] text-[12px] leading-[14px] tracking-[0.4px]'>
+                    <span className='text-[12px] font-[400] leading-[14px] tracking-[0.4px] text-textColor-disabled'>
                       User
                     </span>
                   </div>
@@ -99,10 +96,10 @@ const AppNav = () => {
                       navigate(`/app/${i?.link}`);
                     }}
                     key={idx}
-                    className='!py-[0.75rem] !px-[1.25rem] text-textColor-primary text-[14px] leading-[21px] tracking-[0.15px] flex items-center gap-[0.75rem] cursor-pointer'
+                    className='flex cursor-pointer items-center gap-[0.75rem] !px-[1.25rem] !py-[0.75rem] text-[14px] leading-[21px] tracking-[0.15px] text-textColor-primary'
                   >
                     <div className='flex items-center'>{i?.icons}</div>
-                    <div className='flex justify-between flex-grow'>
+                    <div className='flex flex-grow justify-between'>
                       {' '}
                       <span>{i?.title}</span>
                       {tags[i?.title]}
@@ -115,10 +112,10 @@ const AppNav = () => {
                   <DropdownMenuItem
                     onClick={() => navigate(`/app/${i?.link}`)}
                     key={idx}
-                    className='!py-[0.75rem] !px-[1.25rem] text-textColor-primary text-[14px] leading-[21px] tracking-[0.15px] flex items-center gap-[0.75rem] cursor-pointer'
+                    className='flex cursor-pointer items-center gap-[0.75rem] !px-[1.25rem] !py-[0.75rem] text-[14px] leading-[21px] tracking-[0.15px] text-textColor-primary'
                   >
                     <div className='flex items-center'>{i?.icons}</div>
-                    <div className='flex justify-between flex-grow'>
+                    <div className='flex flex-grow justify-between'>
                       {' '}
                       <span>{i?.title}</span>
                       <div> {tags[i?.title]}</div>
@@ -131,7 +128,7 @@ const AppNav = () => {
                   <DropdownMenuItem
                     onClick={() => navigate(`/${i?.link}`)}
                     key={idx}
-                    className='!py-[0.75rem] !px-[1.25rem] text-textColor-primary text-[14px] leading-[21px] tracking-[0.15px] flex items-center gap-[0.75rem] cursor-pointer'
+                    className='flex cursor-pointer items-center gap-[0.75rem] !px-[1.25rem] !py-[0.75rem] text-[14px] leading-[21px] tracking-[0.15px] text-textColor-primary'
                   >
                     <div className='flex items-center'>{i?.icons}</div>
                     <span>{i?.title}</span>
@@ -139,15 +136,22 @@ const AppNav = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+            <div>
+              <p className='font-semibold'>
+                <span className='font-bold'>Bridge </span>Clinic
+              </p>
+              <p className='text-sm text-gray-400'>Oladimeji Ajayi</p>
+            </div>
+            {/* <Icon name='notificationIcon' /> */}
           </div>
         </div>
-        <div className='w-full  flex md:hidden px-container-base justify-between items-center py-[.875rem] '>
+        <div className='flex  w-full items-center justify-between px-container-base py-[.875rem] md:hidden '>
           <div
-            className='flex items-center gap-[0.39rem] md:gap-[0.625rem] cursor-pointer'
+            className='flex cursor-pointer items-center gap-[0.39rem] md:gap-[0.625rem]'
             onClick={() => navigate(`/`)}
           >
             <Icon name='nfmLogo' svgProp={{ width: 34.75, height: 34.75 }} />
-            <h4 className='font-[600] md:font-[500] text-[16px] md:text-[24px] leading-[20px] md:leading-[24px] tracking-[0.15px] text-primary-8'>
+            <h4 className='text-[16px] font-[600] leading-[20px] tracking-[0.15px] text-primary-8 md:text-[24px] md:font-[500] md:leading-[24px]'>
               Nollywood Filmmaker.com
             </h4>
           </div>
