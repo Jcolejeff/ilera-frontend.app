@@ -77,7 +77,7 @@ const AccountSettings = () => {
                     i?.name === currFilter
                       ? `bg-primary-1 text-white`
                       : `bg-transparent text-secondary-2 hover:text-primary-1`
-                  } flex  h-full w-max items-center rounded-[5px]  px-[1rem] py-3 transition-all ease-in-out `}
+                  } flex  h-full w-max items-center rounded-[5px]  px-[2.5rem] py-3 transition-all ease-in-out `}
                   onClick={() => setCurrFilter(i?.name)}
                 >
                   <span className='mt-[3px] whitespace-nowrap text-[13px] capitalize leading-3 tracking-[0.15px] md:mt-0 lg:text-[13px]'>
