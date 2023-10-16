@@ -27,10 +27,7 @@ interface IDropNavLinks {
 }
 
 export const menuLinks: IDropNavLinks = {
-  level1: [
-    { icons: <Icon name='profileIcon' />, link: `profile`, title: `Profile` },
-    { icons: <Icon name='chatIcon' />, link: `chat`, title: `Chat` },
-  ],
+  level1: [{ icons: <Icon name='profileIcon' />, link: `profile`, title: `Profile` }],
   level2: [
     { icons: <Icon name='settingIcon' />, link: `settings`, title: `Settings` },
     { icons: <Icon name='cashIcon' />, link: `subscriptions`, title: `Subscription` },
@@ -106,22 +103,7 @@ const AppNav = () => {
                     </div>
                   </DropdownMenuItem>
                 ))}
-                <DropdownMenuSeparator className='border-b border-b-extraColor-divider' />
 
-                {menuLinks['level2']?.map((i, idx) => (
-                  <DropdownMenuItem
-                    onClick={() => navigate(`/app/${i?.link}`)}
-                    key={idx}
-                    className='flex cursor-pointer items-center gap-[0.75rem] !px-[1.25rem] !py-[0.75rem] text-[14px] leading-[21px] tracking-[0.15px] text-textColor-primary'
-                  >
-                    <div className='flex items-center'>{i?.icons}</div>
-                    <div className='flex flex-grow justify-between'>
-                      {' '}
-                      <span>{i?.title}</span>
-                      <div> {tags[i?.title]}</div>
-                    </div>
-                  </DropdownMenuItem>
-                ))}
                 <DropdownMenuSeparator className='border-b border-b-extraColor-divider' />
 
                 {menuLinks['level3']?.map((i, idx) => (
