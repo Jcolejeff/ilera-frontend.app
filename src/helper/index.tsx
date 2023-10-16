@@ -1,6 +1,15 @@
 import toast from 'react-hot-toast';
 export default toast;
+export function firstCharsOfWords(str: string) {
+  const words = str.split(' ');
 
+  if (words.length === 1 && words[0].length > 1) {
+    const word = words[0];
+    return word[0] + word[word.length - 1];
+  }
+
+  return words.map((word) => word[0]).join('');
+}
 export const copyToClipboard = (text: string, alert: any) => {
   navigator.clipboard
     .writeText(text)
@@ -30,7 +39,7 @@ export const ensureIsNumber = (i: any) => {
 };
 
 export const undefinedNumberChecker = (i?: number) => {
-  if (!!i) {
+  if (i) {
     return i;
   } else {
     return 0;

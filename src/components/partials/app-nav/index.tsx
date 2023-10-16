@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 // import { useWindowSize } from 'usehooks-ts';
 import Menu from '../Menu';
 import useStore from 'store';
+import { firstCharsOfWords } from 'helper';
 
 export type IDropNavTitles = 'Profile' | 'Chat' | 'Settings' | 'Subscription' | 'FAQ' | 'Logout';
 
@@ -72,7 +73,24 @@ const AppNav = () => {
               <DropdownMenuTrigger
                 className={`focus-within:outline-0 focus-within:ring-0 focus:ring-0 active:ring-0`}
               >
-                <Icon name='demoDp' />
+                <article className='flex gap-3'>
+                  <div
+                    style={{ outline: '#7EB024 solid 1px' }}
+                    className='flex  items-center justify-center  rounded-md bg-primary-1 p-2 outline-offset-[3px] md:p-2 md:px-4'
+                  >
+                    <p className='text-base font-extrabold uppercase text-white md:text-xl'>
+                      {firstCharsOfWords('bridge' || ' ')[0]}
+                    </p>
+                  </div>
+                  <div>
+                    <p className='font-semibold'>
+                      <span className='font-bold'>Bridge </span>Clinic
+                    </p>
+                    <p className='text-sm text-gray-400'>Oladimeji Ajayi</p>
+                  </div>
+                </article>
+
+                {/* <Icon name='demoDp' /> */}
               </DropdownMenuTrigger>
               <DropdownMenuContent className='mr-[1.5rem] w-[14.375rem]  bg-white shadow-5'>
                 <DropdownMenuLabel className='flex items-center gap-[0.625rem] !px-[1.25rem] !py-[0.875rem]'>
@@ -118,12 +136,7 @@ const AppNav = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <div>
-              <p className='font-semibold'>
-                <span className='font-bold'>Bridge </span>Clinic
-              </p>
-              <p className='text-sm text-gray-400'>Oladimeji Ajayi</p>
-            </div>
+
             {/* <Icon name='notificationIcon' /> */}
           </div>
         </div>

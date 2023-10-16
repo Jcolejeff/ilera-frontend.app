@@ -65,7 +65,7 @@ const AccountSettings = () => {
           >
             <Icon name='menu' />
           </DropdownMenuTrigger>
-          <DropdownMenuContent className='w[14.375rem] mr-[1.5rem]  bg-white shadow-5'>
+          <DropdownMenuContent className='mr-[1.5rem] w-[20.375rem]  bg-white shadow-5'>
             {settingsFilters?.map((i, idx) => (
               <DropdownMenuItem
                 key={idx}
