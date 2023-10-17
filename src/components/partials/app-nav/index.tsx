@@ -59,7 +59,7 @@ const AppNav = () => {
       <nav
         className={` containter sticky left-0  right-0 z-40 h-max  w-full border-b border-b-extraColor-borderBottom-3 transition-all duration-300 ease-in-out md:h-[4rem] md:border-0 md:px-container-base md:pt-[0.75rem]`}
       >
-        <div className='hidden   h-full w-full justify-end  rounded-[8px]   bg-white py-[2rem] shadow-4 md:flex md:px-container-base'>
+        <div className='hidden   h-full w-full justify-end  rounded-[8px]   bg-white py-[2rem]  md:flex md:px-container-base'>
           <div className='flex items-center gap-[1.125rem]'>
             <div className='flex flex-grow items-center rounded-lg border px-6 '>
               <input

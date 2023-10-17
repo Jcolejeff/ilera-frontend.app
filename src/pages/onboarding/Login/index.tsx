@@ -59,7 +59,7 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<customerLoginFormInterface> = (data) => {
     // mutate(data);
-    navigate(`/app/${CONSTANTS.ROUTES['dashboard']}`);
+    navigate(`/app/${CONSTANTS.ROUTES['settings']}`);
   };
 
   useEffect(() => {

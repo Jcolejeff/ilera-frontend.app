@@ -7,7 +7,7 @@ const RouteGuard = () => {
   const location = useLocation();
   const outlet = useOutlet();
 
-  return loggedIn ? (
+  return !loggedIn ? (
     <Navigate
       to={`/`}
       replace
