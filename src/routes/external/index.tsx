@@ -18,41 +18,41 @@ const externalRoute: routeTypes = [
     path: '',
     plan: 'starter',
   },
-  {
-    element: <Pricing />,
-    path: 'pricing',
-    plan: 'starter',
-  },
-  {
-    element: <MyAssistants />,
-    path: 'my-assistants',
-    plan: 'starter',
-  },
-  {
-    element: <Faq />,
-    path: 'faqs',
-    plan: 'starter',
-  },
-  {
-    element: <About />,
-    path: 'about',
-    plan: 'starter',
-  },
-  {
-    element: <Bts />,
-    path: 'bts',
-    plan: 'starter',
-  },
-  {
-    element: <HireTalents />,
-    path: 'hire-talent',
-    plan: 'starter',
-  },
-  {
-    element: <PrivacyPolicy />,
-    path: 'privacy-policy',
-    plan: 'starter',
-  },
+  // {
+  //   element: <Pricing />,
+  //   path: 'pricing',
+  //   plan: 'starter',
+  // },
+  // {
+  //   element: <MyAssistants />,
+  //   path: 'my-assistants',
+  //   plan: 'starter',
+  // },
+  // {
+  //   element: <Faq />,
+  //   path: 'faqs',
+  //   plan: 'starter',
+  // },
+  // {
+  //   element: <About />,
+  //   path: 'about',
+  //   plan: 'starter',
+  // },
+  // {
+  //   element: <Bts />,
+  //   path: 'bts',
+  //   plan: 'starter',
+  // },
+  // {
+  //   element: <HireTalents />,
+  //   path: 'hire-talent',
+  //   plan: 'starter',
+  // },
+  // {
+  //   element: <PrivacyPolicy />,
+  //   path: 'privacy-policy',
+  //   plan: 'starter',
+  // },
 ];
 
 export const innerExternalRoutes: routesInterface<string>[] = [
