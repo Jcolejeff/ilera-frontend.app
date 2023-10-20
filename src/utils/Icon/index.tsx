@@ -120,6 +120,7 @@ import { ReactComponent as AwardStarIcon } from 'assets/svg/awardStarIcon.svg';
 import { ReactComponent as UserCheck } from 'assets/svg/userCheck.svg';
 import { ReactComponent as Setting } from 'assets/svg/setting.svg';
 import { ReactComponent as Menu } from 'assets/svg/menu.svg';
+import { ReactComponent as Trash } from 'assets/svg/trash.svg';
 
 export type iconTypes =
   | 'filmReel'
@@ -244,7 +245,8 @@ export type iconTypes =
   | 'locationIconBlack'
   | 'userCheck'
   | 'setting'
-  | 'menu';
+  | 'menu'
+  | 'trash';
 
 interface IconInterface {
   name: iconTypes;
@@ -375,6 +377,7 @@ const Icon = ({ name, svgProp }: IconInterface) => {
     userCheck: <UserCheck {...svgProp} />,
     setting: <Setting {...svgProp} />,
     menu: <Menu {...svgProp} />,
+    trash: <Trash {...svgProp} />,
   };
 
   return icons[name];

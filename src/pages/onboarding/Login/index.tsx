@@ -19,6 +19,15 @@ import InputErrorWrapper from 'components/Hocs/InputError';
 import BtnLoader from 'components/Hocs/BtnLoader';
 import { authDetailsInterface } from 'types';
 import useStore from 'store';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+  FormLabel,
+  FormDescription,
+} from 'components/shadcn/ui/form';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -69,7 +78,7 @@ const Login = () => {
   }, []);
 
   return (
-    <div className='flex h-full w-full items-center'>
+    <div className=' flex h-full w-full items-center justify-center'>
       <Dialog open={emailVerifiedOpen} onOpenChange={setEmailVerifiedOpen}>
         <DialogContent className='h-screen !max-w-[1120px] bg-white sm:h-max sm:w-[80vw] lg:w-[50vw]'>
           <div className='mx-auto flex h-full w-full flex-col gap-[1.5rem] pb-[5.31rem] pt-[6.56rem]  md:max-w-[30rem]'>
@@ -99,34 +108,22 @@ const Login = () => {
           </div>
         </DialogContent>
       </Dialog>
-      <div className='hidden h-full w-1/2 basis-auto items-center justify-center overflow-hidden   bg-primary-15 px-16 md:flex'>
-        <div className=' transition-all duration-300 ease-in-out'>
-          <LazyLoadImage
-            className='h-full w-full bg-current object-cover'
-            src={loginIcon}
-            effect='blur'
-            alt=' '
-          />
+
+      <div className=' mx-auto flex   w-full flex-col items-center justify-center  bg-white px-4 md:max-w-xl md:px-[3rem]  '>
+        <div
+          className='mb-[2.125rem] flex w-full cursor-pointer   items-center
+             justify-center gap-2'
+          onClick={() => navigate(`/`)}
+        >
+          <h4 className=' text-center text-[17px] font-[700]  leading-[24px] tracking-[0.15px] text-primary-1 md:text-[2.5rem]'>
+            ilera
+          </h4>
         </div>
-      </div>
-      <div className='mx-auto w-1/2  bg-white px-4 md:px-[3rem]'>
-        <div className='mx-auto flex w-full flex-col items-start justify-center md:w-9/12  md:max-w-2xl'>
-          <div
-            className='mb-[2.125rem] flex   cursor-pointer
-             items-center gap-2'
-            onClick={() => navigate(`/`)}
-          >
-            <h4 className='whitespace-nowrap text-[17px] font-[700]  leading-[24px] tracking-[0.15px] text-primary-1 md:text-[19px]'>
-              Ilera
-            </h4>
-          </div>
+        <section className='w-full rounded-lg border p-8 pt-10'>
           <div className='mb-[1.5rem] flex w-full flex-col'>
-            <h5 className='font-inter text-[24px] font-[700] leading-[32px] tracking-[0.18px] text-primary-9/[0.87]'>
-              Welcome! 👋🏻
+            <h5 className='font-inter text-[17px] font-[600] leading-[32px] tracking-[0.18px] '>
+              Welcome Back!
             </h5>
-            <p className='leading-[24px] tracking-[0.15px] text-primary-9/[0.60]'>
-              Please Log-in to your account
-            </p>
           </div>
 
           <form
@@ -134,82 +131,39 @@ const Login = () => {
             className='mx-auto flex w-full flex-col items-start justify-center'
           >
             <div className='mb-[1.25rem] flex w-full flex-col gap-4'>
-              <InputErrorWrapper error={errors?.email?.message}>
-                <Input
-                  {...register('email')}
-                  className='w-full placeholder:text-primary-9/[0.38]'
-                  placeholder='Email'
-                />
-              </InputErrorWrapper>
-              <InputErrorWrapper error={errors?.password?.message}>
-                <Input
-                  {...register('password')}
-                  className='w-full placeholder:text-primary-9/[0.38]'
-                  placeholder='Password'
-                />
-              </InputErrorWrapper>
-              {/* <button
-                onClick={() => navigate(`/${CONSTANTS.ROUTES['forgot-password']}`)}
-                className='cursor-pointer place-self-end text-[14px] leading-[21px] tracking-[0.15px] text-primary-1 hover:underline'
-              >
-                Forgot Password?
-              </button> */}
-              <div className='mb-[1.75rem] flex w-full items-center justify-end gap-[0.75rem]'>
-                <Checkbox
-                  className='border-primary-9/[0.38] checked:!bg-primary-1 data-[state=checked]:bg-primary-1'
-                  id='Remember Me'
-                />
-                <Label
-                  htmlFor='Remember Me'
-                  className='text-[14px] leading-[21px] tracking-[0.15px] text-primary-9/[0.38]'
-                >
-                  Remember Me
-                </Label>
+              <div className='relative'>
+                <label className=' text-sm font-semibold text-gray-700'>Username</label>
+                <InputErrorWrapper error={errors?.email?.message}>
+                  <Input
+                    {...register('email')}
+                    className='mt-1 w-full placeholder:text-primary-9/[0.38]'
+                    // placeholder='Email'
+                  />
+                </InputErrorWrapper>
+              </div>
+              <div className='relative'>
+                <label className=' text-sm font-semibold text-gray-700'>Password</label>
+
+                <InputErrorWrapper error={errors?.password?.message}>
+                  <Input
+                    {...register('password')}
+                    className='mt-1 w-full placeholder:text-primary-9/[0.38]'
+                    // placeholder='Password'
+                  />
+                </InputErrorWrapper>
               </div>
             </div>
-            {/* <div className='mb-[1.75rem] flex w-full items-center justify-center gap-[0.75rem]'>
-              <Checkbox
-                className='border-primary-9/[0.38] checked:!bg-primary-1 data-[state=checked]:bg-primary-1'
-                id='Remember Me'
-              />
-              <Label
-                htmlFor='Remember Me'
-                className='text-[14px] leading-[21px] tracking-[0.15px] text-primary-9/[0.38]'
-              >
-                Remember Me
-              </Label>
-            </div> */}
+
             <button
               onClick={() => trigger()}
               className='mb-[1.75rem] w-full rounded-[8px] bg-primary-1 py-2 text-[15px] font-[500] text-white shadow-3 transition-opacity duration-300 ease-in-out hover:opacity-90'
             >
               <BtnLoader isLoading={isLoading}>
-                <span className='leading-[0.46px]'>LOGIN</span>
+                <span className='leading-[0.46px]'>Sign in</span>
               </BtnLoader>
             </button>
           </form>
-
-          {/* <p className='mx-auto mb-8 text-center leading-[24px] tracking-[0.15px] text-primary-9/[0.87]'>
-            New here?{' '}
-            <button
-              className='cursor-pointer text-primary-1 hover:underline'
-              onClick={() => navigate(`/${CONSTANTS.ROUTES['create-account']}`)}
-            >
-              {' '}
-              Create an account{' '}
-            </button>
-          </p> */}
-          {/* <div className='relative flex items-center w-full gap-2 mb-[2.5rem]'>
-            <div className='flex-grow border-b border-b-primary-9/[0.12] mt-1' />
-            <span className='eading-[24px] tracking-[0.15px] text-primary-9/[0.87]'>or</span>
-            <div className='flex-grow border-b border-b-primary-9/[0.12] mt-1' />
-          </div>
-          <div className='w-full flex justify-center items-center gap-[1.5rem]'>
-            <Icon name='facebook' />
-            <Icon name='twitter' />
-            <Icon name='google' />
-          </div> */}
-        </div>
+        </section>
       </div>
     </div>
   );
