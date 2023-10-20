@@ -31,6 +31,7 @@ const ROUTES: Record<routePathTypes, routePathTypes> = {
   'privacy-policy': 'privacy-policy',
   'forgot-password': 'forgot-password',
   'verify-email': 'verify-email',
+  'my-assistants': 'my-assistants',
 };
 
 const PLAN_PERMISSIONS: Record<routePathTypes, planTypes> = {
@@ -64,6 +65,7 @@ const PLAN_PERMISSIONS: Record<routePathTypes, planTypes> = {
   'privacy-policy': 'starter',
   'forgot-password': 'starter',
   'verify-email': 'starter',
+  'my-assistants': 'starter',
 };
 
 const TIMBU_KEYS = {
