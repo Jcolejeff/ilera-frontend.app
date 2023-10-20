@@ -1,4 +1,4 @@
-import Account from 'pages/app/account-settings/Account';
+import UserSettings from 'pages/app/account-settings/UserSettings';
 import BillingAndPlan from './BillingAndPlan';
 import Connections from './Connections';
 import Notification from './Notification';
@@ -41,7 +41,7 @@ interface Tabs {
 
 const DisplayTab = ({ title }: Tabs) => {
   const components: Record<filterTypes, JSX.Element> = {
-    'user settings': <Account />,
+    'user settings': <UserSettings />,
     'role settings': <Security />,
     'Laboratory Tests ': <BillingAndPlan />,
     'Company Services': <Notification />,

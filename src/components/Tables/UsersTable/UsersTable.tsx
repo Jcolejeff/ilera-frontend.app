@@ -11,7 +11,13 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
+import {
+  ArrowUpDown,
+  ChevronDown,
+  MoreHorizontal,
+  MoreVertical,
+  MoreVerticalIcon,
+} from 'lucide-react';
 
 import { Button } from 'components/shadcn/ui/button';
 import { Checkbox } from 'components/shadcn/ui/checkbox';
@@ -48,47 +54,125 @@ export type Page = {
   title: string;
   url: string;
 };
-const data: Payment[] = [
-  {
-    id: 'm5gr84i9',
-    amount: 316,
-    status: 'success',
-    email: 'ken99@yahoo.com',
-  },
-  {
-    id: '3u1reuv4',
-    amount: 242,
-    status: 'success',
-    email: 'Abe45@gmail.com',
-  },
-  {
-    id: 'derv1ws0',
-    amount: 837,
-    status: 'processing',
-    email: 'Monserrat44@gmail.com',
-  },
-  {
-    id: '5kma53ae',
-    amount: 874,
-    status: 'success',
-    email: 'Silas22@gmail.com',
-  },
-  {
-    id: 'bhqecj4p',
-    amount: 721,
-    status: 'failed',
-    email: 'carmella@hotmail.com',
-  },
-];
 
-export type Payment = {
-  id: string;
-  amount: number;
-  status: 'pending' | 'processing' | 'success' | 'failed';
-  email: string;
+const pages = {
+  items: [
+    {
+      id: 1,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      title: 'Home Page',
+      url: '/app/home',
+    },
+    {
+      id: 2,
+      description: 'Nulla facilisi. Sed id tellus nec orci ullamcorper.',
+      title: 'About Page',
+      url: '/dash/about',
+    },
+    {
+      id: 3,
+      description: 'Fusce a dolor sit amet velit ultrices laoreet.',
+      title: 'Contact Page',
+      url: '/contact',
+    },
+    {
+      id: 4,
+      description:
+        'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+      title: 'Blog Page',
+      url: '/blog',
+    },
+    {
+      id: 5,
+      description:
+        'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci.',
+      title: 'Services Page',
+      url: '/services',
+    },
+    {
+      id: 6,
+      description: 'Donec eu est non lacus lacinia semper.',
+      title: 'Portfolio Page',
+      url: '/portfolio',
+    },
+    {
+      id: 7,
+      description: 'Suspendisse in orci enim.',
+      title: 'Testimonials Page',
+      url: '/testimonials',
+    },
+    {
+      id: 8,
+      description: 'Aenean nec eros.',
+      title: 'FAQ Page',
+      url: '/faq',
+    },
+    {
+      id: 9,
+      description: 'Morbi in sem quis dui placerat ornare.',
+      title: 'Terms of Service Page',
+      url: '/terms-of-service',
+    },
+    {
+      id: 10,
+      description: 'Aliquam dapibus tincidunt metus.',
+      title: 'Privacy Policy Page',
+      url: '/privacy-policy',
+    },
+    {
+      id: 3,
+      description: 'Fusce a dolor sit amet velit ultrices laoreet.',
+      title: 'Contact Page',
+      url: '/contact',
+    },
+    {
+      id: 4,
+      description:
+        'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+      title: 'Blog Page',
+      url: '/blog',
+    },
+    {
+      id: 5,
+      description:
+        'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci.',
+      title: 'Services Page',
+      url: '/services',
+    },
+    {
+      id: 6,
+      description: 'Donec eu est non lacus lacinia semper.',
+      title: 'Portfolio Page',
+      url: '/portfolio',
+    },
+    {
+      id: 7,
+      description: 'Suspendisse in orci enim.',
+      title: 'Testimonials Page',
+      url: '/testimonials',
+    },
+    {
+      id: 8,
+      description: 'Aenean nec eros.',
+      title: 'FAQ Page',
+      url: '/faq',
+    },
+    {
+      id: 9,
+      description: 'Morbi in sem quis dui placerat ornare.',
+      title: 'Terms of Service Page',
+      url: '/terms-of-service',
+    },
+    {
+      id: 10,
+      description: 'Aliquam dapibus tincidunt metus.',
+      title: 'Privacy Policy Page',
+      url: '/privacy-policy',
+    },
+  ],
 };
 
-function AllPagesTable({ pages, refetch }: { pages: any; refetch: any }) {
+function UserTableComponent() {
   const [isLoading, setIsLoading] = React.useState(false);
   const navigate = useNavigate();
 
@@ -174,9 +258,12 @@ function AllPagesTable({ pages, refetch }: { pages: any; refetch: any }) {
       header: () => <div className='text-right'>Page Type</div>,
       cell: ({ row }) => {
         return (
-          <Link to={`/${CONSTANTS.ROUTES['profile']}/${row.original.id}`}>
-            <div className='text-right font-medium'>{row.getValue('type')}</div>
-          </Link>
+          <div className=''>
+            <Link to={`/${CONSTANTS.ROUTES['profile']}/${row.original.id}`}>
+              <div className='text-right font-medium'>{row.getValue('type')}</div>
+              {/* <Icon name='linkIcon' svgProp={{ className: '' }}></Icon> */}
+            </Link>
+          </div>
         );
       },
     },
@@ -191,7 +278,7 @@ function AllPagesTable({ pages, refetch }: { pages: any; refetch: any }) {
             <DropdownMenuTrigger asChild>
               <Button variant='ghost' className='h-8 w-8 p-0'>
                 <span className='sr-only'>Open menu</span>
-                <MoreHorizontal className='h-4 w-4' />
+                <MoreVertical className='h-4 w-4' />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align='end' className='px-4 py-2'>
@@ -291,12 +378,12 @@ function AllPagesTable({ pages, refetch }: { pages: any; refetch: any }) {
       </div>
       <div className=' bg-white'>
         <Table className=''>
-          <TableHeader>
+          <TableHeader className='border-0 [&_tr]:border-b-0'>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id} className='border bg-slate-200/80'>
+              <TableRow key={headerGroup.id} className='border-0'>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} className='border-0'>
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
@@ -312,7 +399,7 @@ function AllPagesTable({ pages, refetch }: { pages: any; refetch: any }) {
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
-                  className='border-0'
+                  className='border-t-0'
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -360,4 +447,4 @@ function AllPagesTable({ pages, refetch }: { pages: any; refetch: any }) {
   );
 }
 
-export default AllPagesTable;
+export default UserTableComponent;

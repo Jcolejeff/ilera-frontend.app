@@ -145,14 +145,11 @@ const AppNav = () => {
             className='flex cursor-pointer items-center gap-[0.39rem] md:gap-[0.625rem]'
             onClick={() => navigate(`/`)}
           >
-            <Icon name='nfmLogo' svgProp={{ width: 34.75, height: 34.75 }} />
             <h4 className='text-[16px] font-[600] leading-[20px] tracking-[0.15px] text-primary-8 md:text-[24px] md:font-[500] md:leading-[24px]'>
-              Nollywood Filmmaker.com
+              ilera
             </h4>
           </div>
-          <div className='flex items-center'>
-            <Menu />
-          </div>
+          <div className='flex items-center'>{/* <Menu /> */}</div>
         </div>
       </nav>
     </>
