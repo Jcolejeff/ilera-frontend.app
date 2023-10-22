@@ -42,41 +42,41 @@ const generalFilters: filterTypes[] = [
 ];
 
 const AppointmentPage = () => {
-  const [currFilter, setCurrFilter] = useState<filterTypes>('All');
-  const [templateExpanded, setTemplateExpanded] = useState(false);
-  const [currentFocusedTemplate, setCurrentFocusedTemplate] = useState<productInterface | null>(
-    null,
-  );
-  const [downloadConfirmationOpen, setDownloadConfirmationOpen] = useState(false);
-  const [stagedFile, setStagedFile] = useState('');
-  const [searchparams] = useSearchParams();
+  // const [currFilter, setCurrFilter] = useState<filterTypes>('All');
+  // const [templateExpanded, setTemplateExpanded] = useState(false);
+  // const [currentFocusedTemplate, setCurrentFocusedTemplate] = useState<productInterface | null>(
+  //   null,
+  // );
+  // const [downloadConfirmationOpen, setDownloadConfirmationOpen] = useState(false);
+  // const [stagedFile, setStagedFile] = useState('');
+  // const [searchparams] = useSearchParams();
 
-  const { data, isLoading } = useQuery<apiInterface<productInterface[]>>({
-    queryKey: ['get-assets-templates'],
-    queryFn: () =>
-      productService.getProduct({
-        organization_id: import.meta.env.VITE_TIMBU_ORG_ID,
-      }),
-    onError: (err) => {
-      processError(err);
-    },
-  });
+  // const { data, isLoading } = useQuery<apiInterface<productInterface[]>>({
+  //   queryKey: ['get-assets-templates'],
+  //   queryFn: () =>
+  //     productService.getProduct({
+  //       organization_id: import.meta.env.VITE_TIMBU_ORG_ID,
+  //     }),
+  //   onError: (err) => {
+  //     processError(err);
+  //   },
+  // });
 
-  const doFileDownLoad = () => {
-    setDownloadConfirmationOpen(false);
-    FileSaver.saveAs(stagedFile);
-  };
+  // const doFileDownLoad = () => {
+  //   setDownloadConfirmationOpen(false);
+  //   FileSaver.saveAs(stagedFile);
+  // };
 
-  useEffect(() => {
-    const targetedId = searchparams.get('open');
-    if (targetedId) {
-      const item = data?.items?.find((i) => i?.id === targetedId);
-      if (item) {
-        setCurrentFocusedTemplate(item);
-        setTemplateExpanded(true);
-      }
-    }
-  }, [searchparams, data]);
+  // useEffect(() => {
+  //   const targetedId = searchparams.get('open');
+  //   if (targetedId) {
+  //     const item = data?.items?.find((i) => i?.id === targetedId);
+  //     if (item) {
+  //       setCurrentFocusedTemplate(item);
+  //       setTemplateExpanded(true);
+  //     }
+  //   }
+  // }, [searchparams, data]);
 
   return (
     <>

@@ -38,22 +38,22 @@ const AllAssistantsPage = () => {
   const [currFilter, setCurrFilter] = useState<filterTypes>('All');
   const navigate = useNavigate();
 
-  const { data: blogs, isLoading: blogLoading } = useQuery<
-    any,
-    any,
-    apiInterface<contentApiItemInterface[]>
-  >({
-    queryKey: ['get-blogs'],
-    queryFn: () =>
-      contentService.getContent({
-        organization_id: import.meta.env.VITE_TIMBU_ORG_ID,
-        category: CONSTANTS.TIMBU_KEYS.BLOG_ID,
-      }),
-    onError: (err) => {
-      processError(err);
-    },
-  });
-  console.log(blogs);
+  // const { data: blogs, isLoading: blogLoading } = useQuery<
+  //   any,
+  //   any,
+  //   apiInterface<contentApiItemInterface[]>
+  // >({
+  //   queryKey: ['get-blogs'],
+  //   queryFn: () =>
+  //     contentService.getContent({
+  //       organization_id: import.meta.env.VITE_TIMBU_ORG_ID,
+  //       category: CONSTANTS.TIMBU_KEYS.BLOG_ID,
+  //     }),
+  //   onError: (err) => {
+  //     processError(err);
+  //   },
+  // });
+  // console.log(blogs);
 
   return (
     <div className='container my-[1.125rem] flex flex-col px-container-base lg:px-container-lg'>
@@ -71,7 +71,7 @@ const AllAssistantsPage = () => {
           Create App Assistant
         </button>
       </article>
-      <EmptyContentWrapper
+      {/* <EmptyContentWrapper
         isEmpty={!blogLoading && blogs?.items && blogs?.items?.length < 1}
         customMessage="You haven't created an assistant yet?. Create App Assistant"
       >
@@ -96,7 +96,7 @@ const AllAssistantsPage = () => {
             </div>
           </ContentLoader>
         </div>
-      </EmptyContentWrapper>
+      </EmptyContentWrapper> */}
     </div>
   );
 };

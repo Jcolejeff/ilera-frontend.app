@@ -56,10 +56,10 @@ const SingleBlog = () => {
 
   return (
     <main className='relative w-full px-container-base '>
-      <div className='w-full my-[1.5rem] rounded-[1rem] bg-white py-[1rem] sm:py-[2.25rem] px-4 sm:px-[2.5rem] flex flex-col '>
+      <div className='my-[1.5rem] flex w-full flex-col rounded-[1rem] bg-white px-4 py-[1rem] sm:px-[2.5rem] sm:py-[2.25rem] '>
         <div
           onClick={() => navigate(-1)}
-          className='mb-[1.37rem] gap-1 flex items-center w-max px-[2px] py-1 rounded-[8px] cursor-pointer  hover:bg-slate-100 transition-colors duration-300 ease-in-out active:bg-slate-200'
+          className='mb-[1.37rem] flex w-max cursor-pointer items-center gap-1 rounded-[8px] px-[2px] py-1  transition-colors duration-300 ease-in-out hover:bg-slate-100 active:bg-slate-200'
         >
           <Icon
             name='arrowBack'
@@ -67,35 +67,35 @@ const SingleBlog = () => {
           />
           <h5 className='text-secondary-9/[0.87]'>Go Back</h5>
         </div>
-        <div className='flex flex-col md:flex-row gap-4 justify-between w-full mb-[1.6rem]'>
+        <div className='mb-[1.6rem] flex w-full flex-col justify-between gap-4 md:flex-row'>
           <InlineLoader isLoading={isLoading}>
             <h5 className='text-[1.5rem] font-[500] leading-[113%] text-secondary-9/[0.87]'>
               {data?.data?.title}
             </h5>
           </InlineLoader>
           <div className='flex items-center gap-1'>
-            <span className='text-secondary-9/60 leading-[175%]'>Bookmark</span>
+            <span className='leading-[175%] text-secondary-9/60'>Bookmark</span>
             <Icon name='BookmarkIcon' svgProp={{ className: 'text-secondary-1' }} />
           </div>
         </div>
-        <div className='w-full rounded-[8px] h-[19.56rem] overflow-hidden mb-4'>
+        <div className='mb-4 h-[19.56rem] w-full overflow-hidden rounded-[8px]'>
           <LazyLoadImage
             placeholderSrc={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
             src={`${CONSTANTS.TIMBU_KEYS.IMAGE_BASE_URL}/${data?.data?.photos[0]?.url}`}
-            className='w-full h-full  transition-transform duration-300 ease-in-out bg-top bg-cover group-hover:scale-105'
+            className='h-full w-full  bg-cover bg-top transition-transform duration-300 ease-in-out group-hover:scale-105'
             alt=' '
             effect='blur'
           />
         </div>
-        <div className='flex items-center justify-between w-full mb-2'>
-          <span className='text-secondary-9/60 leading-[1.25rem] tracking-[0.00938rem]'>
+        <div className='mb-2 flex w-full items-center justify-between'>
+          <span className='leading-[1.25rem] tracking-[0.00938rem] text-secondary-9/60'>
             Created 16/2/2023 @ 12:22PM
           </span>
           <div
             onClick={() => setLiked(!liked)}
-            className='flex items-end gap-[0.5rem] cursor-pointer'
+            className='flex cursor-pointer items-end gap-[0.5rem]'
           >
-            <span className='text-secondary-9/60 leading-[1rem] tracking-[0.00938rem]'>
+            <span className='leading-[1rem] tracking-[0.00938rem] text-secondary-9/60'>
               {liked ? `160` : `159`}
             </span>
             <Icon
@@ -107,7 +107,7 @@ const SingleBlog = () => {
           </div>
         </div>
 
-        <div className='w-full my-4'>
+        <div className='my-4 w-full'>
           <TextContentLoader isLoading={isLoading} className='py-1'>
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
@@ -115,7 +115,7 @@ const SingleBlog = () => {
                 h1: ({ node, ...props }) => (
                   <h1
                     {...props}
-                    className='text-[1.2rem] font-[500] text-secondary-9/[0.87] my-[1rem]'
+                    className='my-[1rem] text-[1.2rem] font-[500] text-secondary-9/[0.87]'
                   />
                 ),
                 b: ({ node, ...props }) => <span {...props} className='' />,
@@ -123,31 +123,31 @@ const SingleBlog = () => {
                 blockquote: ({ node, ...props }) => (
                   <span
                     {...props}
-                    className='text-primary-9/[0.87] leading-[2rem] tracking-[0.00938rem] mb-[2.5rem]'
+                    className='mb-[2.5rem] leading-[2rem] tracking-[0.00938rem] text-primary-9/[0.87]'
                   />
                 ),
                 ol: ({ node, ...props }) => <ol {...props} className='' />,
                 ul: ({ node, ...props }) => <ul {...props} className='' />,
                 a: ({ node, ...props }) => <a {...props} className='' />,
                 img: ({ node, ...props }) => (
-                  <div className='flex justify-center items-center my-8 max-w-full h-auto overflow-hidden'>
+                  <div className='my-8 flex h-auto max-w-full items-center justify-center overflow-hidden'>
                     {' '}
-                    <img {...props} className='w-full h-full' />
+                    <img {...props} className='h-full w-full' />
                   </div>
                 ),
                 p: ({ node, ...props }) => (
                   <p
                     {...props}
-                    className='text-primary-9/[0.87] leading-[2rem] tracking-[0.00938rem] mb-[1.5rem]'
+                    className='mb-[1.5rem] leading-[2rem] tracking-[0.00938rem] text-primary-9/[0.87]'
                   ></p>
                 ),
               }}
             >{`${data?.data?.content}`}</ReactMarkdown>
           </TextContentLoader>
         </div>
-        <div className='flex items-center gap-2 mb-[1.5rem]'>
+        <div className='mb-[1.5rem] flex items-center gap-2'>
           <Icon name='gearIcon' svgProp={{ className: 'text-primary-1' }} />
-          <span className='text-primary-1 leading-[175%] tracking-[0.00938rem]'>
+          <span className='leading-[175%] tracking-[0.00938rem] text-primary-1'>
             Similar Articles
           </span>
         </div>
@@ -156,11 +156,11 @@ const SingleBlog = () => {
           customMessage='No Similar Items at the moment'
         >
           <ContentLoader isLoading={similarLoading}>
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-x-[1.5rem] gap-y-[2.5rem]'>
+            <div className='grid grid-cols-1 gap-x-[1.5rem] gap-y-[2.5rem]  sm:grid-cols-2 md:grid-cols-3'>
               {similar?.items
                 ?.filter((i) => i?.id !== id)
                 ?.map((i, idx) => (
-                  <div key={idx} className='w-full h-full'>
+                  <div key={idx} className='h-full w-full'>
                     <BlogCard
                       authorImg={dpIcon}
                       authorName={`${i?.content_author?.first_name} ${i?.content_author?.last_name}`}

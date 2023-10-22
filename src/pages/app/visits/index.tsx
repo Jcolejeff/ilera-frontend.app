@@ -27,17 +27,17 @@ import { useNavigate } from 'react-router-dom';
 const VisitsPage = () => {
   const navigate = useNavigate();
 
-  const { data, isLoading } = useQuery<any, any, apiInterface<contentApiItemInterface[]>>({
-    queryKey: ['get-blogs'],
-    queryFn: () =>
-      contentService.getContent({
-        organization_id: import.meta.env.VITE_TIMBU_ORG_ID,
-        category: CONSTANTS.TIMBU_KEYS.BLOG_ID,
-      }),
-    onError: (err) => {
-      processError(err);
-    },
-  });
+  // const { data, isLoading } = useQuery<any, any, apiInterface<contentApiItemInterface[]>>({
+  //   queryKey: ['get-blogs'],
+  //   queryFn: () =>
+  //     contentService.getContent({
+  //       organization_id: import.meta.env.VITE_TIMBU_ORG_ID,
+  //       category: CONSTANTS.TIMBU_KEYS.BLOG_ID,
+  //     }),
+  //   onError: (err) => {
+  //     processError(err);
+  //   },
+  // });
 
   return (
     <div className='container flex w-full flex-col px-container-base py-[1.875rem]'>

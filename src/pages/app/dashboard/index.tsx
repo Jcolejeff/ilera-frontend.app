@@ -43,48 +43,48 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
 
-  const { data: blogs, isLoading: blogLoading } = useQuery<
-    any,
-    any,
-    apiInterface<contentApiItemInterface[]>
-  >({
-    queryKey: ['get-blogs'],
-    queryFn: () =>
-      contentService.getContent({
-        organization_id: import.meta.env.VITE_TIMBU_ORG_ID,
-        category: CONSTANTS.TIMBU_KEYS.BLOG_ID,
-      }),
-    onError: (err) => {
-      processError(err);
-    },
-  });
+  // const { data: blogs, isLoading: blogLoading } = useQuery<
+  //   any,
+  //   any,
+  //   apiInterface<contentApiItemInterface[]>
+  // >({
+  //   queryKey: ['get-blogs'],
+  //   queryFn: () =>
+  //     contentService.getContent({
+  //       organization_id: import.meta.env.VITE_TIMBU_ORG_ID,
+  //       category: CONSTANTS.TIMBU_KEYS.BLOG_ID,
+  //     }),
+  //   onError: (err) => {
+  //     processError(err);
+  //   },
+  // });
 
-  const { data: bts, isLoading: btsLoading } = useQuery<
-    any,
-    any,
-    apiInterface<contentApiItemInterface[]>
-  >({
-    queryKey: ['get-bts'],
-    queryFn: () =>
-      contentService.getContent({
-        organization_id: import.meta.env.VITE_TIMBU_ORG_ID,
-        category: CONSTANTS.TIMBU_KEYS.BTS_ID,
-      }),
-    onError: (err) => {
-      processError(err);
-    },
-  });
+  // const { data: bts, isLoading: btsLoading } = useQuery<
+  //   any,
+  //   any,
+  //   apiInterface<contentApiItemInterface[]>
+  // >({
+  //   queryKey: ['get-bts'],
+  //   queryFn: () =>
+  //     contentService.getContent({
+  //       organization_id: import.meta.env.VITE_TIMBU_ORG_ID,
+  //       category: CONSTANTS.TIMBU_KEYS.BTS_ID,
+  //     }),
+  //   onError: (err) => {
+  //     processError(err);
+  //   },
+  // });
 
-  const { data: assets, isLoading: assetsLoading } = useQuery<apiInterface<productInterface[]>>({
-    queryKey: ['get-assets-templates'],
-    queryFn: () =>
-      productService.getProduct({
-        organization_id: import.meta.env.VITE_TIMBU_ORG_ID,
-      }),
-    onError: (err) => {
-      processError(err);
-    },
-  });
+  // const { data: assets, isLoading: assetsLoading } = useQuery<apiInterface<productInterface[]>>({
+  //   queryKey: ['get-assets-templates'],
+  //   queryFn: () =>
+  //     productService.getProduct({
+  //       organization_id: import.meta.env.VITE_TIMBU_ORG_ID,
+  //     }),
+  //   onError: (err) => {
+  //     processError(err);
+  //   },
+  // });
 
   return (
     <div className='container flex h-full w-full flex-col overflow-auto px-container-base py-[1.875rem]'>
