@@ -2,25 +2,25 @@ import Icon from 'utils/Icon';
 
 interface IFunkyPagesHero {
   title: string;
-  description: string;
+  description?: string;
   customBgClass?: string;
 }
 
 const FunkyPagesHero = ({ description, title, customBgClass }: IFunkyPagesHero) => {
   return (
-    <div className='w-full min-h-[10rem] h-full rounded-[16px] relative overflow-hidden'>
-      <div className={`absolute w-full h-full bg-primary-1 ${customBgClass ? customBgClass : ``}`}>
+    <div className='relative  min-h-[10rem] w-full overflow-hidden rounded-[16px]'>
+      <div className={`absolute h-full w-full bg-primary-1 ${customBgClass ? customBgClass : ``}`}>
         <Icon name='funkyPagesHero' />
       </div>
-      <div className='absolute flex justify-center items-center md:items-start w-full h-full px-2'>
-        <div className='w-max h-max mt-8 md:mt-[4.1875rem] z-[1]  flex flex-col items-center'>
-          <h4 className='relative text-white font-[700] text-[32px] leading-[40px] tracking-[0.15px] text-center'>
+      <div className='absolute flex h-full w-full items-center justify-center px-2 md:items-start'>
+        <div className='z-[1] mt-8 flex h-max w-max  flex-col items-center md:mt-[4.1875rem]'>
+          <h4 className='relative text-center text-[32px] font-[700] leading-[40px] tracking-[0.15px] text-white'>
             {title}
-            <div className='absolute -top-[1.5rem] -left-[1.5rem]'>
+            <div className='absolute -left-[1.5rem] -top-[1.5rem]'>
               <Icon name='funkyPagesTextTop' />
             </div>
           </h4>
-          <p className=' text-primary-10 font-[300] text-[14px] leading-[21px] text-center'>
+          <p className=' text-center text-[14px] font-[300] leading-[21px] text-primary-10'>
             {description}
           </p>
         </div>

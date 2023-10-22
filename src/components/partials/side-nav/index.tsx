@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useStore from 'store';
 import { ItitleLinks, planTypes, routePathTypes } from 'types';
 import Icon from 'utils/Icon';
+import { cn } from 'lib/utils';
 
 type ISideNavTitles =
   | 'Blogs'
@@ -56,7 +57,7 @@ export const sideNavLinks: extendedRouteInterface[] = [
     plan: CONSTANTS.PLAN_PERMISSIONS.dashboard,
   },
   {
-    link: 'blogs',
+    link: 'visits',
     title: 'Visits',
     icons: (
       <Icon
@@ -68,11 +69,11 @@ export const sideNavLinks: extendedRouteInterface[] = [
         name='fileIcon'
       />
     ),
-    plan: CONSTANTS.PLAN_PERMISSIONS['blogs'],
+    plan: CONSTANTS.PLAN_PERMISSIONS['visits'],
   },
 
   {
-    link: 'professional-forums',
+    link: 'patients',
     title: 'Patients',
     icons: (
       <Icon
@@ -84,10 +85,10 @@ export const sideNavLinks: extendedRouteInterface[] = [
         name='patients'
       />
     ),
-    plan: CONSTANTS.PLAN_PERMISSIONS['professional-forums'],
+    plan: CONSTANTS.PLAN_PERMISSIONS.patients,
   },
   {
-    link: 'assets-templates',
+    link: 'appointment',
     title: 'Appointment',
     icons: (
       <Icon
@@ -99,10 +100,10 @@ export const sideNavLinks: extendedRouteInterface[] = [
         name='appointment'
       />
     ),
-    plan: CONSTANTS.PLAN_PERMISSIONS['professional-forums'],
+    plan: CONSTANTS.PLAN_PERMISSIONS.appointment,
   },
   {
-    link: 'cv-profile',
+    link: 'consultation',
     title: 'Consultation',
     icons: (
       <Icon
@@ -114,10 +115,10 @@ export const sideNavLinks: extendedRouteInterface[] = [
         name='consult'
       />
     ),
-    plan: CONSTANTS.PLAN_PERMISSIONS['professional-forums'],
+    plan: CONSTANTS.PLAN_PERMISSIONS.consultation,
   },
   {
-    link: 'bootcamps',
+    link: 'billing',
     title: 'Billing',
     icons: (
       <Icon
@@ -129,10 +130,10 @@ export const sideNavLinks: extendedRouteInterface[] = [
         name='billing'
       />
     ),
-    plan: CONSTANTS.PLAN_PERMISSIONS['professional-forums'],
+    plan: CONSTANTS.PLAN_PERMISSIONS.billing,
   },
   {
-    link: 'bts',
+    link: 'inventory',
     title: 'Inventory',
     icons: (
       <Icon
@@ -144,10 +145,10 @@ export const sideNavLinks: extendedRouteInterface[] = [
         name='inventory'
       />
     ),
-    plan: CONSTANTS.PLAN_PERMISSIONS['professional-forums'],
+    plan: CONSTANTS.PLAN_PERMISSIONS.inventory,
   },
   {
-    link: 'consultancy',
+    link: 'laboratory',
     title: 'Laboratory',
     icons: (
       <Icon
@@ -159,10 +160,10 @@ export const sideNavLinks: extendedRouteInterface[] = [
         name='lab'
       />
     ),
-    plan: CONSTANTS.PLAN_PERMISSIONS.settings,
+    plan: CONSTANTS.PLAN_PERMISSIONS.laboratory,
   },
   {
-    link: 'master-classes',
+    link: 'reports',
     title: 'Reports',
     icons: (
       <Icon
@@ -174,7 +175,7 @@ export const sideNavLinks: extendedRouteInterface[] = [
         name='reports'
       />
     ),
-    plan: CONSTANTS.PLAN_PERMISSIONS.settings,
+    plan: CONSTANTS.PLAN_PERMISSIONS.reports,
   },
   {
     link: 'settings',
@@ -229,18 +230,19 @@ const SideNav = () => {
     >
       <button
         onClick={() => setNavOpen((prev) => !prev)}
-        className='absolute -right-[11px] top-[2rem] z-10 h-[22px] w-[22px] rounded-[30px] bg-primary-1 ring-[7px] ring-primary-15'
+        className='absolute -right-[11px] top-[1.5rem] z-10 h-[25px] w-[25px] rounded-[30px] bg-primary-1 ring-[7px] ring-primary-15'
       />
       <div className='pb-[2.5rem]'>
         <div
           // onClick={() => navigate(`/app/dashboard`)}
           className='flex cursor-pointer items-center gap-[0.625rem] px-[1rem]'
         >
-          <div className='flex items-center'></div>
           <h4
-            className={`text-[16px] font-[700] leading-[20px] tracking-[0.15px] text-primary-1  md:text-[19px] md:font-[700] md:leading-[24px] ${
-              navOpen ? `opacity-100` : `sc opacity-100`
-            }  duration-300`}
+            className={cn(
+              ` text-[16px] font-[700] leading-[20px] tracking-[0.15px] text-primary-1   md:font-[700] md:leading-[24px] ${
+                navOpen ? `opacity-100 md:px-4 md:text-[25px]` : `opacity-100  md:text-[19px]`
+              }  transition-all duration-300 ease-in-out`,
+            )}
           >
             ilera
           </h4>
@@ -287,7 +289,11 @@ const SideNav = () => {
           ))}
         </div>
       </div>
-      <div className='flex flex-col gap-4 px-4'>
+      <div
+        className={`flex flex-col gap-4 px-[1.8rem]
+              ${navOpen ? `opacity-100` : `scale-0 opacity-0`}
+              transition-all duration-300 ease-in-out`}
+      >
         <button>
           <div className='flex items-center gap-4 text-primary-1'>
             <Icon

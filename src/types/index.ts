@@ -14,16 +14,13 @@ export type routePathTypes =
   | 'bts'
   | 'consultancy'
   | 'cv-profile'
-  | 'dashboard'
   | 'general-forums'
   | 'master-classes'
   | 'my-assistants'
   | 'online-training'
   | 'professional-forums'
   | 'service-ad'
-  | 'profile'
   | 'chat'
-  | 'settings'
   | 'subscriptions'
   | 'logout'
   | 'hire-talent'
@@ -31,7 +28,18 @@ export type routePathTypes =
   | 'forgot-password'
   | 'verify-email'
   | 'new-password'
-  | 'privacy-policy';
+  | 'privacy-policy'
+  | 'dashboard'
+  | 'profile'
+  | 'visits'
+  | 'patients'
+  | 'appointment'
+  | 'settings'
+  | 'consultation'
+  | 'billing'
+  | 'inventory'
+  | 'reports'
+  | 'laboratory';
 
 export interface routesInterface<T> {
   path: T;

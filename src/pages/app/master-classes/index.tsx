@@ -12,18 +12,18 @@ import filmImg from 'assets/image/masterClassImg.png';
 type filterTypes = 'All' | 'Upcoming' | 'Completed';
 
 const generalFilters: filterTypes[] = ['All', 'Upcoming', 'Completed'];
-const MasterClasses = () => {
+const ReportsPage = () => {
   const [currFilter, setCurrFilter] = useState<filterTypes>('All');
 
   return (
-    <div className='container w-full px-container-base flex flex-col py-[1.875rem]'>
+    <div className='container flex w-full flex-col px-container-base py-[1.875rem]'>
       <FunkyPagesHero
-        description='Find and register for masterclasses organized by Anthill studios'
-        title='Master Classes'
+        // description='Find and register for masterclasses organized by Anthill studios'
+        title='Reports'
       />
-      <PlanGuard page='master-classes'>
+      <PlanGuard page='reports'>
         <>
-          <div className='w-full max-w-[800px] relative mx-auto my-[1.5rem] md:my-0 md:mb-[1.75rem] md:-top-[1.5rem]'>
+          {/* <div className='w-full max-w-[800px] relative mx-auto my-[1.5rem] md:my-0 md:mb-[1.75rem] md:-top-[1.5rem]'>
             <SearchComboBox />
           </div>
           <div className='flex justify-center w-full mb-[1.5rem]'>
@@ -46,11 +46,11 @@ const MasterClasses = () => {
                 />
               </div>
             ))}
-          </div>
+          </div> */}
         </>
       </PlanGuard>
     </div>
   );
 };
 
-export default MasterClasses;
+export default ReportsPage;

@@ -55,7 +55,7 @@ const AccountSettings = () => {
   const [currFilter, setCurrFilter] = useState<filterTypes>('user settings');
 
   return (
-    <div className='container flex h-full w-full flex-col overflow-auto px-container-base py-[2.1rem]'>
+    <div className='container flex h-full w-full  flex-col overflow-auto px-container-base py-[2.1rem]'>
       {/* to be refactored */}
       <div className='flex justify-between '>
         <p className='text-base font-semibold text-primary-1'>Settings</p>{' '}

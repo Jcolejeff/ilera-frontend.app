@@ -87,47 +87,47 @@ const Dashboard = () => {
   });
 
   return (
-    <div className='container w-full h-full px-container-base flex flex-col py-[1.875rem] overflow-auto'>
+    <div className='container flex h-full w-full flex-col overflow-auto px-container-base py-[1.875rem]'>
       <FunkyPagesHero
-        description='Find advertisements and track your activities here'
-        title='Your Dashboard'
+        // description='Find advertisements and track your activities here'
+        title=' Dashboard'
       />
       <PlanGuard page='dashboard'>
         <>
-          <div className='w-full max-w-[800px] relative mx-auto my-[1.5rem] md:my-0 md:mb-[1rem] md:-top-[1.5rem]'>
+          {/* <div className='relative mx-auto my-[1.5rem] w-full max-w-[800px] md:-top-[1.5rem] md:my-0 md:mb-[1rem]'>
             <SearchComboBox />
           </div>
-          <div className='flex justify-center w-full mb-[2.25rem]'>
+          <div className='mb-[2.25rem] flex w-full justify-center'>
             <PillTabs
               tabs={generalFilters}
               currActive={currFilter}
               onSelect={(i) => setCurrFilter(i)}
             />
           </div>
-          <div className='w-full flex flex-col gap-[2.5rem]'>
+          <div className='flex w-full flex-col gap-[2.5rem]'>
             <div className='flex flex-col items-center gap-8 lg:flex-row'>
-              <div className='w-full max-w-[424px] max-h-[424px]'>
+              <div className='max-h-[424px] w-full max-w-[424px]'>
                 <LazyLoadImage
                   placeholderSrc={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
-                  className='w-full h-full'
+                  className='h-full w-full'
                   src={demoAd}
                   effect='blur'
                   alt=' '
                 />
               </div>
               <div className='flex flex-col justify-center gap-4'>
-                <span className='text-primary-1 font-[600] text-[14px] leading-[21px] tracking-[0.1px] '>
+                <span className='text-[14px] font-[600] leading-[21px] tracking-[0.1px] text-primary-1 '>
                   Advertisement
                 </span>
-                <h5 className='font-[700] text-[32px] text-primary-9 leading-[43px]'>
+                <h5 className='text-[32px] font-[700] leading-[43px] text-primary-9'>
                   We’re looking for an Experienced Animator!
                 </h5>
-                <p className='font-[300] text-[14px] text-secondary-2 leading-[21px] tracking-[0.15px]'>
+                <p className='text-[14px] font-[300] leading-[21px] tracking-[0.15px] text-secondary-2'>
                   Filmmaking is an art form that requires a combination of technical skills and
                   creativity. As a filmmaker, it's essential to understand the different aspects of
                   the craft to bring your vision to life. In this blog post, ...
                 </p>
-                <button className='w-max py-[0.75rem] px-[1.5rem] bg-primary-1 rounded-[8px] flex items-center justify-center gap-2 hover:opacity-90 transition-opacity ease-in-out duration-300 group'>
+                <button className='group flex w-max items-center justify-center gap-2 rounded-[8px] bg-primary-1 px-[1.5rem] py-[0.75rem] transition-opacity duration-300 ease-in-out hover:opacity-90'>
                   <span className='leading-[28px] tracking-[0.15px] text-white'>Check it Out</span>
                   <Icon
                     name='arrow45'
@@ -139,7 +139,7 @@ const Dashboard = () => {
                 </button>
               </div>
             </div>
-            <h3 className='font-[500] text-primary-9/[0.87] text-[24px] leading-[32px]'>
+            <h3 className='text-[24px] font-[500] leading-[32px] text-primary-9/[0.87]'>
               Continue Reading!
             </h3>
             <EmptyContentWrapper
@@ -147,9 +147,9 @@ const Dashboard = () => {
               isEmpty={!blogLoading && blogs?.items && blogs?.items?.length < 1}
             >
               <ContentLoader isLoading={blogLoading}>
-                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-x-[1.5rem] gap-y-[2.5rem]'>
+                <div className='grid grid-cols-1 gap-x-[1.5rem] gap-y-[2.5rem]  sm:grid-cols-2 md:grid-cols-3'>
                   {blogs?.items?.slice(0, 2)?.map((i, idx) => (
-                    <div key={idx} className='w-full h-full'>
+                    <div key={idx} className='h-full w-full'>
                       <BlogCard
                         authorImg={dpIcon}
                         authorName={`${i?.content_author?.first_name} ${i?.content_author?.last_name}`}
@@ -166,7 +166,7 @@ const Dashboard = () => {
                 </div>
               </ContentLoader>
             </EmptyContentWrapper>
-            <h3 className='font-[500] text-primary-9/[0.87] text-[24px] leading-[32px]'>
+            <h3 className='text-[24px] font-[500] leading-[32px] text-primary-9/[0.87]'>
               Continue watching
             </h3>
             <EmptyContentWrapper
@@ -174,9 +174,9 @@ const Dashboard = () => {
               isEmpty={!btsLoading && bts?.items && bts?.items?.length < 1}
             >
               <ContentLoader isLoading={btsLoading}>
-                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-[1.5rem] gap-y-[2.5rem]'>
+                <div className='grid grid-cols-1 gap-x-[1.5rem] gap-y-[2.5rem] sm:grid-cols-2 md:grid-cols-3'>
                   {bts?.items?.slice(0, 2)?.map((i, idx) => (
-                    <div key={idx} className='w-full h-full'>
+                    <div key={idx} className='h-full w-full'>
                       <BtsCard
                         btsImage={`${CONSTANTS.TIMBU_KEYS.IMAGE_BASE_URL}/${i?.photos[0]?.url}`}
                         category={`BTS`}
@@ -189,7 +189,7 @@ const Dashboard = () => {
                 </div>
               </ContentLoader>
             </EmptyContentWrapper>
-            <h3 className='font-[500] text-primary-9/[0.87] text-[24px] leading-[32px]'>
+            <h3 className='text-[24px] font-[500] leading-[32px] text-primary-9/[0.87]'>
               Assets and Templates you might like
             </h3>
             <EmptyContentWrapper
@@ -197,9 +197,9 @@ const Dashboard = () => {
               customMessage='No assets and templates currently'
             >
               <ContentLoader isLoading={assetsLoading}>
-                <div className='grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-[1.5rem] gap-y-[3.875rem]'>
+                <div className='grid w-full grid-cols-1 gap-x-[1.5rem] gap-y-[3.875rem] sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
                   {assets?.items?.map((i, idx) => (
-                    <div key={idx} className='w-full h-full'>
+                    <div key={idx} className='h-full w-full'>
                       <AssetCard
                         desc='Storytelling blueprint for movies.'
                         image={`${CONSTANTS?.TIMBU_KEYS?.IMAGE_BASE_URL}/${
@@ -217,7 +217,7 @@ const Dashboard = () => {
                 </div>
               </ContentLoader>
             </EmptyContentWrapper>
-          </div>
+          </div> */}
         </>
       </PlanGuard>
     </div>

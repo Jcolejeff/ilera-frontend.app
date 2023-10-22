@@ -1,15 +1,14 @@
 import CONSTANTS from 'constant';
-import AssetsTemplates from 'pages/app/assets-templates';
-import BlogInternal from 'pages/app/blog-internal';
-import Bootcamps from 'pages/app/bootcamps';
-import Bts from 'pages/app/bts-internal';
-import Consultancy from 'pages/app/consultancy';
-import CVProfile from 'pages/app/cv-profile';
+import AppointmentPage from 'pages/app/appointment';
+import Visits from 'pages/app/visits';
+import BillingPage from 'pages/app/billing';
+import InventoryPage from 'pages/app/inventory';
+import Laboratory from 'pages/app/laboratory';
+import Consultation from 'pages/app/consultation';
 import Dashboard from 'pages/app/dashboard';
 import GeneralForumns from 'pages/app/general-forums';
-import MasterClasses from 'pages/app/master-classes';
+import ReportsPage from 'pages/app/master-classes';
 import OnlineTraining from 'pages/app/online-training';
-import ProfessionalForums from 'pages/app/professional-forums';
 import ServiceAd from 'pages/app/service-ad';
 import Profile from 'pages/app/user-profile';
 import AccountSettings from 'pages/app/account-settings';
@@ -17,77 +16,82 @@ import SingleBlog from 'pages/inner-pages/single-blog';
 import SingleBts from 'pages/inner-pages/single-bts';
 import SingleMasterClass from 'pages/inner-pages/single-master-class';
 import { routeTypes, routesInterface } from 'types';
+import PatientsPage from 'pages/app/patients';
 
 const internalRoute: routeTypes = [
-  {
-    element: <AssetsTemplates />,
-    path: 'assets-templates',
-    plan: 'student',
-  },
-  {
-    element: <Bootcamps />,
-    path: 'bootcamps',
-    plan: 'student',
-  },
-  {
-    element: <Bts />,
-    path: 'bts',
-    plan: 'student',
-  },
-  {
-    element: <BlogInternal />,
-    path: 'blogs',
-    plan: 'student',
-  },
-  {
-    element: <Consultancy />,
-    path: 'consultancy',
-    plan: 'student',
-  },
-  {
-    element: <CVProfile />,
-    path: 'cv-profile',
-    plan: 'student',
-  },
   {
     element: <Dashboard />,
     path: 'dashboard',
     plan: 'student',
   },
   {
-    element: <GeneralForumns />,
-    path: 'general-forums',
-    plan: 'student',
+    element: <PatientsPage />,
+    path: 'patients',
+    plan: 'starter',
   },
   {
-    element: <MasterClasses />,
-    path: 'master-classes',
-    plan: 'student',
-  },
-  {
-    element: <OnlineTraining />,
-    path: 'online-training',
-    plan: 'student',
-  },
-  {
-    element: <ProfessionalForums />,
-    path: 'professional-forums',
-    plan: 'professional',
-  },
-  {
-    element: <ServiceAd />,
-    path: 'service-ad',
-    plan: 'professional',
+    element: <Visits />,
+    path: 'visits',
+    plan: 'starter',
   },
   {
     element: <Profile />,
     path: 'profile',
+    plan: 'starter',
+  },
+
+  {
+    element: <AppointmentPage />,
+    path: 'appointment',
+    plan: 'starter',
+  },
+  {
+    element: <Consultation />,
+    path: 'consultation',
+    plan: 'student',
+  },
+  {
+    element: <BillingPage />,
+    path: 'billing',
+    plan: 'student',
+  },
+  {
+    element: <InventoryPage />,
+    path: 'inventory',
+    plan: 'student',
+  },
+  {
+    element: <Laboratory />,
+    path: 'laboratory',
     plan: 'student',
   },
   {
     element: <AccountSettings />,
     path: 'settings',
     plan: 'student',
+  },
+  {
+    element: <ReportsPage />,
+    path: 'reports',
+    plan: 'student',
+  },
+
+  {
+    element: <GeneralForumns />,
+    path: 'general-forums',
+    plan: 'student',
+  },
+
+  {
+    element: <OnlineTraining />,
+    path: 'online-training',
+    plan: 'student',
+  },
+
+  {
+    element: <ServiceAd />,
+    path: 'service-ad',
+    plan: 'professional',
   },
 ];
 
