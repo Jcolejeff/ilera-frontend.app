@@ -9,7 +9,7 @@ const RouteGuard = () => {
 
   return !loggedIn ? (
     <Navigate
-      to={`/`}
+      to={`/login`}
       replace
       state={
         {
