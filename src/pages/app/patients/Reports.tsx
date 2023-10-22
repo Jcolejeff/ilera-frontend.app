@@ -3,7 +3,7 @@ import sections from './tempData';
 const PatientsReports = () => {
   return (
     <section>
-      <h3 className='font-semibold'>Patients Reports</h3>
+      <h3 className='font-semibold text-primary-1'>Patients Reports</h3>
       <section className='mt-12 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr]  xxl:grid-cols-[1fr_1fr_1fr_1fr]'>
         {sections.map((item, key) => {
           return (

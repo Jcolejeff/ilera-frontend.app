@@ -48,6 +48,8 @@ import { processError } from 'helper/error';
 import Spinner from 'components/shadcn/ui/spinner';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useStore from 'store';
+import sections from 'pages/app/patients/tempData';
+import { cn } from 'lib/utils';
 export type Page = {
   id: string;
   type: string;
@@ -333,50 +335,109 @@ function PatientsTableComponent() {
   });
 
   return (
-    <div className='w-full'>
-      <div className='flex items-center py-4'>
-        <Input
-          placeholder='Filter page title...'
-          value={(table.getColumn('title')?.getFilterValue() as string) ?? ''}
-          onChange={(event) => table.getColumn('title')?.setFilterValue(event.target.value)}
-          className='max-w-sm'
-        />
-        <button
-          className='  mx-4 rounded-md border px-4 py-1 text-sm shadow-md'
-          onClick={() => {
-            table.resetSorting();
-          }}
-        >
-          reset
-        </button>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <div className='ml-auto'>
-              <Button variant='outline'>
-                Columns <ChevronDown className='ml-2 h-4 w-4' />
+    <div className='flex w-full flex-col gap-12'>
+      <div className='flex items-center justify-between '>
+        <h3 className='font-semibold text-primary-1'>Patients Records</h3>
+        <div className='flex gap-3'>
+          <div className='flex  items-center rounded-lg border px-4'>
+            <input
+              value={(table.getColumn('title')?.getFilterValue() as string) ?? ''}
+              onChange={(event) => table.getColumn('title')?.setFilterValue(event.target.value)}
+              className='form-input  max-w-xl flex-grow border-0  placeholder:text-sm placeholder:font-semibold placeholder:text-textColor-disabled focus:!ring-0'
+              placeholder='Search Patients'
+            />
+            <Icon name='searchIcon' svgProp={{ className: 'text-primary-9' }} />
+          </div>
+
+          <Link
+            to={`/${CONSTANTS.ROUTES['profile']}/new`}
+            className='group flex  items-center justify-center gap-2  rounded-[5px] bg-primary-1  px-4 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:opacity-90'
+          >
+            <Icon
+              name='addIcon'
+              svgProp={{
+                className:
+                  'text-primary-1 cursor-pointer hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
+              }}
+            />
+            <span className='text-xs font-[500] leading-[24px] tracking-[0.4px] text-white md:text-sm'>
+              New Patient
+            </span>
+          </Link>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant='ghost' className='h-8 w-8 p-0'>
+                <span className='sr-only'>Open menu</span>
+                <MoreHorizontal className='h-4 w-4' />
               </Button>
-            </div>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align='end'>
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className='capitalize'
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) => column.toggleVisibility(!!value)}
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align='end' className='px-4 py-2  pb-4'>
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem
+                onClick={() => {
+                  table.resetSorting();
+                }}
+                className='flex cursor-pointer items-center gap-2 rounded-md border px-3 py-2 text-center'
+              >
+                Reset Sorting
+              </DropdownMenuItem>
+              <DropdownMenuSeparator className='my-2' />
+
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <div className=''>
+                    <Button variant='outline' className='py-2'>
+                      Columns <ChevronDown className='ml-2 h-4 w-4' />
+                    </Button>
+                  </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align='end'>
+                  {table
+                    .getAllColumns()
+                    .filter((column) => column.getCanHide())
+                    .map((column) => {
+                      return (
+                        <DropdownMenuCheckboxItem
+                          key={column.id}
+                          className='capitalize'
+                          checked={column.getIsVisible()}
+                          onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                        >
+                          {column.id}
+                        </DropdownMenuCheckboxItem>
+                      );
+                    })}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
-      <div className=' bg-white'>
+      <section className=' grid grid-cols-[1fr_1fr] gap-[2rem] rounded-lg border md:grid-cols-[1fr_1fr_1fr]  xxl:grid-cols-[1fr_1fr_1fr_1fr]'>
+        {sections.slice(0, 4).map((item, key) => {
+          return (
+            <article
+              className={cn(
+                `} cursor-pointer rounded-lg  px-5 py-6 opacity-50 transition-all duration-500 ease-in-out`,
+              )}
+              key={key}
+            >
+              <div className='flex flex-col gap-1  px-2'>
+                <h3 className='text-sm font-semibold'>{item.heading}</h3>
+                <p>
+                  <span className='font-bold md:text-[1.5rem]'>{item.count}</span>
+                  {/* <span className='text-[0.8rem] font-semibold'>%</span> */}
+                </p>
+                <p className='text-[0.79rem] leading-[130%] tracking-[0.02rem] md:leading-[1.2rem] md:tracking-[0.0125rem]'>
+                  {item.paragraph}
+                </p>
+              </div>
+            </article>
+          );
+        })}
+      </section>
+      <div className='rounded-lg border bg-white px-2 py-4'>
         <Table className=''>
           <TableHeader className='border-0 [&_tr]:border-b-0'>
             {table.getHeaderGroups().map((headerGroup) => (
