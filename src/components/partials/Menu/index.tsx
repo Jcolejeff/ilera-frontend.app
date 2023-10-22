@@ -21,40 +21,36 @@ const Menu = () => {
 
   return (
     <div className='relative z-20 overflow-hidden'>
-      <button className='relative flex items-center group' onClick={() => setMenuOpen(true)}>
+      <button className='group relative flex items-center' onClick={() => setMenuOpen(true)}>
         <Hamburger menuOpen={menuOpen} />
       </button>
       {createPortal(
         <>
           <div
-            className={`fixed h-screen w-full overflow-hidden top-0 right-0 bottom-0 left-0 bg-black/[0.25] ${
-              menuOpen ? `opacity-100` : `opacity-0 hidden`
-            } delay-200 transition-all duration-300 ease-in-out`}
+            className={`fixed bottom-0 left-0  right-0 top-0 h-screen w-full overflow-hidden bg-black/[0.25] ${
+              menuOpen ? `opacity-100` : `hidden opacity-0`
+            } transition-all duration-300 delay-200 ease-in-out`}
           ></div>
           <aside
             ref={menuRef}
-            className={`fixed bg-white top-0 right-0 bottom-0 w-[320px] h-screen z-20 ${
+            className={`fixed bottom-0 right-0 top-0 z-50 h-screen w-[320px] bg-white ${
               menuOpen ? `translate-x-0` : `translate-x-[100%]`
-            } transition-transform delay-300 duration-300 ease-in-out `}
+            } transition-transform duration-300 delay-300 ease-in-out `}
           >
-            <div className='w-full h-full  flex flex-col px-[1.5rem] py-[1.875rem] '>
-              <div className='w-full flex justify-between pb-[1.875rem] border-b-2 border-extraColor-borderBottom-2'>
+            <div className='flex h-full  w-full flex-col px-[1.5rem] py-[1.875rem] pt-6 '>
+              <div className='-[1.875rem] flex w-full justify-end  border-extraColor-borderBottom-2'>
+                {/* <button>
+                  <Icon name='notificationIcon' />
+                </button> */}
                 <button
-                  className='relative flex items-center group'
+                  className='group relative flex items-center'
                   onClick={() => setMenuOpen(false)}
                 >
                   <Hamburger menuOpen={menuOpen} />
                 </button>
-                <button>
-                  <Icon name='notificationIcon' />
-                </button>
               </div>
-              <div className='flex-grow flex flex-col py-[2.5rem] overflow-y-auto overflow-x-hidden'>
-                {loggedIn ? (
-                  <AuthMenu close={() => setMenuOpen(false)} />
-                ) : (
-                  <NonAuthMenu close={() => setMenuOpen(false)} />
-                )}
+              <div className='flex flex-grow flex-col overflow-y-auto overflow-x-hidden pb-[2.5rem]'>
+                <AuthMenu close={() => setMenuOpen(false)} />
               </div>
             </div>
           </aside>

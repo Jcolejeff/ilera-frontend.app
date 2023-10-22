@@ -19,71 +19,71 @@ import SingleMasterClass from 'pages/inner-pages/single-master-class';
 import { routeTypes, routesInterface } from 'types';
 
 const internalRoute: routeTypes = [
-  // {
-  //   element: <AssetsTemplates />,
-  //   path: 'assets-templates',
-  //   plan: 'student',
-  // },
-  // {
-  //   element: <Bootcamps />,
-  //   path: 'bootcamps',
-  //   plan: 'student',
-  // },
-  // {
-  //   element: <Bts />,
-  //   path: 'bts',
-  //   plan: 'student',
-  // },
-  // {
-  //   element: <BlogInternal />,
-  //   path: 'blogs',
-  //   plan: 'student',
-  // },
-  // {
-  //   element: <Consultancy />,
-  //   path: 'consultancy',
-  //   plan: 'student',
-  // },
-  // {
-  //   element: <CVProfile />,
-  //   path: 'cv-profile',
-  //   plan: 'student',
-  // },
-  // {
-  //   element: <Dashboard />,
-  //   path: 'dashboard',
-  //   plan: 'student',
-  // },
-  // {
-  //   element: <GeneralForumns />,
-  //   path: 'general-forums',
-  //   plan: 'student',
-  // },
-  // {
-  //   element: <MasterClasses />,
-  //   path: 'master-classes',
-  //   plan: 'student',
-  // },
-  // {
-  //   element: <OnlineTraining />,
-  //   path: 'online-training',
-  //   plan: 'student',
-  // },
-  // {
-  //   element: <ProfessionalForums />,
-  //   path: 'professional-forums',
-  //   plan: 'professional',
-  // },
-  // {
-  //   element: <ServiceAd />,
-  //   path: 'service-ad',
-  //   plan: 'professional',
-  // },
-  // {
-  //   element: <Profile />,
-  //   path: 'profile',
-  //   plan: 'student',
-  // },
+  {
+    element: <AssetsTemplates />,
+    path: 'assets-templates',
+    plan: 'student',
+  },
+  {
+    element: <Bootcamps />,
+    path: 'bootcamps',
+    plan: 'student',
+  },
+  {
+    element: <Bts />,
+    path: 'bts',
+    plan: 'student',
+  },
+  {
+    element: <BlogInternal />,
+    path: 'blogs',
+    plan: 'student',
+  },
+  {
+    element: <Consultancy />,
+    path: 'consultancy',
+    plan: 'student',
+  },
+  {
+    element: <CVProfile />,
+    path: 'cv-profile',
+    plan: 'student',
+  },
+  {
+    element: <Dashboard />,
+    path: 'dashboard',
+    plan: 'student',
+  },
+  {
+    element: <GeneralForumns />,
+    path: 'general-forums',
+    plan: 'student',
+  },
+  {
+    element: <MasterClasses />,
+    path: 'master-classes',
+    plan: 'student',
+  },
+  {
+    element: <OnlineTraining />,
+    path: 'online-training',
+    plan: 'student',
+  },
+  {
+    element: <ProfessionalForums />,
+    path: 'professional-forums',
+    plan: 'professional',
+  },
+  {
+    element: <ServiceAd />,
+    path: 'service-ad',
+    plan: 'professional',
+  },
+  {
+    element: <Profile />,
+    path: 'profile',
+    plan: 'student',
+  },
   {
     element: <AccountSettings />,
     path: 'settings',

@@ -121,8 +121,21 @@ import { ReactComponent as UserCheck } from 'assets/svg/userCheck.svg';
 import { ReactComponent as Setting } from 'assets/svg/setting.svg';
 import { ReactComponent as Menu } from 'assets/svg/menu.svg';
 import { ReactComponent as Trash } from 'assets/svg/trash.svg';
+import { ReactComponent as Patients } from 'assets/svg/patients.svg';
+import { ReactComponent as Appointments } from 'assets/svg/appointment.svg';
+import { ReactComponent as Consult } from 'assets/svg/consult.svg';
+import { ReactComponent as Billing } from 'assets/svg/billing.svg';
+import { ReactComponent as Inventory } from 'assets/svg/inventory.svg';
+import { ReactComponent as Lab } from 'assets/svg/lab.svg';
+import { ReactComponent as Reports } from 'assets/svg/reports.svg';
+import { ReactComponent as Help } from 'assets/svg/help.svg';
 
 export type iconTypes =
+  | 'help'
+  | 'reports'
+  | 'lab'
+  | 'inventory'
+  | 'appointment'
   | 'filmReel'
   | 'externalLink'
   | 'avatarIcon'
@@ -246,7 +259,10 @@ export type iconTypes =
   | 'userCheck'
   | 'setting'
   | 'menu'
-  | 'trash';
+  | 'trash'
+  | 'patients'
+  | 'consult'
+  | 'billing';
 
 interface IconInterface {
   name: iconTypes;
@@ -255,6 +271,14 @@ interface IconInterface {
 
 const Icon = ({ name, svgProp }: IconInterface) => {
   const icons: Record<iconTypes, JSX.Element> = {
+    help: <Help {...svgProp} />,
+    reports: <Reports {...svgProp} />,
+    lab: <Lab {...svgProp} />,
+    inventory: <Inventory {...svgProp} />,
+    billing: <Billing {...svgProp} />,
+    consult: <Consult {...svgProp} />,
+    appointment: <Appointments {...svgProp} />,
+    patients: <Patients {...svgProp} />,
     filmReel: <FilmReel {...svgProp} />,
     externalLink: <ExternalLink {...svgProp} />,
     avatarIcon: <AvatarIcon {...svgProp} />,
