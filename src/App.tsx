@@ -42,7 +42,7 @@ function App() {
           </Route>
         ))}
         {externalRoute?.map((i, idx) => (
-          <Route path={`/${i.path}`} element={i.element} />
+          <Route path={`/${i.path}`} element={i.element} key={`${idx}${i?.path}`} />
           // <Route key={`${idx}${i?.path}`} element={<ExternalLayout />}>
           // </Route>
         ))}

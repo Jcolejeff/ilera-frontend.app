@@ -34,6 +34,8 @@ module.exports = {
       padding: {
         'container-lg': '5rem',
         'container-base': '1.5rem',
+        'container-xl': '7.5rem',
+        'container-md': '3.5rem',
       },
       margin: {
         'container-lg': '5rem',

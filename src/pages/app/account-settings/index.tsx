@@ -55,7 +55,7 @@ const AccountSettings = () => {
   const [currFilter, setCurrFilter] = useState<filterTypes>('user settings');
 
   return (
-    <div className='container flex h-full w-full  flex-col overflow-auto px-container-base py-[2.1rem]'>
+    <div className='container flex h-full w-full max-w-[150.75rem]  flex-col overflow-auto px-container-base py-[2.1rem]'>
       {/* to be refactored */}
       <div className='flex justify-between '>
         <p className='text-base font-semibold text-primary-1'>Settings</p>{' '}
@@ -75,9 +75,9 @@ const AccountSettings = () => {
                   key={idx}
                   className={`${
                     i?.name === currFilter
-                      ? `bg-primary-1 text-white`
+                      ? `bg-primary-1  text-white`
                       : `bg-transparent text-secondary-2 hover:text-primary-1`
-                  } flex  h-full w-max items-center rounded-[5px]  px-[2.5rem] py-3 transition-all ease-in-out `}
+                  } flex h-full  w-max items-center rounded-[5px] px-[2.5rem]  py-3 text-start transition-all ease-in-out `}
                   onClick={() => setCurrFilter(i?.name)}
                 >
                   <span className='mt-[3px] whitespace-nowrap text-[13px] capitalize leading-3 tracking-[0.15px] md:mt-0 lg:text-[13px]'>
