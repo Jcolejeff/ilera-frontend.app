@@ -225,7 +225,7 @@ function PatientsTableComponent() {
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
             Page Title
-            <ArrowUpDown className='ml-2 h-4 w-4' />
+            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-3' }} />
           </Button>
         );
       },
@@ -245,7 +245,7 @@ function PatientsTableComponent() {
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
             Page URL
-            <ArrowUpDown className='ml-2 h-4 w-4' />
+            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-3' }} />
           </Button>
         );
       },
@@ -473,8 +473,13 @@ function PatientsTableComponent() {
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className='h-24 text-center'>
-                  No results.
+                <TableCell colSpan={columns.length} className='h-[400px] text-center'>
+                  <div>
+                    <p className='text-base font-semibold text-gray-500'>No Patients Records</p>
+                    <p className='text-sm leading-6 tracking-normal text-gray-400'>
+                      Create a patient to populate list
+                    </p>
+                  </div>
                 </TableCell>
               </TableRow>
             )}

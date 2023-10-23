@@ -129,8 +129,10 @@ import { ReactComponent as Inventory } from 'assets/svg/inventory.svg';
 import { ReactComponent as Lab } from 'assets/svg/lab.svg';
 import { ReactComponent as Reports } from 'assets/svg/reports.svg';
 import { ReactComponent as Help } from 'assets/svg/help.svg';
+import { ReactComponent as Sort } from 'assets/svg/sort.svg';
 
 export type iconTypes =
+  | 'sort'
   | 'help'
   | 'reports'
   | 'lab'
@@ -271,6 +273,7 @@ interface IconInterface {
 
 const Icon = ({ name, svgProp }: IconInterface) => {
   const icons: Record<iconTypes, JSX.Element> = {
+    sort: <Sort {...svgProp} />,
     help: <Help {...svgProp} />,
     reports: <Reports {...svgProp} />,
     lab: <Lab {...svgProp} />,
