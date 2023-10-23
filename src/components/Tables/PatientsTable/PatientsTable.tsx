@@ -204,11 +204,31 @@ function PatientsTableComponent() {
   };
   const columns: ColumnDef<Page>[] = [
     {
-      id: 'select',
-      header: 'S/N',
+      accessorKey: 'title',
+      header: ({ column }) => {
+        return (
+          <Button
+            className='px-0'
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Patient Name
+            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-3' }} />
+          </Button>
+        );
+      },
       cell: ({ row }) => (
         <Link to={`/${CONSTANTS.ROUTES['profile']}/${row.original.id}`}>
-          <div className='capitalize'>{row.index + 1}</div>
+          <div className='capitalize'>{row.getValue('title')}</div>
+        </Link>
+      ),
+    },
+    {
+      id: 'patientId',
+      header: 'Patient ID',
+      cell: ({ row }) => (
+        <Link to={`/${CONSTANTS.ROUTES['profile']}/${row.original.id}`}>
+          <div className='capitalize'>{Number(row.original.id) * 1245632}</div>
         </Link>
       ),
 
@@ -224,14 +244,14 @@ function PatientsTableComponent() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Page Title
+            Age
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-3' }} />
           </Button>
         );
       },
       cell: ({ row }) => (
         <Link to={`/${CONSTANTS.ROUTES['profile']}/${row.original.id}`}>
-          <div className='capitalize'>{row.getValue('title')}</div>
+          <div className='capitalize'>{Number(row.original.id) * 40}</div>
         </Link>
       ),
     },
@@ -244,7 +264,31 @@ function PatientsTableComponent() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Page URL
+            Status
+            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-3' }} />
+          </Button>
+        );
+      },
+      cell: ({ row }) => (
+        <Link to={`/${CONSTANTS.ROUTES['profile']}/${row.original.id}`}>
+          {/* <div className='lowercase'>{row.getValue('url')}</div> */}
+          <div className='flex w-fit items-center   gap-2 rounded-lg bg-green-200/40 p-3'>
+            {/* <div className='h-3 w-3 rounded-full bg-green-500'></div> */}
+            <p className='text-center text-xs font-semibold text-green-500'>Active</p>
+          </div>
+        </Link>
+      ),
+    },
+    {
+      accessorKey: 'url',
+      header: ({ column }) => {
+        return (
+          <Button
+            className='px-0'
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Gender
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-3' }} />
           </Button>
         );
@@ -257,18 +301,25 @@ function PatientsTableComponent() {
     },
     {
       accessorKey: 'type',
-      header: () => <div className='text-right'>Page Type</div>,
-      cell: ({ row }) => {
+      header: ({ column }) => {
         return (
-          <div className=''>
-            <Link to={`/${CONSTANTS.ROUTES['profile']}/${row.original.id}`}>
-              <div className='text-right font-medium'>{row.getValue('type')}</div>
-              {/* <Icon name='linkIcon' svgProp={{ className: '' }}></Icon> */}
-            </Link>
-          </div>
+          <Button
+            className='px-0'
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Creation Date
+            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-3' }} />
+          </Button>
         );
       },
+      cell: ({ row }) => (
+        <Link to={`/${CONSTANTS.ROUTES['profile']}/${row.original.id}`}>
+          <div className='lowercase'>{row.getValue('type')}</div>
+        </Link>
+      ),
     },
+
     {
       id: 'actions',
       enableHiding: false,
@@ -276,36 +327,82 @@ function PatientsTableComponent() {
         const page = row.original;
 
         return (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant='ghost' className='h-8 w-8 p-0'>
-                <span className='sr-only'>Open menu</span>
-                <MoreVertical className='h-4 w-4' />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align='end' className='px-4 py-2'>
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => navigate(`/${CONSTANTS.ROUTES['profile']}/${page.id}`)}
-                className='flex items-center gap-2'
-              >
-                <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
-                <p> Edit Page</p>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-
-              <DropdownMenuItem
-                className='flex items-center gap-2 text-red-500 disabled:cursor-not-allowed disabled:opacity-50'
-                onClick={() => {
-                  deletePage(page.id);
+          <div className='flex items-center gap-4'>
+            <button className='group flex  items-center justify-center gap-2  rounded-[5px]  px-4 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:opacity-90'>
+              <Icon
+                name='linkIcon'
+                svgProp={{
+                  className:
+                    'text-primary-1 cursor-pointer hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
                 }}
-                disabled={isLoading}
-              >
-                <Icon name='trash' svgProp={{ className: 'text-black' }}></Icon>
-                <p> Delete Page</p>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+              ></Icon>{' '}
+              {/* <span className='text-xs font-[500] leading-[24px] tracking-[0.4px] text-white md:text-sm'>
+                New Patient
+              </span> */}
+            </button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant='ghost' className='h-8 w-8 p-0'>
+                  <span className='sr-only'>Open menu</span>
+                  <MoreVertical className='h-4 w-4' />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align='end' className='px-4 py-2'>
+                <DropdownMenuItem
+                  onClick={() => navigate(`/${CONSTANTS.ROUTES['profile']}/${page.id}`)}
+                  className='flex items-center gap-2'
+                >
+                  <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
+                  <p> View Patient</p>
+                </DropdownMenuItem>{' '}
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={() => navigate(`/${CONSTANTS.ROUTES['profile']}/${page.id}`)}
+                  className='flex items-center gap-2'
+                >
+                  <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
+                  <p> Create Visit</p>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={() => navigate(`/${CONSTANTS.ROUTES['profile']}/${page.id}`)}
+                  className='flex items-center gap-2'
+                >
+                  <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
+                  <p> Create Appointment</p>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={() => navigate(`/${CONSTANTS.ROUTES['profile']}/${page.id}`)}
+                  className='flex items-center gap-2'
+                >
+                  <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
+                  <p> Merge Patient</p>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  className='flex items-center gap-2 text-red-500 disabled:cursor-not-allowed disabled:opacity-50'
+                  onClick={() => {
+                    deletePage(page.id);
+                  }}
+                  disabled={isLoading}
+                >
+                  <Icon name='trash' svgProp={{ className: 'text-black' }}></Icon>
+                  <p> Deactivate Patient</p>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className='flex items-center gap-2 text-red-500 disabled:cursor-not-allowed disabled:opacity-50'
+                  onClick={() => {
+                    deletePage(page.id);
+                  }}
+                  disabled={isLoading}
+                >
+                  <Icon name='trash' svgProp={{ className: 'text-black' }}></Icon>
+                  <p> Delete</p>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         );
       },
     },
