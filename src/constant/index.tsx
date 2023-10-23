@@ -40,6 +40,7 @@ const ROUTES: Record<routePathTypes, routePathTypes> = {
   inventory: 'inventory',
   laboratory: 'laboratory',
   reports: 'reports',
+  'create-patient': 'create-patient',
 };
 
 const PLAN_PERMISSIONS: Record<routePathTypes, planTypes> = {
@@ -82,6 +83,7 @@ const PLAN_PERMISSIONS: Record<routePathTypes, planTypes> = {
   inventory: 'student',
   laboratory: 'starter',
   reports: 'starter',
+  'create-patient': 'starter',
 };
 
 const TIMBU_KEYS = {

@@ -447,7 +447,7 @@ function PatientsTableComponent() {
           </div>
 
           <Link
-            to={`/${CONSTANTS.ROUTES['profile']}/new`}
+            to={`/app/${CONSTANTS.ROUTES['create-patient']}`}
             className='group flex  items-center justify-center gap-2  rounded-[5px] bg-primary-1  px-4 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:opacity-90'
           >
             <Icon

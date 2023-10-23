@@ -39,7 +39,8 @@ export type routePathTypes =
   | 'billing'
   | 'inventory'
   | 'reports'
-  | 'laboratory';
+  | 'laboratory'
+  | 'create-patient';
 
 export interface routesInterface<T> {
   path: T;
