@@ -164,7 +164,7 @@ const AppointmentPage = () => {
           </div>
         </DialogContent>
       </Dialog> */}
-      <div className='container flex w-full flex-col px-container-base py-[1.875rem]'>
+      <div className='container flex w-full max-w-[150.75rem] flex-col px-container-base py-[1.875rem]'>
         <FunkyPagesHero
           // description='Find and download fimmaking assets you need'
           title='Appointment'

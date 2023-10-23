@@ -33,6 +33,7 @@ const SingleBlog = () => {
         organization_id: import.meta.env.VITE_TIMBU_ORG_ID,
         id,
       }),
+
     onError: (err) => {
       processError(err);
     },

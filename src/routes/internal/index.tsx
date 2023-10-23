@@ -17,12 +17,18 @@ import SingleBts from 'pages/inner-pages/single-bts';
 import SingleMasterClass from 'pages/inner-pages/single-master-class';
 import { routeTypes, routesInterface } from 'types';
 import PatientsPage from 'pages/app/patients';
+import CreatePatientPage from 'pages/app/create-patient';
 
 const internalRoute: routeTypes = [
   {
     element: <Dashboard />,
     path: 'dashboard',
     plan: 'student',
+  },
+  {
+    element: <CreatePatientPage />,
+    path: 'create-patient',
+    plan: 'starter',
   },
   {
     element: <PatientsPage />,
