@@ -88,10 +88,10 @@ const Dashboard = () => {
 
   return (
     <div className='container flex h-full w-full flex-col overflow-auto px-container-base py-[1.875rem]'>
-      <FunkyPagesHero
+      {/* <FunkyPagesHero
         // description='Find advertisements and track your activities here'
         title=' Dashboard'
-      />
+      /> */}
       <PlanGuard page='dashboard'>
         <>
           {/* <div className='relative mx-auto my-[1.5rem] w-full max-w-[800px] md:-top-[1.5rem] md:my-0 md:mb-[1rem]'>
@@ -218,6 +218,15 @@ const Dashboard = () => {
               </ContentLoader>
             </EmptyContentWrapper>
           </div> */}
+          <div className='flex justify-between'>
+            <h3>Dashboard</h3>
+            <div>
+              <button className=' rounded-[8px] bg-primary-1 py-2 text-[15px] font-[500] text-white transition-opacity duration-300 ease-in-out hover:opacity-90'>
+                New patient
+              </button>
+              <button>New Appointment</button>
+            </div>
+          </div>
         </>
       </PlanGuard>
     </div>
