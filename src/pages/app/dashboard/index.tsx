@@ -24,7 +24,9 @@ import EmptyContentWrapper from 'components/Hocs/EmptyContentWrapper';
 import productService from 'services/product';
 import { filterStringsContainingImageExtensions } from 'helper';
 import { useNavigate } from 'react-router-dom';
-
+import { billingData, dashboardData } from './dashboardData';
+import { cn } from 'lib/utils';
+import Chart from './Chart/chart';
 type filterTypes = 'All' | 'Adverts' | 'Blog Posts' | 'BTS' | 'Assets' | 'Upcoming Events';
 
 const generalFilters: filterTypes[] = [
@@ -94,139 +96,78 @@ const Dashboard = () => {
       /> */}
       <PlanGuard page='dashboard'>
         <>
-          {/* <div className='relative mx-auto my-[1.5rem] w-full max-w-[800px] md:-top-[1.5rem] md:my-0 md:mb-[1rem]'>
-            <SearchComboBox />
-          </div>
-          <div className='mb-[2.25rem] flex w-full justify-center'>
-            <PillTabs
-              tabs={generalFilters}
-              currActive={currFilter}
-              onSelect={(i) => setCurrFilter(i)}
-            />
-          </div>
-          <div className='flex w-full flex-col gap-[2.5rem]'>
-            <div className='flex flex-col items-center gap-8 lg:flex-row'>
-              <div className='max-h-[424px] w-full max-w-[424px]'>
-                <LazyLoadImage
-                  placeholderSrc={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
-                  className='h-full w-full'
-                  src={demoAd}
-                  effect='blur'
-                  alt=' '
-                />
-              </div>
-              <div className='flex flex-col justify-center gap-4'>
-                <span className='text-[14px] font-[600] leading-[21px] tracking-[0.1px] text-primary-1 '>
-                  Advertisement
-                </span>
-                <h5 className='text-[32px] font-[700] leading-[43px] text-primary-9'>
-                  We’re looking for an Experienced Animator!
-                </h5>
-                <p className='text-[14px] font-[300] leading-[21px] tracking-[0.15px] text-secondary-2'>
-                  Filmmaking is an art form that requires a combination of technical skills and
-                  creativity. As a filmmaker, it's essential to understand the different aspects of
-                  the craft to bring your vision to life. In this blog post, ...
-                </p>
-                <button className='group flex w-max items-center justify-center gap-2 rounded-[8px] bg-primary-1 px-[1.5rem] py-[0.75rem] transition-opacity duration-300 ease-in-out hover:opacity-90'>
-                  <span className='leading-[28px] tracking-[0.15px] text-white'>Check it Out</span>
-                  <Icon
-                    name='arrow45'
-                    svgProp={{
-                      className:
-                        'group-hover:translate-x-[2px] transition-transform duration-300 ease-in-out',
-                    }}
-                  />
-                </button>
-              </div>
-            </div>
-            <h3 className='text-[24px] font-[500] leading-[32px] text-primary-9/[0.87]'>
-              Continue Reading!
-            </h3>
-            <EmptyContentWrapper
-              customMessage='No blogs currently, pls check back'
-              isEmpty={!blogLoading && blogs?.items && blogs?.items?.length < 1}
-            >
-              <ContentLoader isLoading={blogLoading}>
-                <div className='grid grid-cols-1 gap-x-[1.5rem] gap-y-[2.5rem]  sm:grid-cols-2 md:grid-cols-3'>
-                  {blogs?.items?.slice(0, 2)?.map((i, idx) => (
-                    <div key={idx} className='h-full w-full'>
-                      <BlogCard
-                        authorImg={dpIcon}
-                        authorName={`${i?.content_author?.first_name} ${i?.content_author?.last_name}`}
-                        authorRole={`${i?.content_author?.email}`}
-                        blogImage={`${CONSTANTS.TIMBU_KEYS.IMAGE_BASE_URL}/${i?.photos?.[0]?.url}`}
-                        category={`Production`}
-                        date={`18 April, 2022`}
-                        description={i?.subtitle}
-                        title={i?.title}
-                        link={`/app/blogs/${i?.id}`}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </ContentLoader>
-            </EmptyContentWrapper>
-            <h3 className='text-[24px] font-[500] leading-[32px] text-primary-9/[0.87]'>
-              Continue watching
-            </h3>
-            <EmptyContentWrapper
-              customMessage='No bts currently, pls check back'
-              isEmpty={!btsLoading && bts?.items && bts?.items?.length < 1}
-            >
-              <ContentLoader isLoading={btsLoading}>
-                <div className='grid grid-cols-1 gap-x-[1.5rem] gap-y-[2.5rem] sm:grid-cols-2 md:grid-cols-3'>
-                  {bts?.items?.slice(0, 2)?.map((i, idx) => (
-                    <div key={idx} className='h-full w-full'>
-                      <BtsCard
-                        btsImage={`${CONSTANTS.TIMBU_KEYS.IMAGE_BASE_URL}/${i?.photos[0]?.url}`}
-                        category={`BTS`}
-                        title={`${i?.title}`}
-                        description={`${i?.subtitle}`}
-                        link={`/app/bts/${i?.id}`}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </ContentLoader>
-            </EmptyContentWrapper>
-            <h3 className='text-[24px] font-[500] leading-[32px] text-primary-9/[0.87]'>
-              Assets and Templates you might like
-            </h3>
-            <EmptyContentWrapper
-              isEmpty={!assetsLoading && assets?.items && assets?.items?.length < 1}
-              customMessage='No assets and templates currently'
-            >
-              <ContentLoader isLoading={assetsLoading}>
-                <div className='grid w-full grid-cols-1 gap-x-[1.5rem] gap-y-[3.875rem] sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
-                  {assets?.items?.map((i, idx) => (
-                    <div key={idx} className='h-full w-full'>
-                      <AssetCard
-                        desc='Storytelling blueprint for movies.'
-                        image={`${CONSTANTS?.TIMBU_KEYS?.IMAGE_BASE_URL}/${
-                          filterStringsContainingImageExtensions(
-                            i?.photos?.map((i) => i?.url) as string[],
-                          )?.[0]
-                        }`}
-                        title={i?.name}
-                        onClick={() =>
-                          navigate(`/app/${CONSTANTS.ROUTES['assets-templates']}?open=${i?.id}`)
-                        }
-                      />
-                    </div>
-                  ))}
-                </div>
-              </ContentLoader>
-            </EmptyContentWrapper>
-          </div> */}
-          <div className='flex justify-between'>
-            <h3>Dashboard</h3>
-            <div>
-              <button className=' rounded-[8px] bg-primary-1 py-2 text-[15px] font-[500] text-white transition-opacity duration-300 ease-in-out hover:opacity-90'>
+          <div className='flex items-center justify-between'>
+            <h3 className='text-primary-1'>Dashboard</h3>
+            <div className='flex gap-3'>
+              <button className=' flex  items-center justify-center gap-2  rounded-[5px] bg-primary-1  px-4 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:opacity-90'>
                 New patient
               </button>
-              <button>New Appointment</button>
+              <button className=' flex  items-center justify-center gap-2  rounded-[5px] bg-primary-1  px-4 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:opacity-90'>
+                New Appointment
+              </button>
             </div>
           </div>
+
+          <section className='mt-12 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr]  xxl:grid-cols-[1fr_1fr_1fr_1fr]'>
+            {dashboardData.map((report, index) => {
+              return (
+                <article key={index}>
+                  <span className='text-sm'>{report.heading}</span>
+                  <div
+                    className={cn(
+                      `} mt-[1rem] flex cursor-pointer rounded-lg border px-5 py-6 opacity-50 transition-all duration-500 ease-in-out`,
+                    )}
+                  >
+                    {report.items.map((item, key) => {
+                      return (
+                        <div className='flex flex-col gap-1  px-2' key={key}>
+                          <h3 className='text-sm font-semibold'>{item.subHeading}</h3>
+                          <p>
+                            <span className='font-bold md:text-[1.5rem]'>{item.count}</span>
+                            {/* <span className='text-[0.8rem] font-semibold'>%</span> */}
+                          </p>
+                          <p className='text-[0.79rem] leading-[130%] tracking-[0.02rem] md:leading-[1.2rem] md:tracking-[0.0125rem]'>
+                            {item.paragraph}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </article>
+              );
+            })}
+          </section>
+
+          <section className='mt-12 grid grid-cols-[1fr]  gap-[2rem] rounded-lg '>
+            {billingData.map((report, index) => {
+              return (
+                <article key={index}>
+                  <span className='text-sm'>{report.heading}</span>
+                  <div
+                    className={cn(
+                      `} mt-[1rem] flex grid cursor-pointer grid-cols-[1fr_1fr] gap-[2rem] rounded-lg rounded-lg border px-5 py-6 opacity-50 transition-all  duration-500 ease-in-out md:grid-cols-[1fr_1fr_1fr_1fr]  xxl:grid-cols-[1fr_1fr_1fr_1fr]`,
+                    )}
+                  >
+                    {report.items.map((item, key) => {
+                      return (
+                        <div className='flex flex-col gap-1  px-2' key={key}>
+                          <h3 className='text-sm font-semibold'>{item.subHeading}</h3>
+                          <p>
+                            <span className='font-bold md:text-[1.5rem]'>{item.count}</span>
+                            {/* <span className='text-[0.8rem] font-semibold'>%</span> */}
+                          </p>
+                          <p className='text-[0.79rem] leading-[130%] tracking-[0.02rem] md:leading-[1.2rem] md:tracking-[0.0125rem]'>
+                            {item.paragraph}
+                          </p>
+                        </div>
+                      );
+                    })}
+                    <Chart />
+                  </div>
+                </article>
+              );
+            })}
+          </section>
         </>
       </PlanGuard>
     </div>
