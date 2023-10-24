@@ -50,6 +50,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import useStore from 'store';
 import sections from 'pages/app/patients/tempData';
 import { cn } from 'lib/utils';
+import DeletePatient from 'components/modal/Patients/DeletePatient';
 export type Page = {
   id: string;
   type: string;
@@ -380,26 +381,8 @@ function PatientsTableComponent() {
                   <p> Merge Patient</p>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  className='flex items-center gap-2 text-red-500 disabled:cursor-not-allowed disabled:opacity-50'
-                  onClick={() => {
-                    deletePage(page.id);
-                  }}
-                  disabled={isLoading}
-                >
-                  <Icon name='trash' svgProp={{ className: 'text-black' }}></Icon>
-                  <p> Deactivate Patient</p>
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  className='flex items-center gap-2 text-red-500 disabled:cursor-not-allowed disabled:opacity-50'
-                  onClick={() => {
-                    deletePage(page.id);
-                  }}
-                  disabled={isLoading}
-                >
-                  <Icon name='trash' svgProp={{ className: 'text-black' }}></Icon>
-                  <p> Delete</p>
-                </DropdownMenuItem>
+                <DeletePatient btnText='Deactivate Patient' />
+                <DeletePatient btnText='delete Patients' />
               </DropdownMenuContent>
             </DropdownMenu>
           </div>

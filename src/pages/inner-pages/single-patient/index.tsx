@@ -12,6 +12,7 @@ import sections from 'pages/app/patients/tempData';
 import { cn } from 'lib/utils';
 import Timeline from './Timeline';
 import Attachments from './Attachments';
+import DeletePatient from 'components/modal/Patients/DeletePatient';
 
 const SinglePatientPage = () => {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ const SinglePatientPage = () => {
             />
             <span className='text-base font-[500] leading-[24px] tracking-[0.4px]'> Back</span>
           </button>
+          <DeletePatient />
         </div>
 
         <div className=' flex flex-col gap-4'>
