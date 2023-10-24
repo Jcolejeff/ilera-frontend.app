@@ -12,6 +12,13 @@ import {
   FormDescription,
   FormLabel,
 } from 'components/shadcn/ui/form';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from 'components/shadcn/ui/select';
 import { Input } from 'components/shadcn/input';
 import axiosInstance from 'services';
 import { ChevronRightIcon } from 'lucide-react';
@@ -26,6 +33,9 @@ import useUserLocation from 'hooks/useUserLoction';
 import { useEffect } from 'react';
 import Icon from 'utils/Icon';
 import { useNavigate } from 'react-router-dom';
+import UploadImageForm from './UploadForm';
+import SavePatientModal from 'components/modal/Patients/SavePatient';
+import LinkPatientsModal from 'components/modal/Patients/LinkPatient';
 interface Iprops {
   switchTab: (tab: string) => void;
   handleComplete: (tab: string) => void;
@@ -36,6 +46,9 @@ interface Iprops {
 const FormSchema = z.object({
   firstName: z.string().min(2, {
     message: 'Please enter a name',
+  }),
+  jobMode: z.string({
+    required_error: 'Job Mode is required.',
   }),
   lastName: z.string().min(2, {
     message: 'Please enter a valid name',
@@ -131,17 +144,41 @@ const StepOneUserInfo = () => {
         </div>
 
         <div className='flex gap-4'>
-          <button className='group flex  items-center justify-center gap-2  rounded-[5px] bg-primary-1 px-8 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:opacity-90'>
-            <span className='text-xs font-[500] leading-[24px] tracking-[0.4px] text-white md:text-sm'>
-              Create Patient
-            </span>
-          </button>
+          <SavePatientModal
+            trigger={
+              <button className='group flex  items-center justify-center gap-2  rounded-[5px] bg-primary-1 px-8 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:opacity-90'>
+                <span className='text-xs font-[500] leading-[24px] tracking-[0.4px] text-white md:text-sm'>
+                  Create Patient
+                </span>
+              </button>
+            }
+          ></SavePatientModal>
+
           <button className='group flex  items-center justify-center gap-2  rounded-[5px] border   px-5 text-base font-semibold transition-all duration-300 ease-in-out hover:opacity-90'>
             <span className='text-xs font-[500] leading-[24px] tracking-[0.4px]  md:text-sm'>
               Cancel
             </span>
           </button>
         </div>
+      </div>
+      <div className='flex items-end justify-between'>
+        <UploadImageForm />
+        <LinkPatientsModal
+          trigger={
+            <button className='group flex  items-center justify-center gap-2  rounded-[5px] px-4  text-base font-semibold text-primary-1  transition-all duration-300 ease-in-out hover:opacity-90'>
+              <Icon
+                name='linkIcon'
+                svgProp={{
+                  className:
+                    'text-primary-1 cursor-pointer hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
+                }}
+              />
+              <span className='text-xs font-[500] leading-[24px] tracking-[0.4px] text-primary-1 md:text-base'>
+                Link Patient
+              </span>
+            </button>
+          }
+        ></LinkPatientsModal>
       </div>
       <Form {...form}>
         <form
@@ -150,7 +187,7 @@ const StepOneUserInfo = () => {
         '
         >
           <p className='text-lg font-semibold md:text-xl'>Contact</p>
-          <section className=' grid grid-cols-1 gap-8 md:gap-6 xm:grid-cols-[1fr_1fr]  '>
+          <section className=' grid grid-cols-1 gap-8 md:gap-6 xm:grid-cols-[1fr_1fr_1fr]  '>
             <FormField
               control={form.control}
               name='firstName'
@@ -193,6 +230,41 @@ const StepOneUserInfo = () => {
                     </FormControl>
                   </div>
                   <FormMessage className='mt-1 text-sm' />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='jobMode'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='relative'>
+                    <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
+                      Job Mode
+                    </label>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger className='w-full py-6 text-lg  text-secondary-3 transition-all duration-300  ease-in-out  placeholder:text-lg focus-within:text-secondary-2 '>
+                          <SelectValue placeholder='Contract' />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className='bg-primary-1'>
+                        <SelectItem value='internship' className='py-3 text-lg text-white'>
+                          Internship
+                        </SelectItem>
+                        <SelectItem value='Full Time' className='py-3 text-lg text-white'>
+                          Full Time
+                        </SelectItem>
+                        <SelectItem value='Part Time' className='py-3 text-lg text-white'>
+                          Part Time
+                        </SelectItem>
+                        <SelectItem value='Contract' className='py-3 text-lg text-white'>
+                          Contract
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <FormMessage className='mt-1 text-xs' />
                 </FormItem>
               )}
             />
