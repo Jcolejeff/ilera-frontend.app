@@ -218,7 +218,7 @@ function PatientsTableComponent() {
         );
       },
       cell: ({ row }) => (
-        <Link to={`/${CONSTANTS.ROUTES['profile']}/${row.original.id}`}>
+        <Link to={`/app/${CONSTANTS.ROUTES['patients']}/${row.original.id}`}>
           <div className='capitalize'>{row.getValue('title')}</div>
         </Link>
       ),
@@ -227,7 +227,7 @@ function PatientsTableComponent() {
       id: 'patientId',
       header: 'Patient ID',
       cell: ({ row }) => (
-        <Link to={`/${CONSTANTS.ROUTES['profile']}/${row.original.id}`}>
+        <Link to={`/app/${CONSTANTS.ROUTES['patients']}/${row.original.id}`}>
           <div className='capitalize'>{Number(row.original.id) * 1245632}</div>
         </Link>
       ),
@@ -250,7 +250,7 @@ function PatientsTableComponent() {
         );
       },
       cell: ({ row }) => (
-        <Link to={`/${CONSTANTS.ROUTES['profile']}/${row.original.id}`}>
+        <Link to={`/app/${CONSTANTS.ROUTES['patients']}/${row.original.id}`}>
           <div className='capitalize'>{Number(row.original.id) * 40}</div>
         </Link>
       ),
@@ -270,7 +270,7 @@ function PatientsTableComponent() {
         );
       },
       cell: ({ row }) => (
-        <Link to={`/${CONSTANTS.ROUTES['profile']}/${row.original.id}`}>
+        <Link to={`/app/${CONSTANTS.ROUTES['patients']}/${row.original.id}`}>
           {/* <div className='lowercase'>{row.getValue('url')}</div> */}
           <div className='flex w-fit items-center   gap-2 rounded-lg bg-green-200/40 p-3'>
             {/* <div className='h-3 w-3 rounded-full bg-green-500'></div> */}
@@ -294,7 +294,7 @@ function PatientsTableComponent() {
         );
       },
       cell: ({ row }) => (
-        <Link to={`/${CONSTANTS.ROUTES['profile']}/${row.original.id}`}>
+        <Link to={`/app/${CONSTANTS.ROUTES['patients']}/${row.original.id}`}>
           <div className='lowercase'>{row.getValue('url')}</div>
         </Link>
       ),
@@ -314,7 +314,7 @@ function PatientsTableComponent() {
         );
       },
       cell: ({ row }) => (
-        <Link to={`/${CONSTANTS.ROUTES['profile']}/${row.original.id}`}>
+        <Link to={`/app/${CONSTANTS.ROUTES['patients']}/${row.original.id}`}>
           <div className='lowercase'>{row.getValue('type')}</div>
         </Link>
       ),

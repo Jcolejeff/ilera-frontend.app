@@ -14,7 +14,7 @@ import Profile from 'pages/app/user-profile';
 import AccountSettings from 'pages/app/account-settings';
 import SingleBlog from 'pages/inner-pages/single-blog';
 import SingleBts from 'pages/inner-pages/single-bts';
-import SingleMasterClass from 'pages/inner-pages/single-master-class';
+import SinglePatient from 'pages/inner-pages/single-patient';
 import { routeTypes, routesInterface } from 'types';
 import PatientsPage from 'pages/app/patients';
 import CreatePatientPage from 'pages/app/create-patient';
@@ -105,8 +105,8 @@ export const innerInternalRoutes: routesInterface<string>[] = [
   { element: <SingleBlog />, path: `${CONSTANTS.ROUTES.blogs}/:id`, plan: `starter` },
   { element: <SingleBts />, path: `${CONSTANTS.ROUTES.bts}/:id`, plan: `starter` },
   {
-    element: <SingleMasterClass />,
-    path: `${CONSTANTS.ROUTES['master-classes']}/:id`,
+    element: <SinglePatient />,
+    path: `${CONSTANTS.ROUTES.patients}/:id`,
     plan: `starter`,
   },
 ];
