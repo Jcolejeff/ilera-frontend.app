@@ -37,21 +37,23 @@ export default function UploadImageForm() {
   //   setFieldValue('file', files[0]);
   // };
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='w-fit space-y-6'>
-        <section className=' rounded-xl    '>
-          <FormField
-            name='file'
-            control={form.control}
-            render={({ field }) => (
-              <FileDropzone
-                onDrop={(acceptedFiles: any) => field.onChange(acceptedFiles[0])}
-                file={field.value}
-              />
-            )}
-          />
-        </section>
-      </form>
-    </Form>
+    <div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='w-fit space-y-6'>
+          <section className=' rounded-xl    '>
+            <FormField
+              name='file'
+              control={form.control}
+              render={({ field }) => (
+                <FileDropzone
+                  onDrop={(acceptedFiles: any) => field.onChange(acceptedFiles[0])}
+                  file={field.value}
+                />
+              )}
+            />
+          </section>
+        </form>
+      </Form>
+    </div>
   );
 }
