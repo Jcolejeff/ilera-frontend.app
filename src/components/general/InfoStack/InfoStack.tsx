@@ -11,7 +11,7 @@ const TextInfoSTack = ({ text, title }: Iprop) => {
         <span className='text-xs text-gray-400'>{title}</span>
       </p>
       <p>
-        <span className='text-sm font-semibold text-gray-600'>{text}</span>
+        <span className='text-sm font-semibold text-gray-500'>{text}</span>
       </p>
     </article>
   );
