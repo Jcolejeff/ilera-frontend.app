@@ -28,7 +28,6 @@ import { cn } from 'lib/utils';
 import { Checkbox } from 'components/shadcn/ui/checkbox';
 import 'react-phone-input-2/lib/style.css';
 import InlineLoader from 'components/Loaders/InlineLoader';
-import PhoneInput from 'react-phone-input-2';
 import useUserLocation from 'hooks/useUserLoction';
 import { useEffect } from 'react';
 import Icon from 'utils/Icon';
@@ -36,6 +35,10 @@ import { useNavigate } from 'react-router-dom';
 import UploadImageForm from './UploadForm';
 import SavePatientModal from 'components/modal/Patients/SavePatient';
 import LinkPatientsModal from 'components/modal/Patients/LinkPatient';
+import PI, { PhoneInputProps } from 'react-phone-input-2';
+
+// fix for phone input build error
+const PhoneInput: React.FC<PhoneInputProps> = (PI as any).default || PI;
 interface Iprops {
   switchTab: (tab: string) => void;
   handleComplete: (tab: string) => void;
@@ -77,7 +80,7 @@ const FormSchema = z.object({
     })
     .email(),
 });
-const StepOneUserInfo = () => {
+const CreatePatient = () => {
   const { location } = useUserLocation();
   const navigate = useNavigate();
 
@@ -529,4 +532,4 @@ const StepOneUserInfo = () => {
   );
 };
 
-export default StepOneUserInfo;
+export default CreatePatient;

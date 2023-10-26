@@ -51,6 +51,8 @@ import useStore from 'store';
 import sections from 'pages/app/patients/tempData';
 import { cn } from 'lib/utils';
 import DeletePatient from 'components/modal/Patients/DeletePatient';
+import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
+import DoubleTableInfoCard from 'components/general/tableInfoCard/DoubleTableInfoCard';
 export type Page = {
   id: string;
   type: string;
@@ -495,27 +497,28 @@ function PatientsTableComponent() {
         </div>
       </div>
       <section className=' grid grid-cols-[1fr_1fr] gap-[2rem] rounded-lg border md:grid-cols-[1fr_1fr_1fr]  xxl:grid-cols-[1fr_1fr_1fr_1fr]'>
-        {sections.slice(0, 4).map((item, key) => {
-          return (
-            <article
-              className={cn(
-                `} cursor-pointer rounded-lg  px-5 py-6 opacity-50 transition-all duration-500 ease-in-out`,
-              )}
-              key={key}
-            >
-              <div className='flex flex-col gap-1  px-2'>
-                <h3 className='text-sm font-semibold'>{item.heading}</h3>
-                <p>
-                  <span className='font-bold md:text-[1.5rem]'>{item.count}</span>
-                  {/* <span className='text-[0.8rem] font-semibold'>%</span> */}
-                </p>
-                <p className='text-[0.79rem] leading-[130%] tracking-[0.02rem] md:leading-[1.2rem] md:tracking-[0.0125rem]'>
-                  {item.paragraph}
-                </p>
-              </div>
-            </article>
-          );
-        })}
+        <NormalTableInfoCard
+          title='Registered Patients Today'
+          value={0}
+          description='This is the total number of patients you have registered today'
+        />
+        <NormalTableInfoCard
+          title='This Month '
+          value={0}
+          description='This is the total number of patients you have registered this month.'
+        />
+        <NormalTableInfoCard
+          title='Linked Patients'
+          value={0}
+          description='This is the total number of patients that are linked to another.'
+        />
+        <DoubleTableInfoCard
+          title='Gender'
+          value1={0}
+          value2={0}
+          description1='Male'
+          description2='Female'
+        />
       </section>
       <div className='rounded-lg border bg-white px-2 py-4'>
         <Table className=''>
