@@ -52,7 +52,8 @@ export default function DeleteAttachment({
         <AlertDialogHeader className='flex flex-col items-center'>
           <AlertDialogTitle className='text-center capitalize'>{btnText}</AlertDialogTitle>
           <AlertDialogDescription className='text-center text-gray-400'>
-            Deleting this patient’s profile removes all the information for this patient completely
+            Deleting this document from the attachment removes all the document from this patient’s
+            profile completely
           </AlertDialogDescription>
           <AlertDialogDescription className='text-center font-semibold text-red-600'>
             This action can not be reversed!

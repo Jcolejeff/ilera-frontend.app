@@ -23,30 +23,14 @@ const Attachments = () => {
         </div>
       </section>
       {/* about master class section */}
-      <section className='h-full rounded-md border bg-white px-2 py-4'>
-        <div className='flex items-center justify-between'>
-          <h4 className='relative text-sm font-[700] leading-[40px] tracking-[0.15px]'>
-            About Masterclass
-          </h4>
-        </div>
-
-        <p className='text-sm leading-[30px] tracking-[0.15px] text-gray-500'>
-          "Elevator Baby" is a Nigerian drama film that tells the story of a wealthy young man who
-          finds himself stuck in an elevator with a pregnant woman from a lower socioeconomic
-          background. Directed by Akhigbe Ilozobhie and produced by Victoria Akujobi, the film stars
-          Toyin Abraham and Timini Egbuson in lead roles. The idea for the film was inspired by a
-          real-life incident that happened to one of the producers. From there, the team worked hard
-          to develop a compelling script that would touch on important social issues such as class,
-          privilege, and gender. The film was shot in Lagos, Nigeria, and features stunning
-          cinematography that showcases the city's vibrant energy and unique character. The cast and
-          crew worked tirelessly to bring the story to life, delivering powerful performances that
-          have resonated with audiences both in Nigeria and around the world. privilege, and gender.
-          The film was shot in Lagos, Nigeria, and features stunning cinematography that showcases
-          the city's vibrant energy and unique character. The cast and crew worked tirelessly to
-          bring the story to life, delivering powerful performances that have resonated with
-          audiences both in Nigeria and around the world.
-        </p>
+      <section className='mt-12 h-full rounded-md border bg-white px-2 py-4'>
+        <p className='h-full'>no attachments found</p>
       </section>
+      <p className='invisible'>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum ex laboriosam, sit a
+        necessitatibus laborum ratione labore nesciunt hic optio, temporibus et. Repudiandae alias
+        ipsum, et ducimus odio atque nesciunt?
+      </p>
     </section>
   );
 };

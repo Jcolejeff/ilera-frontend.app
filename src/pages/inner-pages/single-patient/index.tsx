@@ -49,7 +49,7 @@ const SinglePatientPage = () => {
             />
             <span className='text-base font-[500] leading-[24px] tracking-[0.4px]'> Back</span>
           </button>
-          <DeletePatient />
+          {/* <DeletePatient /> */}
         </div>
 
         <div className=' flex flex-col gap-4'>
