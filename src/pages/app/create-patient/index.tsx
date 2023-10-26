@@ -56,6 +56,48 @@ const FormSchema = z.object({
   lastName: z.string().min(2, {
     message: 'Please enter a valid name',
   }),
+  middleName: z.string().min(2, {
+    message: 'Please enter a valid name',
+  }),
+  age: z.string().min(1, {
+    message: 'Please enter a valid age.',
+  }),
+  maritalStatus: z.string({
+    required_error: 'Marital Status is required.',
+  }),
+  gender: z.string({
+    required_error: 'gender is required.',
+  }),
+  idType: z.string({
+    required_error: 'ID Type is required.',
+  }),
+  idNumber: z.string().min(2, {
+    message: 'Please enter a valid ID Number.',
+  }),
+  lga: z.string().min(2, {
+    message: 'Please enter a valid LGA.',
+  }),
+  hearUs: z.string({
+    required_error: 'How did you hear about us is required.',
+  }),
+  occupation: z.string().min(2, {
+    message: 'Please enter a valid occupation.',
+  }),
+  referredBy: z.string().min(2, {
+    message: 'Please enter a valid referred by.',
+  }),
+  KinName: z.string().min(2, {
+    message: 'Please enter a valid name.',
+  }),
+  relationship: z.string().min(2, {
+    message: 'Please enter a valid relationship.',
+  }),
+  kinEmail: z
+    .string()
+    .min(2, {
+      message: 'Please enter a valid email.',
+    })
+    .email(),
   address: z.string().min(2, {
     message: 'Please enter a valid address.',
   }),
@@ -71,8 +113,14 @@ const FormSchema = z.object({
   phone_number: z.string().min(2, {
     message: 'Please enter a valid Number.',
   }),
-  currency_code: z.string().optional(),
   phone_country_code: z.string().optional(),
+
+  currency_code: z.string().optional(),
+  KinPhone_number: z.string().min(2, {
+    message: 'Please enter a valid Number.',
+  }),
+  KinCurrency_code: z.string().optional(),
+  KinPhone_country_code: z.string().optional(),
   email: z
     .string()
     .min(2, {
@@ -108,6 +156,10 @@ const CreatePatient = () => {
     form.setValue('phone_country_code', `+${countryData?.dialCode}`);
     setPhoneCountry(countryData?.iso2);
   };
+  const handleOnPhoneChangeNextOfKin = (phone: any, countryData: any) => {
+    form.setValue('KinPhone_number', phone);
+    form.setValue('KinCurrency_code', `+${countryData?.dialCode}`);
+  };
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     // switchTab(tabData[3]);
@@ -125,6 +177,8 @@ const CreatePatient = () => {
   useEffect(() => {
     form.setValue('phone_number', location?.country_calling_code);
     form.setValue('currency_code', location?.currency);
+    form.setValue('KinPhone_number', location?.country_calling_code);
+    form.setValue('KinCurrency_code', location?.currency);
   }, [location?.country_calling_code, location?.currency]);
 
   return (
@@ -132,7 +186,7 @@ const CreatePatient = () => {
       <div className='flex w-full  items-center justify-between gap-4 md:flex-row'>
         <div
           onClick={() => navigate(-1)}
-          className='flex w-max cursor-pointer items-center gap-1 rounded-[8px] px-[2px] py-1  transition-colors duration-300 ease-in-out hover:bg-slate-100 active:bg-slate-200'
+          className='flex w-max cursor-pointer items-center gap-1 rounded-[8px] px-[2px]   transition-colors duration-300 ease-in-out hover:bg-slate-100 active:bg-slate-200'
         >
           <Icon
             name='arrowBack'
@@ -189,23 +243,25 @@ const CreatePatient = () => {
           className=' flex h-full w-full flex-col gap-8 
         '
         >
-          <p className='text-lg font-semibold md:text-xl'>Contact</p>
-          <section className=' grid grid-cols-1 gap-8 md:gap-6 xm:grid-cols-[1fr_1fr_1fr]  '>
+          <div className='flex items-center gap-1'>
+            <p className='text-sm  text-gray-400   '>Demographic</p>
+            <div className='h-[1px] w-32 bg-gray-400'></div>
+          </div>
+          <section className=' grid grid-cols-1 gap-8 md:gap-6 xm:grid-cols-[1fr_1fr_1fr_1fr]  '>
             <FormField
               control={form.control}
               name='firstName'
               render={({ field }) => (
                 <FormItem>
                   <div className='relative'>
-                    <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-sm font-extralight text-secondary-1'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
                       First Name
                     </label>
                     <FormControl>
                       <Input
-                        className='py-6 text-base placeholder:text-sm placeholder:text-secondary-1/50'
+                        className='rounded-[8px] py-6 text-base placeholder:text-sm placeholder:text-secondary-1/50'
                         {...field}
                         type='text'
-                        placeholder='John'
                       />
                     </FormControl>
                   </div>
@@ -216,11 +272,32 @@ const CreatePatient = () => {
 
             <FormField
               control={form.control}
+              name='middleName'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='relative'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                      Middle Name
+                    </label>
+                    <FormControl>
+                      <Input
+                        className='py-6 text-base placeholder:text-sm placeholder:text-secondary-1/50 '
+                        {...field}
+                        type='text'
+                      />
+                    </FormControl>
+                  </div>
+                  <FormMessage className='mt-1 text-sm' />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name='lastName'
               render={({ field }) => (
                 <FormItem>
                   <div className='relative'>
-                    <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-sm font-extralight text-secondary-1'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
                       Last Name
                     </label>
                     <FormControl>
@@ -228,7 +305,6 @@ const CreatePatient = () => {
                         className='py-6 text-base placeholder:text-sm placeholder:text-secondary-1/50 '
                         {...field}
                         type='text'
-                        placeholder='Doe'
                       />
                     </FormControl>
                   </div>
@@ -238,56 +314,17 @@ const CreatePatient = () => {
             />
             <FormField
               control={form.control}
-              name='jobMode'
-              render={({ field }) => (
-                <FormItem>
-                  <div className='relative'>
-                    <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                      Job Mode
-                    </label>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger className='w-full py-6 text-lg  text-secondary-3 transition-all duration-300  ease-in-out  placeholder:text-lg focus-within:text-secondary-2 '>
-                          <SelectValue placeholder='Contract' />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent className='bg-primary-1'>
-                        <SelectItem value='internship' className='py-3 text-lg text-white'>
-                          Internship
-                        </SelectItem>
-                        <SelectItem value='Full Time' className='py-3 text-lg text-white'>
-                          Full Time
-                        </SelectItem>
-                        <SelectItem value='Part Time' className='py-3 text-lg text-white'>
-                          Part Time
-                        </SelectItem>
-                        <SelectItem value='Contract' className='py-3 text-lg text-white'>
-                          Contract
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <FormMessage className='mt-1 text-xs' />
-                </FormItem>
-              )}
-            />
-          </section>
-
-          <section className=' grid grid-cols-1 gap-6 xm:grid-cols-[1fr_1fr]  '>
-            <FormField
-              control={form.control}
               name='email'
               render={({ field }) => (
                 <FormItem>
                   <div className='relative'>
-                    <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-sm font-extralight text-secondary-1'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
                       Email
                     </label>
                     <FormControl>
                       <div className='flex flex-col items-end gap-1 xm:flex-row xm:items-center xm:gap-4'>
                         <Input
                           className='py-6 text-base placeholder:text-sm placeholder:text-secondary-1/80'
-                          placeholder='Your email'
                           {...field}
                           type='text'
                         />
@@ -304,6 +341,9 @@ const CreatePatient = () => {
               render={({ field }) => (
                 <FormItem>
                   <div className='relative'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                      Phone Number
+                    </label>
                     <FormControl>
                       <PhoneInput
                         containerClass='phone-container'
@@ -346,98 +386,181 @@ const CreatePatient = () => {
                 </FormItem>
               )}
             />
-          </section>
-
-          <FormField
-            control={form.control}
-            name='emailMe'
-            render={({ field }) => (
-              <FormItem className='flex flex-row items-center space-x-3 space-y-0 rounded-md '>
-                <FormControl>
-                  <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                </FormControl>
-                <div className=' leading-none'>
-                  <FormLabel className='text-sm text-secondary-1/80'>
-                    Email me with news and offers
-                  </FormLabel>
-                </div>
-              </FormItem>
-            )}
-          />
-          <p className='text-lg font-semibold md:text-xl'>Shipping Address</p>
-
-          <div className='flex flex-col gap-6 md:flex-row'>
-            <CountryDropdown
-              value={country}
-              onChange={(val) => setCountry(val)}
-              classes=' border-gray-200 rounded-md focus:ring-0 focus:border-gray-200 py-3 w-full md:w-1/2 text-base text-secondary-1/90'
-            />
-            <RegionDropdown
-              country={country}
-              value={region}
-              onChange={(val) => setRegion(val)}
-              blankOptionLabel='Select Region or State'
-              defaultOptionLabel='Now select a region'
-              classes=' border-gray-200 rounded-md focus:ring-0 focus:border-gray-200 py-3 w-full md:w-1/2 text-base text-secondary-1/90'
-            />
-          </div>
-
-          <FormField
-            control={form.control}
-            name='address'
-            render={({ field }) => (
-              <FormItem>
-                <div className='relative'>
-                  <label className='absolute left-2 top-[-13%] rounded-full bg-white px-1 text-sm font-extralight text-secondary-1 xm:top-[-20%]'>
-                    Address
-                  </label>
-                  <FormControl>
-                    <div className='flex flex-col items-end gap-1 xm:flex-row xm:items-center xm:gap-4'>
-                      <Input
-                        className='py-6 text-base placeholder:text-sm placeholder:text-secondary-1/50'
-                        {...field}
-                        type='text'
-                      />
-                    </div>
-                  </FormControl>
-                </div>
-                <FormMessage className='mt-1 text-sm' />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='apartment'
-            render={({ field }) => (
-              <FormItem>
-                <div className='relative'>
-                  <label className='absolute left-2 top-[-13%] rounded-full bg-white px-1 text-sm font-extralight text-secondary-1 xm:top-[-20%]'>
-                    Apartment, suite, etc. (optional)
-                  </label>
-                  <FormControl>
-                    <div className='flex flex-col items-end gap-1 xm:flex-row xm:items-center xm:gap-4'>
+            <FormField
+              control={form.control}
+              name='age'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='relative'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                      DOB/age
+                    </label>
+                    <FormControl>
                       <Input
                         className='py-6 text-base placeholder:text-sm placeholder:text-secondary-1/50 '
                         {...field}
                         type='text'
                       />
-                    </div>
-                  </FormControl>
-                </div>
-                <FormMessage className='mt-1 text-sm' />
-              </FormItem>
-            )}
-          />
-          <section className=' grid grid-cols-1 gap-6 xm:grid-cols-[1fr_1fr]  '>
+                    </FormControl>
+                  </div>
+                  <FormMessage className='mt-1 text-sm' />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='maritalStatus'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='relative'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                      Marital Status
+                    </label>
+                    <FormControl>
+                      <Input
+                        className='py-6 text-base placeholder:text-sm placeholder:text-secondary-1/50 '
+                        {...field}
+                        type='text'
+                      />
+                    </FormControl>
+                  </div>
+                  <FormMessage className='mt-1 text-sm' />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='gender'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='relative'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                      Gender
+                    </label>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger className='w-full py-6 text-sm  text-secondary-3 transition-all duration-300  ease-in-out  placeholder:text-lg focus-within:text-secondary-2 '>
+                          <SelectValue placeholder='' />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className='bg-primary-1'>
+                        <SelectItem value='female' className='py-3 text-sm text-white'>
+                          Male
+                        </SelectItem>
+                        <SelectItem value='Female' className='py-3 text-sm text-white'>
+                          Female
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <FormMessage className='mt-1 text-xs' />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='idType'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='relative'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                      ID Type
+                    </label>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger className='w-full py-6 text-sm  text-secondary-3 transition-all duration-300  ease-in-out  placeholder:text-lg focus-within:text-secondary-2 '>
+                          <SelectValue placeholder='' />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className='bg-primary-1'>
+                        <SelectItem value='nationalId' className='py-3 text-sm text-white'>
+                          National Id
+                        </SelectItem>
+                        <SelectItem value='license' className='py-3 text-sm text-white'>
+                          Drivers License
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <FormMessage className='mt-1 text-xs' />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='idNumber'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='relative'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                      ID/SSN No.
+                    </label>
+                    <FormControl>
+                      <Input
+                        className='py-6 text-base placeholder:text-sm placeholder:text-secondary-1/50 '
+                        {...field}
+                        type='text'
+                      />
+                    </FormControl>
+                  </div>
+                  <FormMessage className='mt-1 text-sm' />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='address'
+              render={({ field }) => (
+                <FormItem className='col-span-2'>
+                  <div className='relative '>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                      Address
+                    </label>
+                    <FormControl>
+                      <div className='flex flex-col items-end gap-1 xm:flex-row xm:items-center xm:gap-4'>
+                        <Input
+                          className='py-6 text-base placeholder:text-sm placeholder:text-secondary-1/50'
+                          {...field}
+                          type='text'
+                        />
+                      </div>
+                    </FormControl>
+                  </div>
+                  <FormMessage className='mt-1 text-sm' />
+                </FormItem>
+              )}
+            />
+            <div className='relative'>
+              <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                Country
+              </label>
+              <CountryDropdown
+                value={country}
+                onChange={(val) => setCountry(val)}
+                classes=' border-gray-200 rounded-md focus:ring-0 focus:border-gray-200 py-3 w-full  text-sm text-secondary-1/90'
+              />
+            </div>
+            <div className='relative'>
+              <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>State</label>
+              <RegionDropdown
+                country={country}
+                value={region}
+                onChange={(val) => setRegion(val)}
+                blankOptionLabel='Select Region or State'
+                defaultOptionLabel='Now select a region'
+                classes=' border-gray-200 rounded-md focus:ring-0 focus:border-gray-200 py-3 w-full  text-sm text-secondary-1/90'
+              />
+            </div>
             <FormField
               control={form.control}
               name='city'
               render={({ field }) => (
                 <FormItem>
                   <div className='relative'>
-                    <label className='absolute left-2 top-[-13%] rounded-full bg-white px-1 text-sm font-extralight text-secondary-1  xm:top-[-20%]'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
                       City
                     </label>
+
                     <FormControl>
                       <div className='flex flex-col items-end gap-1 xm:flex-row xm:items-center xm:gap-4'>
                         <Input
@@ -452,20 +575,97 @@ const CreatePatient = () => {
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
-              name='postalCode'
+              name='lga'
               render={({ field }) => (
                 <FormItem>
                   <div className='relative'>
-                    <label className='absolute left-2 top-[-13%] rounded-full bg-white px-1 text-sm font-extralight text-secondary-1 xm:top-[-20%]'>
-                      Postal Code
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                      LGA
                     </label>
+
                     <FormControl>
                       <div className='flex flex-col items-end gap-1 xm:flex-row xm:items-center xm:gap-4'>
                         <Input
-                          className='py-6 text-base placeholder:text-sm  placeholder:text-secondary-1/50'
+                          className='py-6 text-base placeholder:text-sm placeholder:text-secondary-1/50 '
+                          {...field}
+                          type='text'
+                        />
+                      </div>
+                    </FormControl>
+                  </div>
+                  <FormMessage className='mt-1 text-sm' />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='hearUs'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='relative'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                      How did you hear about us
+                    </label>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger className='w-full py-6 text-sm  text-secondary-3 transition-all duration-300  ease-in-out  placeholder:text-lg focus-within:text-secondary-2 '>
+                          <SelectValue placeholder='' />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className='bg-primary-1'>
+                        <SelectItem value='FaceBook' className='py-3 text-sm text-white'>
+                          FaceBook
+                        </SelectItem>
+                        <SelectItem value='whatsApp' className='py-3 text-sm text-white'>
+                          whatsApp
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <FormMessage className='mt-1 text-xs' />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='occupation'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='relative'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                      Occupation
+                    </label>
+
+                    <FormControl>
+                      <div className='flex flex-col items-end gap-1 xm:flex-row xm:items-center xm:gap-4'>
+                        <Input
+                          className='py-6 text-base placeholder:text-sm placeholder:text-secondary-1/50 '
+                          {...field}
+                          type='text'
+                        />
+                      </div>
+                    </FormControl>
+                  </div>
+                  <FormMessage className='mt-1 text-sm' />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='referredBy'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='relative'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                      Referred By
+                    </label>
+
+                    <FormControl>
+                      <div className='flex flex-col items-end gap-1 xm:flex-row xm:items-center xm:gap-4'>
+                        <Input
+                          className='py-6 text-base placeholder:text-sm placeholder:text-secondary-1/50 '
                           {...field}
                           type='text'
                         />
@@ -477,23 +677,138 @@ const CreatePatient = () => {
               )}
             />
           </section>
+          <div className='flex items-center gap-1'>
+            <p className='text-sm  text-gray-400   '>Next of Kin</p>
+            <div className='h-[1px] w-32 bg-gray-400'></div>
+          </div>
+          <section className=' grid grid-cols-1 gap-8 md:gap-6 xm:grid-cols-[1fr_1fr_1fr_1fr]  '>
+            <FormField
+              control={form.control}
+              name='KinName'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='relative'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                      Full Name
+                    </label>
+                    <FormControl>
+                      <Input
+                        className='rounded-[8px] py-6 text-base placeholder:text-sm placeholder:text-secondary-1/50'
+                        {...field}
+                        type='text'
+                      />
+                    </FormControl>
+                  </div>
+                  <FormMessage className='mt-1 text-sm' />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='relationship'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='relative'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                      Relationship
+                    </label>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger className='w-full py-6 text-sm  text-secondary-3 transition-all duration-300  ease-in-out  placeholder:text-lg focus-within:text-secondary-2 '>
+                          <SelectValue placeholder='' />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className='bg-primary-1'>
+                        <SelectItem value='brother' className='py-3 text-sm text-white'>
+                          Brother
+                        </SelectItem>
+                        <SelectItem value='sister' className='py-3 text-sm text-white'>
+                          Sister
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <FormMessage className='mt-1 text-xs' />
+                </FormItem>
+              )}
+            />
 
-          <FormField
-            control={form.control}
-            name='saveInfo'
-            render={({ field }) => (
-              <FormItem className='flex flex-row items-center space-x-3 space-y-0 rounded-md '>
-                <FormControl>
-                  <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                </FormControl>
-                <div className=' leading-none'>
-                  <FormLabel className='text-sm text-secondary-1/80'>
-                    Save this information for next time
-                  </FormLabel>
-                </div>
-              </FormItem>
-            )}
-          />
+            <FormField
+              control={form.control}
+              name='kinEmail'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='relative'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                      Email
+                    </label>
+                    <FormControl>
+                      <div className='flex flex-col items-end gap-1 xm:flex-row xm:items-center xm:gap-4'>
+                        <Input
+                          className='py-6 text-base placeholder:text-sm placeholder:text-secondary-1/80'
+                          {...field}
+                          type='text'
+                        />
+                      </div>
+                    </FormControl>
+                  </div>
+                  <FormMessage className='mt-1 text-sm' />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='KinPhone_number'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='relative'>
+                    <label className=' rounded-full bg-white px-1 text-sm  font-semibold  '>
+                      Phone Number
+                    </label>
+                    <FormControl>
+                      <PhoneInput
+                        containerClass='phone-container'
+                        inputClass='py-6 relative text-lg focus-within:placeholder:text-secondary-2  placeholder:text-gray-300 placeholder:text-sm  focus:border-0  transition-all duration-300 ease-in-out text-base'
+                        placeholder='phone number'
+                        buttonClass='bg-[#DBF1FF] '
+                        inputStyle={{ border: '1px solid #e4e2e2', width: '100%' }}
+                        onChange={(phone, country) => handleOnPhoneChangeNextOfKin(phone, country)}
+                        autoFormat={true}
+                        inputProps={{
+                          name: 'phone',
+                          required: true,
+                        }}
+                        buttonStyle={{
+                          background: 'white',
+                          paddingInline: '0.1rem',
+                          border: '1px solid #e4e2e2',
+                          borderRight: 'none',
+                        }}
+                        dropdownStyle={{ height: '300px', maxHeight: '300px' }}
+                        dropdownClass='bg-white shadow-1'
+                        searchStyle={{
+                          width: '80%',
+                          border: '1px solid #e4e2e2',
+                          borderLeft: 'none',
+                          borderRight: 'none',
+                          borderTop: 'none',
+                          borderBottom: 'none',
+                          paddingBlock: '0.6rem',
+                          marginBottom: '0.1rem',
+                        }}
+                        value={field.value}
+                        country={phoneCountry || location.country_code}
+                        enableSearch={true}
+                        disableSearchIcon={true}
+                      />
+                    </FormControl>
+                    <FormMessage className='mt-1 text-base' />
+                  </div>
+                </FormItem>
+              )}
+            />
+          </section>
+
           <div className='invisible flex w-full items-center justify-center gap-4'>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit deserunt vero hic
