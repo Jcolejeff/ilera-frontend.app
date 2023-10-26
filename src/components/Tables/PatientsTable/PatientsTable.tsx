@@ -53,6 +53,7 @@ import { cn } from 'lib/utils';
 import DeletePatient from 'components/modal/Patients/DeletePatient';
 import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
 import DoubleTableInfoCard from 'components/general/tableInfoCard/DoubleTableInfoCard';
+import MergePatientModal from 'components/modal/Patients/MergePatient';
 export type Page = {
   id: string;
   type: string;
@@ -375,13 +376,22 @@ function PatientsTableComponent() {
                   <p> Create Appointment</p>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  onClick={() => navigate(`/${CONSTANTS.ROUTES['profile']}/${page.id}`)}
-                  className='flex items-center gap-2'
-                >
-                  <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
-                  <p> Merge Patient</p>
-                </DropdownMenuItem>
+                <MergePatientModal
+                  trigger={
+                    <Button
+                      variant='outline'
+                      className='flex w-full  items-center justify-start gap-2 border-0 p-0 px-2  capitalize  disabled:cursor-not-allowed disabled:opacity-50'
+                      onClick={() => {
+                        setTimeout(() => {
+                          console.log('delete');
+                        }, 500);
+                      }}
+                    >
+                      <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
+                      <p>Merge Patient</p>
+                    </Button>
+                  }
+                ></MergePatientModal>
                 <DropdownMenuSeparator />
                 <DeletePatient btnText='Deactivate Patient' />
                 <DeletePatient btnText='delete Patients' />
