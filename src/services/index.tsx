@@ -3,9 +3,15 @@ import axios from 'axios';
 const baseURL = import.meta.env.VITE_USE_PROXY === 'true' ? '/api' : import.meta.env.VITE_API_URL;
 
 // api with auth
+const store = JSON.parse(localStorage.getItem('store') || '{}');
+const token = store?.state?.authDetails?.access_token || '';
 const axiosInstance = axios.create({
   baseURL,
   withCredentials: true,
+
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
 });
 
 axiosInstance.interceptors.request.use(
