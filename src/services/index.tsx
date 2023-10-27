@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const baseURL = import.meta.env.VITE_USE_PROXY === 'true' ? '/api' : import.meta.env.VITE_API_URL;
+// const baseURL = import.meta.env.VITE_USE_PROXY === 'true' ? '/api' : import.meta.env.VITE_API_URL;
+const baseURL = 'https://api-ilera.onrender.com';
 
 // api with auth
 const store = JSON.parse(localStorage.getItem('store') || '{}');
