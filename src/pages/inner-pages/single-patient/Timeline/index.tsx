@@ -1,8 +1,8 @@
-import UserSettings from './UserSettings';
-import BillingAndPlan from './BillingAndPlan';
-import Connections from './Connections';
-import Notification from './Notification';
-import Security from './Security';
+import Activities from './Activities';
+import Tests from './Tests';
+import Consultation from './Consultation';
+import Billing from './Billing';
+import Visits from './Visits';
 import PlanGuard from 'guards/PlanGuard';
 import { useState } from 'react';
 import Icon from 'utils/Icon';
@@ -16,23 +16,18 @@ import {
   DropdownMenuTrigger,
 } from 'components/shadcn/dropdown-menu';
 
-type filterTypes =
-  | 'user settings'
-  | 'role settings'
-  | 'Laboratory Tests '
-  | 'Company Services'
-  | 'Insurance List';
+type filterTypes = 'activities' | 'Visits' | 'Tests ' | 'Billing' | 'Consultation';
 
 interface Filter {
   name: filterTypes;
   icon: JSX.Element;
 }
 const settingsFilters: Filter[] = [
-  { name: 'user settings', icon: <Icon name='profileIcon' /> },
-  { name: 'role settings', icon: <Icon name='padLockV2' /> },
-  { name: 'Laboratory Tests ', icon: <Icon name='fileIcon' /> },
-  { name: 'Company Services', icon: <Icon name='notificationIcon' /> },
-  { name: 'Insurance List', icon: <Icon name='linkIcon' /> },
+  { name: 'activities', icon: <Icon name='profileIcon' /> },
+  { name: 'Visits', icon: <Icon name='padLockV2' /> },
+  { name: 'Tests ', icon: <Icon name='fileIcon' /> },
+  { name: 'Billing', icon: <Icon name='notificationIcon' /> },
+  { name: 'Consultation', icon: <Icon name='linkIcon' /> },
 ];
 
 interface Tabs {
@@ -41,18 +36,18 @@ interface Tabs {
 
 const DisplayTab = ({ title }: Tabs) => {
   const components: Record<filterTypes, JSX.Element> = {
-    'user settings': <UserSettings />,
-    'role settings': <Security />,
-    'Laboratory Tests ': <BillingAndPlan />,
-    'Company Services': <Notification />,
-    'Insurance List': <Connections />,
+    activities: <Activities />,
+    Visits: <Visits />,
+    'Tests ': <Tests />,
+    Billing: <Billing />,
+    Consultation: <Consultation />,
   };
 
   return components[title];
 };
 
 const Timeline = () => {
-  const [currFilter, setCurrFilter] = useState<filterTypes>('user settings');
+  const [currFilter, setCurrFilter] = useState<filterTypes>('activities');
 
   return (
     <div className=''>

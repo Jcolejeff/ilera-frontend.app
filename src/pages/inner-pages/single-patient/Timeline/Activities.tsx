@@ -9,7 +9,7 @@ import { handleUploadProfile } from 'utils/images/upload-profile';
 import { Input } from 'components/shadcn/input';
 import UserTableComponent from 'components/Tables/UsersTable/UsersTable';
 
-const UserSettingsTab = () => {
+const ActivitiesTab = () => {
   const [disabled] = useState(true);
   const dropOptions = ['value1', 'value2', 'value3', 'value4', 'value5'];
   const [selectedFile, setSelectedFile] = useState<File | null | undefined>(null);
@@ -25,4 +25,4 @@ const UserSettingsTab = () => {
   );
 };
 
-export default UserSettingsTab;
+export default ActivitiesTab;

@@ -5,7 +5,7 @@ import Icon from 'utils/Icon';
 import { shimmer, toBase64 } from 'utils/general/shimmer';
 import masterCard from 'assets/image/mastercard.png';
 
-const BillingAndPlan = () => {
+const TestsTab = () => {
   return (
     // <div className='flex flex-col'>
     //   <div className='bg-white w-100 shadow-3 px-5 py-7 rounded-md text-[16px] md:text-[17px] lg:text-[18px]'>
@@ -222,8 +222,8 @@ const BillingAndPlan = () => {
     //     </div>
     //   </div>
     // </div>
-    <p>lab test settings</p>
+    <p>tests</p>
   );
 };
 
-export default BillingAndPlan;
+export default TestsTab;

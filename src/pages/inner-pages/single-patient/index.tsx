@@ -13,6 +13,9 @@ import { cn } from 'lib/utils';
 import Timeline from './Timeline';
 import Attachments from './Attachments';
 import DeletePatient from 'components/modal/Patients/DeletePatient';
+import TextInfoSTack from 'components/general/InfoStack/InfoStack';
+import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
+import ViewLinkedPatientsModal from 'components/modal/Patients/ViewLinkedPatients';
 
 const SinglePatientPage = () => {
   const navigate = useNavigate();
@@ -68,7 +71,16 @@ const SinglePatientPage = () => {
               <div className='flex flex-col  gap-1'>
                 <div className='flex items-center gap-2'>
                   <h3 className='text-xl font-bold '>Blessing Bamigboye Oluwadamilare</h3>
-                  <Icon name='linkIcon' svgProp={{ className: 'w-[1.5rem] h-[2rem]' }} />
+                  <ViewLinkedPatientsModal
+                    trigger={
+                      <button className='flex items-center gap-2'>
+                        <Icon
+                          name='linkIcon'
+                          svgProp={{ className: 'w-[1.5rem] text-primary-1 h-[2rem]' }}
+                        />
+                      </button>
+                    }
+                  />
                 </div>
                 <p className='text-xs   text-gray-500 md:text-base '>Email: blessingb@ilera.io</p>
                 <p className='text-xs   text-gray-500 md:text-base '>Phone Number: 09094988638</p>
@@ -77,29 +89,41 @@ const SinglePatientPage = () => {
           </section>
         </div>
 
-        <section className=' grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr]  xxl:grid-cols-[1fr_1fr_1fr_1fr]'>
-          {sections.slice(0, 4).map((item, key) => {
-            return (
-              <article
-                className={cn(
-                  `} cursor-pointer rounded-lg border px-5 py-6 opacity-50 transition-all duration-500 ease-in-out`,
-                )}
-                key={key}
-              >
-                <div className='flex flex-col gap-1  px-2'>
-                  <h3 className='text-sm font-semibold'>{item.heading}</h3>
-                  <p>
-                    <span className='font-bold md:text-[1.5rem]'>{item.count}</span>
-                    {/* <span className='text-[0.8rem] font-semibold'>%</span> */}
-                  </p>
-                  <p className='text-[0.79rem] leading-[130%] tracking-[0.02rem] md:leading-[1.2rem] md:tracking-[0.0125rem]'>
-                    {item.paragraph}
-                  </p>
-                </div>
-              </article>
-            );
-          })}
-        </section>
+        <div className='items-stretchs grid gap-4 rounded-lg   md:flex'>
+          <div className='grid w-7/12  rounded-lg border  px-4 py-2 md:grid-cols-3'>
+            <div className='col-span-3'>
+              <TextInfoSTack title='Patient ID' text='123456789' />
+            </div>
+
+            <TextInfoSTack title='Gender' text='Male' />
+            <TextInfoSTack title='Date of Birth' text='123456789' />
+            <TextInfoSTack title='Age' text='123456789' />
+            <TextInfoSTack title='Home Address' text='92 Miles Drive, Newark, NJ 07103' />
+            <TextInfoSTack title='City' text='Califonia' />
+            <TextInfoSTack title='Country' text='Usa' />
+          </div>
+
+          <NormalTableInfoCard
+            title='Total Visits'
+            value={0}
+            description='Number of times this
+patient has had a visit'
+            border
+          />
+          <NormalTableInfoCard
+            title='Total Tests'
+            value={0}
+            description='Number of times this
+patient has had a test'
+            border
+          />
+          <NormalTableInfoCard
+            title='Total Prescribtions'
+            value={0}
+            description='TNumber of times this patient has had drugs.'
+            border
+          />
+        </div>
         <div className='grid grid-cols-1 gap-4 md:grid-cols-[2.8fr_2fr] '>
           <Timeline />
           <Attachments />
