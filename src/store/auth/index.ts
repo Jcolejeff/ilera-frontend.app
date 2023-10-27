@@ -14,7 +14,7 @@ export type AuthStateType = {
 
 const authSlice: StateCreator<AuthStateType, [['zustand/devtools', never]], []> = (set) => ({
   authLoading: true,
-  loggedIn: true,
+  loggedIn: false,
   plan: 'master',
   setAuthLoading: (arg) => {
     set({ authLoading: arg });

@@ -96,14 +96,14 @@ export interface contentApiItemInterface {
 }
 
 export interface authDetailsInterface {
-  access_token?: string;
+  access?: string;
   data?: {
     biz_partner_id?: string;
     first_name?: string;
     last_name?: string;
     oragnization_id?: string;
   };
-  refresh_token?: string;
+  refresh?: string;
 }
 
 export interface productInterface {

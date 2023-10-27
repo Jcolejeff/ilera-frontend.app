@@ -36,6 +36,10 @@ import UploadImageForm from './UploadForm';
 import SavePatientModal from 'components/modal/Patients/SavePatient';
 import LinkPatientsModal from 'components/modal/Patients/LinkPatient';
 import PI, { PhoneInputProps } from 'react-phone-input-2';
+import API from 'services';
+import toast from 'helper';
+import Spinner from 'components/shadcn/ui/spinner';
+import { processError } from 'helper/error';
 
 // fix for phone input build error
 const PhoneInput: React.FC<PhoneInputProps> = (PI as any).default || PI;
@@ -136,6 +140,7 @@ const CreatePatient = () => {
   const [country, setCountry] = useState<string>('');
   const [region, setRegion] = useState<string>('');
   const [phoneCountry, setPhoneCountry] = useState('');
+  const [formIsLoading, setFormIsLoading] = useState(false);
 
   const [phoneData, setPhoneData] = useState({
     phoneNumber: '',
@@ -173,6 +178,22 @@ const CreatePatient = () => {
       phone_number: data.phone_number?.slice(location?.country_calling_code?.slice(1)?.length),
       phone_country_code: data.phone_country_code,
     };
+    setFormIsLoading(true);
+
+    // try {
+    //   const res = await API.post(`/pages`, {
+    //     ...userInfo,
+    //     phone_number: data.phone_number?.slice(location?.country_calling_code?.slice(1)?.length),
+    //     phone_country_code: data.phone_country_code,
+    //   });
+    //   toast.success('Page Created Successfully');
+    //   setTimeout(() => {
+    //     // navigate(`/${CONSTANTS.ROUTES['my-assistants']}`);
+    //   }, 1000);
+    // } catch (error: any) {
+    //   processError(error);
+    // }
+    setFormIsLoading(false);
   }
   useEffect(() => {
     form.setValue('phone_number', location?.country_calling_code);

@@ -51,15 +51,13 @@ const Login = () => {
   const { mutate, isLoading } = useMutation<authDetailsInterface, any, customerLoginFormInterface>({
     mutationFn: ({ email, password }) =>
       customerService.customerLogin({
-        organization_id: import.meta.env.VITE_TIMBU_ORG_ID,
         email,
         password,
-        app_url: `${import.meta.env.VITE_BASE_URL}/login?email=${email}`,
       }),
     onSuccess: (data) => {
       setAuthDetails(data);
       setLoggedIn(true);
-      navigate(`/${CONSTANTS.ROUTES['select-plan']}`);
+      navigate(`/app/${CONSTANTS.ROUTES['dashboard']}`);
     },
     onError: (err) => {
       processError(err);
@@ -67,8 +65,7 @@ const Login = () => {
   });
 
   const onSubmit: SubmitHandler<customerLoginFormInterface> = (data) => {
-    // mutate(data);
-    navigate(`/app/${CONSTANTS.ROUTES['dashboard']}`);
+    mutate(data);
   };
 
   useEffect(() => {
@@ -156,7 +153,8 @@ const Login = () => {
 
             <button
               onClick={() => trigger()}
-              className='mb-[1.75rem] w-full rounded-[8px] bg-primary-1 py-2 text-[15px] font-[500] text-white shadow-3 transition-opacity duration-300 ease-in-out hover:opacity-90'
+              disabled={isLoading}
+              className='mb-[1.75rem] w-full rounded-[8px] bg-primary-1 py-2 text-[15px] font-[500] text-white shadow-3 transition-opacity duration-300 ease-in-out hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50'
             >
               <BtnLoader isLoading={isLoading}>
                 <span className='leading-[0.46px]'>Sign in</span>
