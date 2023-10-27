@@ -39,7 +39,7 @@ export const menuLinks: IDropNavLinks = {
 
 const AppNav = () => {
   const navigate = useNavigate();
-  const { authDetails, loggedIn } = useStore((store) => store);
+  const { authDetails, loggedIn, setAuthDetails, setLoggedIn } = useStore((store) => store);
 
   const tags = useMemo(() => {
     const chatCount = 2;
@@ -126,7 +126,10 @@ const AppNav = () => {
 
                 {menuLinks['level3']?.map((i, idx) => (
                   <DropdownMenuItem
-                    onClick={() => navigate(`/${i?.link}`)}
+                    onClick={() => {
+                      setAuthDetails({});
+                      setLoggedIn(false);
+                    }}
                     key={idx}
                     className='flex cursor-pointer items-center gap-[0.75rem] !px-[1.25rem] !py-[0.75rem] text-[14px] leading-[21px] tracking-[0.15px] text-textColor-primary'
                   >
