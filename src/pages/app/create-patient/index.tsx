@@ -249,7 +249,7 @@ const CreatePatient = () => {
       toast.success('Patient Created Successfully');
 
       setTimeout(() => {
-        // navigate(`/app/${CONSTANTS.ROUTES.patients}`);
+        navigate(`/app/${CONSTANTS.ROUTES.patients}`);
       }, 1000);
     } catch (error: any) {
       processError(error);
