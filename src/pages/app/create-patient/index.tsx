@@ -40,6 +40,7 @@ import API from 'services';
 import toast from 'helper';
 import Spinner from 'components/shadcn/ui/spinner';
 import { processError } from 'helper/error';
+import CONSTANTS from 'constant';
 
 // fix for phone input build error
 const PhoneInput: React.FC<PhoneInputProps> = (PI as any).default || PI;
@@ -246,10 +247,9 @@ const CreatePatient = () => {
 
       const res = await API.post(`/auth/create-patients`, formData);
       toast.success('Patient Created Successfully');
-      console.log(res.data);
 
       setTimeout(() => {
-        // navigate(`/${CONSTANTS.ROUTES['my-assistants']}`);
+        navigate(`/app/${CONSTANTS.ROUTES.patients}`);
       }, 1000);
     } catch (error: any) {
       processError(error);

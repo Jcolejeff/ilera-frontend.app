@@ -4,7 +4,7 @@ const baseURL = import.meta.env.VITE_USE_PROXY === 'true' ? '/api' : import.meta
 
 // api with auth
 const store = JSON.parse(localStorage.getItem('store') || '{}');
-const token = store?.state?.authDetails?.access_token || '';
+const token = store?.state?.authDetails?.access || '';
 const axiosInstance = axios.create({
   baseURL,
   withCredentials: true,
