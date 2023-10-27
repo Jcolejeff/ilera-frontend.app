@@ -50,13 +50,15 @@ interface Iprops {
   userInfo: any; // change to the right type
   handleUserInfo: (info: any) => void; // change to the right type
 }
+interface ErrorMessages {
+  [key: string]: string[];
+}
+
 const FormSchema = z.object({
   firstName: z.string().min(2, {
     message: 'Please enter a name',
   }),
-  jobMode: z.string({
-    required_error: 'Job Mode is required.',
-  }),
+
   lastName: z.string().min(2, {
     message: 'Please enter a valid name',
   }),
@@ -108,12 +110,7 @@ const FormSchema = z.object({
   city: z.string().min(2, {
     message: 'Please enter a valid address.',
   }),
-  postalCode: z.string().min(2, {
-    message: 'Please enter a valid address.',
-  }),
-  apartment: z.string().optional(),
-  emailMe: z.boolean().default(false).optional(),
-  saveInfo: z.boolean().default(false).optional(),
+
   phone_number: z.string().min(2, {
     message: 'Please enter a valid Number.',
   }),
@@ -166,8 +163,29 @@ const CreatePatient = () => {
     form.setValue('KinCurrency_code', `+${countryData?.dialCode}`);
   };
 
+  function extractErrorMessages(errors: ErrorMessages): string[] {
+    let messages: string[] = [];
+    for (const key of Object.keys(errors)) {
+      if (Object.prototype.hasOwnProperty.call(errors, key)) {
+        messages = messages.concat(errors[key]);
+      }
+    }
+    return messages;
+  }
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     // switchTab(tabData[3]);
+    function generateUniquePassword(length = 10) {
+      const chars =
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}|;:,.<>?';
+      let password = '';
+
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * chars.length);
+        password += chars.charAt(randomIndex);
+      }
+
+      return password;
+    }
 
     console.log(data);
 
@@ -178,21 +196,67 @@ const CreatePatient = () => {
       phone_number: data.phone_number?.slice(location?.country_calling_code?.slice(1)?.length),
       phone_country_code: data.phone_country_code,
     };
+    const info = {
+      username: `${data.firstName} ${data.lastName}`,
+      first_name: data.firstName,
+      last_name: data.lastName,
+      middle_name: data.middleName,
+      password: generateUniquePassword(),
+      profile_picture: null,
+      email: data.email,
+      title: null,
+      phone_number: data.phone_number?.slice(location?.country_calling_code?.slice(1)?.length),
+      date_of_birth: null,
+      gender: data.gender,
+      city: data.city,
+      address: data.address,
+      lga: data.lga,
+      state: region,
+      country: country,
+      how_did_you_hear_about_us: data.hearUs,
+      occupation: data.occupation,
+      referred_by: data.referredBy,
+      next_of_kin_fullname: data.KinName,
+      next_of_kin_relationship: data.relationship,
+      next_of_kin_phone_number: data.KinPhone_number?.slice(
+        location?.country_calling_code?.slice(1)?.length,
+      ),
+      role: 2,
+    };
+
     setFormIsLoading(true);
 
-    // try {
-    //   const res = await API.post(`/pages`, {
-    //     ...userInfo,
-    //     phone_number: data.phone_number?.slice(location?.country_calling_code?.slice(1)?.length),
-    //     phone_country_code: data.phone_country_code,
-    //   });
-    //   toast.success('Page Created Successfully');
-    //   setTimeout(() => {
-    //     // navigate(`/${CONSTANTS.ROUTES['my-assistants']}`);
-    //   }, 1000);
-    // } catch (error: any) {
-    //   processError(error);
-    // }
+    try {
+      const formData = new FormData();
+
+      for (const [key, value] of Object.entries(info)) {
+        if (value !== null && value !== undefined) {
+          // Convert numbers to string; keep strings and Blobs as they are
+          let valueToAppend;
+          if (typeof value === 'number') {
+            valueToAppend = value.toString();
+          } else {
+            // Assuming value is either string or Blob
+            valueToAppend = value;
+          }
+
+          formData.append(key, valueToAppend);
+        }
+      }
+
+      const res = await API.post(`/auth/create-patients`, formData);
+      toast.success('Patient Created Successfully');
+      console.log(res.data);
+
+      setTimeout(() => {
+        // navigate(`/${CONSTANTS.ROUTES['my-assistants']}`);
+      }, 1000);
+    } catch (error: any) {
+      processError(error);
+      extractErrorMessages(error?.response?.data).forEach((err) => {
+        toast.error(err);
+      });
+    }
     setFormIsLoading(false);
   }
   useEffect(() => {
@@ -222,7 +286,22 @@ const CreatePatient = () => {
         </div>
 
         <div className='flex gap-4'>
-          <SavePatientModal
+          <button
+            // onClick={() => form.trigger()}
+            disabled={formIsLoading}
+            onClick={() => form.handleSubmit(onSubmit)()}
+            className='group flex  items-center justify-center gap-2  rounded-[5px] bg-primary-1 px-8 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50'
+          >
+            {formIsLoading ? (
+              <Spinner />
+            ) : (
+              <span className='text-xs font-[500] leading-[24px] tracking-[0.4px] text-white md:text-sm'>
+                Create Patient
+              </span>
+            )}
+          </button>
+
+          {/* <SavePatientModal
             trigger={
               <button className='group flex  items-center justify-center gap-2  rounded-[5px] bg-primary-1 px-8 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:opacity-90'>
                 <span className='text-xs font-[500] leading-[24px] tracking-[0.4px] text-white md:text-sm'>
@@ -230,7 +309,7 @@ const CreatePatient = () => {
                 </span>
               </button>
             }
-          ></SavePatientModal>
+          ></SavePatientModal> */}
 
           <button className='group flex  items-center justify-center gap-2  rounded-[5px] border   px-5 text-base font-semibold transition-all duration-300 ease-in-out hover:opacity-90'>
             <span className='text-xs font-[500] leading-[24px] tracking-[0.4px]  md:text-sm'>
@@ -261,8 +340,10 @@ const CreatePatient = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className=' flex h-full w-full flex-col gap-8 
-        '
+          className={cn(
+            'flex flex-col gap-8',
+            formIsLoading && 'pointer-events-none cursor-not-allowed opacity-30',
+          )}
         >
           <div className='flex items-center gap-1'>
             <p className='text-sm  text-gray-400   '>Demographic</p>
@@ -465,10 +546,10 @@ const CreatePatient = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent className='bg-primary-1'>
-                        <SelectItem value='female' className='py-3 text-sm text-white'>
+                        <SelectItem value='male' className='py-3 text-sm text-white'>
                           Male
                         </SelectItem>
-                        <SelectItem value='Female' className='py-3 text-sm text-white'>
+                        <SelectItem value='female' className='py-3 text-sm text-white'>
                           Female
                         </SelectItem>
                       </SelectContent>

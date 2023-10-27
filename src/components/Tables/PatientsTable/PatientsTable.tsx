@@ -503,7 +503,6 @@ function PatientsTableComponent() {
               </DropdownMenu>
             </DropdownMenuContent>
           </DropdownMenu>
-          S
         </div>
       </div>
       <section className=' grid grid-cols-[1fr_1fr] gap-[2rem] rounded-lg border md:grid-cols-[1fr_1fr_1fr]  xxl:grid-cols-[1fr_1fr_1fr_1fr]'>
