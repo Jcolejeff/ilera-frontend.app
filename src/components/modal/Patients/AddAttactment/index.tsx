@@ -9,7 +9,7 @@ interface Iprops {
   title?: string;
 }
 
-const AddViewAttachmentModal = ({ trigger, triggerClassName, title }: Iprops) => {
+const AddAttachmentModal = ({ trigger, triggerClassName, title }: Iprops) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -29,4 +29,4 @@ const AddViewAttachmentModal = ({ trigger, triggerClassName, title }: Iprops) =>
   );
 };
 
-export default AddViewAttachmentModal;
+export default AddAttachmentModal;

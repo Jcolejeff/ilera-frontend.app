@@ -5,13 +5,16 @@ interface Props {
   title: string;
   value: number;
   description: string;
+  border?: boolean;
 }
 
-const NormalTableInfoCard = ({ title, value, description }: Props) => {
+const NormalTableInfoCard = ({ title, value, description, border }: Props) => {
   return (
     <article
       className={cn(
-        `} cursor-pointer rounded-lg  px-5 py-6 opacity-50 transition-all duration-500 ease-in-out`,
+        ` cursor-pointer rounded-lg  px-5 py-6 opacity-50 transition-all duration-500 ease-in-out ${
+          border && 'border '
+        }`,
       )}
     >
       <div className='flex flex-col gap-1  px-2'>

@@ -54,6 +54,7 @@ import DeletePatient from 'components/modal/Patients/DeletePatient';
 import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
 import DoubleTableInfoCard from 'components/general/tableInfoCard/DoubleTableInfoCard';
 import MergePatientModal from 'components/modal/Patients/MergePatient';
+import SampleAccordion from 'components/sampleAccordion';
 export type Page = {
   id: string;
   type: string;
@@ -440,7 +441,6 @@ function PatientsTableComponent() {
             />
             <Icon name='searchIcon' svgProp={{ className: 'text-primary-9' }} />
           </div>
-
           <Link
             to={`/app/${CONSTANTS.ROUTES['create-patient']}`}
             className='group flex  items-center justify-center gap-2  rounded-[5px] bg-primary-1  px-4 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:opacity-90'
@@ -456,7 +456,6 @@ function PatientsTableComponent() {
               New Patient
             </span>
           </Link>
-
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant='ghost' className='h-12 w-12 p-0'>
@@ -504,6 +503,7 @@ function PatientsTableComponent() {
               </DropdownMenu>
             </DropdownMenuContent>
           </DropdownMenu>
+          S
         </div>
       </div>
       <section className=' grid grid-cols-[1fr_1fr] gap-[2rem] rounded-lg border md:grid-cols-[1fr_1fr_1fr]  xxl:grid-cols-[1fr_1fr_1fr_1fr]'>
