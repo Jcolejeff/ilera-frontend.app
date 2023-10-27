@@ -40,7 +40,8 @@ export type routePathTypes =
   | 'inventory'
   | 'reports'
   | 'laboratory'
-  | 'create-patient';
+  | 'create-patient'
+  | 'create-visit';
 
 export interface routesInterface<T> {
   path: T;

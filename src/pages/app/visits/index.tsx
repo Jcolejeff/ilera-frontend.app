@@ -23,9 +23,37 @@ import { apiInterface, contentApiItemInterface } from 'types';
 import FeaturedLoader from 'components/Loaders/FeaturedLoader';
 import CONSTANTS from 'constant';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import PatientsRecords from './Records';
+import PatientsReports from './Reports';
+
+type filterTypes = 'visits records' | 'visits reports';
+
+interface Filter {
+  name: filterTypes;
+  icon: JSX.Element;
+}
+const PatientsFilter: Filter[] = [
+  { name: 'visits records', icon: <Icon name='profileIcon' /> },
+  { name: 'visits reports', icon: <Icon name='padLockV2' /> },
+];
+
+interface Tabs {
+  title: filterTypes;
+}
+
+const DisplayTab = ({ title }: Tabs) => {
+  const components: Record<filterTypes, JSX.Element> = {
+    'visits records': <PatientsRecords />,
+    'visits reports': <PatientsReports />,
+  };
+
+  return components[title];
+};
 
 const VisitsPage = () => {
   const navigate = useNavigate();
+  const [currFilter, setCurrFilter] = useState<filterTypes>('visits records');
 
   // const { data, isLoading } = useQuery<any, any, apiInterface<contentApiItemInterface[]>>({
   //   queryKey: ['get-blogs'],
@@ -40,132 +68,44 @@ const VisitsPage = () => {
   // });
 
   return (
-    <div className='container flex w-full flex-col px-container-base py-[1.875rem]'>
-      <FunkyPagesHero
-        // description='Explore Filmmaking blogs'
-        title='Visits'
-      />
-      <PlanGuard page='visits'>
-        <>
-          {/* <div className='relative mx-auto my-[1.5rem] w-full max-w-[800px] md:-top-[1.5rem] md:my-0 md:mb-[1rem]'>
-            <SearchComboBox />
-          </div>
-          <div className='mb-[2.5rem] flex w-full justify-center'>
-            <LinksFilter
-              tabs={[
-                {
-                  link: ``,
-                  sublinks: [
-                    { title: `Best tv shows`, link: `` },
-                    { link: ``, title: `Awards` },
-                  ],
-                  title: `General`,
-                },
-                {
-                  link: ``,
-                  sublinks: [],
-                  title: `Production`,
-                },
-                {
-                  link: ``,
-                  sublinks: [],
-                  title: `Post-production`,
-                },
-                {
-                  link: ``,
-                  sublinks: [],
-                  title: `Distribution and Marketing`,
-                },
-                {
-                  link: ``,
-                  sublinks: [],
-                  title: `Animation/vfx`,
-                },
-              ]}
-            />
-          </div>
-
-          <div className='mb-[2.5rem] flex w-full items-center justify-between'>
-            <h4 className='text-[16px] font-[600] leading-[1.5rem] tracking-[0.00938rem] text-primary-9 sm:text-[1.125rem]'>
-              Featured Blogs
-            </h4>
-            <DropdownMenu>
-              <DropdownMenuTrigger className='flex items-center gap-1'>
-                <span className='text-[14px] leading-[1.5rem] tracking-[0.00938rem] text-primary-9'>
-                  Sorting:
-                </span>
-                <span className='text-[14px] leading-[1.5rem] tracking-[0.00938rem] text-primary-1'>
-                  Popularity
-                </span>
-                <Icon name='arrowDown' />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>Top Blogs</DropdownMenuItem>
-                <DropdownMenuItem>latest: Acsending</DropdownMenuItem>
-                <DropdownMenuItem>Latest: Decending</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-
-          <FeaturedLoader isLoading={isLoading}>
-            <div className='mb-[2.5rem] flex flex-col items-center gap-8 lg:flex-row'>
-              <div className='w-full max-w-[424px] overflow-hidden rounded-[8px]'>
-                <LazyLoadImage
-                  placeholderSrc={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
-                  className='h-full w-full bg-cover'
-                  src={`${CONSTANTS.TIMBU_KEYS.IMAGE_BASE_URL}/${data?.items[0]?.photos?.[0]?.url}`}
-                  effect='blur'
-                  alt=' '
-                />
-              </div>
-              <div className='flex max-w-[30rem] flex-col justify-center gap-4'>
-                <span className='text-[14px] font-[600] leading-[21px] tracking-[0.1px] text-primary-1 '>
-                  Production
-                </span>
-                <h5 className='text-[32px] font-[700] leading-[43px] text-primary-9'>
-                  {data?.items[0]?.title}
-                </h5>
-                <p className='text-[14px] font-[300] leading-[21px] tracking-[0.15px] text-secondary-2'>
-                  {data?.items[0]?.subtitle}
-                </p>
+    <div className='container flex h-full w-full max-w-[150.75rem]  flex-col overflow-auto px-container-base py-[2.1rem]'>
+      {/* to be refactored */}
+      <div className='flex justify-between '>
+        <p className='text-base font-semibold text-primary-1'>Visits</p>
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            className={`focus-within:outline-0 focus-within:ring-0 focus:ring-0 active:ring-0`}
+          >
+            <Icon name='menu' />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className='mr-[1.5rem] bg-white   shadow-5'>
+            {PatientsFilter?.map((i, idx) => (
+              <DropdownMenuItem key={idx} className=''>
                 <button
-                  onClick={() => navigate(`${data?.items[0]?.id}`)}
-                  className='group flex w-max items-center justify-center gap-2 rounded-[8px] bg-primary-1 px-[1.5rem] py-[0.75rem] transition-opacity duration-300 ease-in-out hover:opacity-90'
+                  key={idx}
+                  className={`${
+                    i?.name === currFilter
+                      ? `bg-primary-1  text-white`
+                      : `bg-transparent text-secondary-2 hover:text-primary-1`
+                  } flex h-full  w-max items-center rounded-[5px] px-[1.5rem]  py-3 text-start transition-all ease-in-out `}
+                  onClick={() => setCurrFilter(i?.name)}
                 >
-                  <span className='leading-[28px] tracking-[0.15px] text-white'>Check it Out</span>
-                  <Icon
-                    name='arrow45'
-                    svgProp={{
-                      className:
-                        'group-hover:translate-x-[2px] transition-transform duration-300 ease-in-out',
-                    }}
-                  />
+                  <span className='mt-[3px] whitespace-nowrap text-start text-[13px] font-semibold capitalize leading-3 tracking-[0.15px] md:mt-0 lg:text-[13px]'>
+                    {i?.name}
+                  </span>
                 </button>
-              </div>
-            </div>
-          </FeaturedLoader>
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+      <div className='relative grid w-full'>
+        {/* ... */}
 
-          <ContentLoader isLoading={isLoading} numberOfBlocks={6}>
-            <div className='grid grid-cols-1 gap-x-[1.5rem] gap-y-[2.5rem]  sm:grid-cols-2 md:grid-cols-3'>
-              {data?.items?.map((i, idx) => (
-                <div key={idx} className='h-full w-full'>
-                  <BlogCard
-                    authorImg={dpIcon}
-                    authorName={`${i?.content_author?.first_name} ${i?.content_author?.last_name}`}
-                    authorRole={`${i?.content_author?.email}`}
-                    blogImage={`${CONSTANTS.TIMBU_KEYS.IMAGE_BASE_URL}/${i?.photos?.[0]?.url}`}
-                    category={`Production`}
-                    date={`18 April, 2022`}
-                    description={i?.subtitle}
-                    title={i?.title}
-                    link={`${i?.id}`}
-                  />
-                </div>
-              ))}
-            </div>
-          </ContentLoader> */}
-        </>
-      </PlanGuard>
+        <div className='mt-7'>
+          <DisplayTab title={currFilter} />
+        </div>
+      </div>
     </div>
   );
 };

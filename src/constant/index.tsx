@@ -41,6 +41,7 @@ const ROUTES: Record<routePathTypes, routePathTypes> = {
   laboratory: 'laboratory',
   reports: 'reports',
   'create-patient': 'create-patient',
+  'create-visit': 'create-visit',
 };
 
 const PLAN_PERMISSIONS: Record<routePathTypes, planTypes> = {
@@ -84,6 +85,7 @@ const PLAN_PERMISSIONS: Record<routePathTypes, planTypes> = {
   laboratory: 'starter',
   reports: 'starter',
   'create-patient': 'starter',
+  'create-visit': 'starter',
 };
 
 const TIMBU_KEYS = {
