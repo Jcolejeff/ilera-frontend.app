@@ -21,7 +21,7 @@ interface Iprop {
   title?: string;
 }
 
-const CreateVisitsModal = ({ trigger, triggerClassName, title }: Iprop) => {
+const LinkPatientsModal = ({ trigger, triggerClassName, title }: Iprop) => {
   const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const CreateVisitsModal = ({ trigger, triggerClassName, title }: Iprop) => {
         <div className='flex w-full flex-col '>
           <div className='flex w-full flex-col   gap-[0.87rem] py-6'>
             {/* <Icon name='saveIcon' svgProp={{ className: 'w-20 h-16 text-gray-500' }} /> */}
-            <p className='text-xl font-semibold'>Link Patient</p>
+            <p className='text-xl font-semibold'>Create New Visit</p>
             <p className='font-semibold'>Search</p>
             <Command className='rounded-lg  shadow-md'>
               <CommandInput placeholder='Type to search name...' />
@@ -55,9 +55,22 @@ const CreateVisitsModal = ({ trigger, triggerClassName, title }: Iprop) => {
             </Command>
           </div>
         </div>
+        <div className='my-4 flex w-full justify-end gap-4'>
+          <button className='group flex  items-center justify-center gap-2  rounded-[5px] bg-primary-1 px-8 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:opacity-90'>
+            <span className='text-xs font-[500] leading-[24px] tracking-[0.4px] text-white md:text-sm'>
+              Create Visit
+            </span>
+          </button>
+
+          <button className='group flex  items-center justify-center gap-2  rounded-[5px] border   px-5 text-base font-semibold transition-all duration-300 ease-in-out hover:opacity-90'>
+            <span className='text-xs font-[500] leading-[24px] tracking-[0.4px]  md:text-sm'>
+              Cancel
+            </span>
+          </button>
+        </div>
       </DialogContent>
     </Dialog>
   );
 };
 
-export default CreateVisitsModal;
+export default LinkPatientsModal;

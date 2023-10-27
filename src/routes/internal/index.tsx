@@ -18,6 +18,7 @@ import SinglePatient from 'pages/inner-pages/single-patient';
 import { routeTypes, routesInterface } from 'types';
 import PatientsPage from 'pages/app/patients';
 import CreatePatientPage from 'pages/app/create-patient';
+import CreateVisitPage from 'pages/app/create-visit';
 
 const internalRoute: routeTypes = [
   {
@@ -28,6 +29,11 @@ const internalRoute: routeTypes = [
   {
     element: <CreatePatientPage />,
     path: 'create-patient',
+    plan: 'starter',
+  },
+  {
+    element: <CreateVisitPage />,
+    path: 'create-visit',
     plan: 'starter',
   },
   {
