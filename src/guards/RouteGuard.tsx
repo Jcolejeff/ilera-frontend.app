@@ -6,18 +6,17 @@ const RouteGuard = () => {
   const loggedIn = useStore((state) => state.loggedIn);
   const location = useLocation();
   const outlet = useOutlet();
+    //   <Navigate
+    //   to={`/login`}
+    //   replace
+    //   state={
+    //     {
+    //       path: location.pathname,
+    //     } as { path: string; failedFrom: planTypes }
+    //   }
+    // />
 
-  return !loggedIn ? (
-    <Navigate
-      to={`/login`}
-      replace
-      state={
-        {
-          path: location.pathname,
-        } as { path: string; failedFrom: planTypes }
-      }
-    />
-  ) : (
+  return !loggedIn ? ( outlet ) : (
     outlet
   );
 };
