@@ -152,7 +152,7 @@ const Login = () => {
             </div>
 
             <button
-              onClick={() => trigger()}
+              onClick={() => navigate('/app/dashboard')}
               disabled={isLoading}
               className='mb-[1.75rem] w-full rounded-[8px] bg-primary-1 py-2 text-[15px] font-[500] text-white shadow-3 transition-opacity duration-300 ease-in-out hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50'
             >
